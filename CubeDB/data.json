@@ -1,0 +1,81 @@
+
+{
+  "name":"Cubing classroom",
+  "cubes":[
+    {
+      "name":"MF2S",
+      "type":"222",
+      "colors":0
+    },
+    {
+      "name":"MF3",
+      "type":"333",
+      "colors":0
+    },
+    {
+      "name":"MF3S",
+      "type":"333",
+      "colors":0
+    },
+    {
+      "name":"MF3RS",
+      "type":"333",
+      "colors":0
+    },
+    {
+      "name":"MF4S",
+      "type":"333",
+      "colors":0
+    },
+    {
+      "name":"MF5S",
+      "type":"333",
+      "colors":0
+    },
+    {
+      "name":"MF7S",
+      "type":"333",
+      "colors":0
+    }
+  ]
+},
+{
+  "name":"Cyclone boys",
+  "cubes":[
+    {
+      "name":"AoLong",
+      "type":"333",
+      "colors":1
+    }
+  ]
+}
+
+//ENDOFDATA
+colors=0 means black,White
+colors=1 means black,white,stickerless
+colors=2 means stickerless
+
+[
+  "Cubing classroom",
+  "Cyclone Boys",
+  "DaYan",
+  "Eastsheen",
+  "FanXin",
+  "FangShi",
+  "Gan's puzzles",
+  "Lanlan",
+  "LimCube",
+  "MoYu",
+  "QJ",
+  "QiYi",
+  "Rubik's",
+  "ShengShou",
+  "TheValk",
+  "V-Cube",
+  "VeryPuzzle",
+  "WitEden",
+  "XMan",
+  "YJ",
+  "YuXin",
+  "Generic types"
+]
