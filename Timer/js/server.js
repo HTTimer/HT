@@ -2,16 +2,16 @@
  * server.js
  */
 
-var server=(function(){
+var server = (function() {
 	/*
 	 * server:Init()
 	 */
-	function init(){
+	function init() {
 
 	}
 
-	const SERVER_PATH="../Timer-Server/";
-	const  TIMER_PATH="../Timer/";
+	const SERVER_PATH = "../Timer-Server/";
+	const TIMER_PATH = "../Timer/";
 
 	/*
 	 * server:json(url)
@@ -19,15 +19,17 @@ var server=(function(){
 	 * @param callback Function
 	 * Example use: server.json("js/goals.js",function(t){console.log(t.response);})
 	 */
-	 function json(url,callback){
-		 var jsonFile=new XMLHttpRequest();
-     jsonFile.open("GET",SERVER_PATH+url,true);
-     jsonFile.send();
-     jsonFile.onreadystatechange=function(){callback(jsonFile)};
-	 }
+	function json(url, callback) {
+		var jsonFile = new XMLHttpRequest();
+		jsonFile.open("GET", url, true);
+		jsonFile.send();
+		jsonFile.onload = function() {
+			callback(jsonFile)
+		};
+	}
 
 	return {
-		init:init,
-		json:json
+		init: init,
+		json: json
 	}
 })();

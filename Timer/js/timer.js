@@ -26,7 +26,7 @@ timer = (function() {
 
 		//Let the server check, whether the user is logged in. Assume, the user is not, in case it fails.
 		core.set("login", false);
-		server.json("isloggedin.php", function(t) {
+		server.json("../Timer-Server/isloggedin.php", function(t) {
 			core.set("login", !!t.response);
 		});
 
@@ -104,6 +104,11 @@ timer = (function() {
 			}],
 			currentSession: 0
 		};
+
+		// Load cube database
+		server.json("../CubeDB/read.php", function(t) {
+			cube.init(t.response);
+		});
 
 		//Apply stylesheet with general style
 		layout.setTheme(0);

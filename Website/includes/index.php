@@ -1,5 +1,3 @@
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <div class="row">
 	<div class="col-md-3"></div>
 	<div class="col-md-6">
@@ -7,7 +5,7 @@
 			<div class="container">
 				<h1>HTTimer!</h1>
 				<p>The best cubing timer in the world.</p>
-				<p><a class="btn btn-success btn-lg" href="../Timer/timer.php" role="button">Try it!</a></p>
+				<p><a class="btn btn-success btn-lg" href="index.php?show=Timer" role="button">Try it!</a></p>
 			</div>
 		</div>
 		<table class="table table-striped table-condensed">
