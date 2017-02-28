@@ -1,9 +1,7 @@
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-default">Register</a>
 
-<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
 <div class="modal-dialog">
 	<div class="loginmodal-container">
 		<h1>Register your HTTimer Account</h1><br>
@@ -15,10 +13,9 @@
 			<input type="submit" name="submit" class="login loginmodal-submit" value="Register"/>
 		</form>
 		<div class="login-help">
-			<a href="login.php">Login</a>
+			<a href="login.php">Already have an account? Login</a>
 		</div>
 	</div>
-</div>
 </div>
 <style>
 @import url(http://fonts.googleapis.com/css?family=Roboto);
@@ -88,7 +85,7 @@
   /* border: 1px solid #3079ed; */
   border: 0px;
   color: #fff;
-  text-shadow: 0 1px rgba(0,0,0,0.1); 
+  text-shadow: 0 1px rgba(0,0,0,0.1);
   background-color: #4d90fe;
   padding: 17px 0px;
   font-family: roboto;
@@ -112,7 +109,7 @@
   display: inline-block;
   opacity: 0.6;
   transition: opacity ease 0.5s;
-} 
+}
 
 .login-help{
   font-size: 12px;

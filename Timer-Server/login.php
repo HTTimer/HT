@@ -1,9 +1,6 @@
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-default">Please Login</a>
-
-<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
 <div class="modal-dialog">
 	<div class="loginmodal-container">
 		<h1>Login to your HTTimer Account <?php if($login=isset($_COOKIE['HTTimer-login']))echo "(Already logged in)";?></h1><br>
@@ -13,10 +10,9 @@
 			<input type="submit" name="submit" class="login loginmodal-submit" value="Login"/>
 		</form>
 		<div class="login-help">
-			<a href="register.php">Register</a>
+			<a href="register.php">Don't have an account? Register</a>
 		</div>
 	</div>
-</div>
 </div>
 <style>
 @import url(http://fonts.googleapis.com/css?family=Roboto);

@@ -17,7 +17,21 @@
         <li><a href="#">AlgDB</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Report bug</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <?php if(!$login){ ?>
+
+            <li><a href="../Timer-Server/login.php">Login</a></li>
+            <li><a href="../Timer-Server/register.php">Create account</a></li>
+            <?php }else{ ?>
+            <li><a href="#">Logout</a></li>
+            <li><a href="#">View Account</a></li>
+            <li><a href="#">My DB list</a></li>
+            <?php } ?>
+          </ul>
+        </li>
+        <li><a href="../Timer-Server/errorreport.php">Report bug</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
     </div>

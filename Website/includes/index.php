@@ -43,7 +43,7 @@
 				<td>Export/Import times</td><td><b>Yes</b></td><td><b>Yes</b></td><td>No</td>
 			</tr>
 			<tr>
-				<td>Simulate other cubing timers</td><td><b>Yes</b></td><td>No</td><td>No</td>
+				<td>Set different methods and cubes</td><td><b>Yes</b></td><td>No</td><td>No</td>
 			</tr>
 		</table>
 	</div>

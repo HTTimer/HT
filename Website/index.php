@@ -1,4 +1,7 @@
 <?php
+//Check login
+$login=isset($_COOKIE["HTTimer-login"]);
+
 //If no location, set it to index
 if(!isset($_GET["show"])){
   $_GET["show"]="index";
@@ -15,8 +18,9 @@ if($_GET["show"]=="Timer"){
 <html>
   <head>
     <title>HTWebsite</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="lib/jquery.min.js"></script> <!-- JQuery 3.1.1 -->
+    <link href="lib/bootstrap.min.css" rel="stylesheet" />
+    <script src="lib/bootstrap.min.js"></script>
   </head>
   <body>
     <?php

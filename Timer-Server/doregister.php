@@ -14,12 +14,15 @@ if (!$_POST['pword']) {
 if (!$_POST['pword2']) {
 	$errName3 = 'Please repeat your password';
 }
+if ($pword != $pword2) {
+	$errName4 = 'The two passwords don\'t match!';
+}
 
 
-if (!$errName && !$errName2 && !$errName3) {
+if (!$errName && !$errName2 && !$errName3 && !$errName4) {
 	echo '<div class="alert alert-success">Thank You!</div>';
-	file_put_contents("accounts.pptm",implode(",",[$name,$pword,$wca,$pword==$pword2])."\n",FILE_APPEND | LOCK_EX);
+	file_put_contents("accounts.pptm",",".json_encode([$name,$pword,$wca,$pword==$pword2]),FILE_APPEND|LOCK_EX);
 }else{
-	echo "<div class='alert alert-danger'>Sorry there was an error registering. Please try again. Error(s): $errName $errName2 $errName3.</div>";
+	echo "<div class='alert alert-danger'>Sorry there was an error registering. Please try again. Error(s): $errName $errName2 $errName3 $errName4.</div>";
 }
 ?>
