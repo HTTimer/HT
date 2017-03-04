@@ -20,9 +20,10 @@ if($_GET["show"]=="Timer"){
     <title>HTWebsite</title>
     <script src="lib/jquery.min.js"></script> <!-- JQuery 3.1.1 -->
     <link href="lib/bootstrap.min.css" rel="stylesheet" />
+    <link href="lib/custom.css" rel="stylesheet" />
     <script src="lib/bootstrap.min.js"></script>
   </head>
-  <body>
+  <body style="margin-top: 10px;">
     <?php
     include_once("menu.php");
     include_once("includes/".$_GET["show"].".php");
