@@ -20,7 +20,7 @@
           </ul>
         </li>
         <li><a href="index.php?show=lscubedb">CubeDB</a></li>
-        <li><a href="#">AlgDB</a></li>
+        <li><a href="index.php?show=lsalgdb ">AlgDB </a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <?php if($login){ ?>

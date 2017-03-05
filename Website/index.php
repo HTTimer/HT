@@ -17,7 +17,7 @@ if($_GET["show"]=="Timer"){
 <!doctype html>
 <html>
   <head>
-    <title>HTWebsite</title>
+    <title>CMOS - Cubing Management and Optimizing System</title>
     <script src="lib/jquery.min.js"></script> <!-- JQuery 3.1.1 -->
     <link href="lib/bootstrap.min.css" rel="stylesheet" />
     <link href="lib/custom.css" rel="stylesheet" />
