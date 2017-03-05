@@ -5,7 +5,7 @@
             <div class="col-md-5 col-md-offset-1">
                 <div class="content">
                   <div class="pull-middle">
-                    <h1 class="page-header">HTTimer is the best cubing timer currently existing in the world.</h1>
+                    <h1 class="page-header">CMOS is the best cubing software enviroment currently existing in the world.</h1>
                     <p class="lead">Download it now.</p>
                     <div class="panel panel-default">
                         <div class="panel-body">
@@ -24,6 +24,7 @@
             </div>
             <div class="col-md-4 col-md-offset-1 text-center mt-100 mb-100">
                 <div class="phone">
+                  → CubeImage.cube ←
                     <!--<img class="img-responsive img-rounded" src="http://placemi.com/djlnr/263x480">-->
                 </div>
             </div>
@@ -39,22 +40,22 @@
   		<div class="row text-center">
   			<div class="col-md-3">
   				<h3>All Features</h3>
-  				<p>HT has all features you will ever need.</p>
+  				<p>CMOS has all features you will ever need.</p>
   				<a href="#feature"><button class="btn-success btn btn-lg" type="button" style="margin:10px 0 40px 0;">READ MORE</button></a>
   			</div>
   			<div class="col-md-3">
   				<h3>All devices</h3>
-  				<p>You can download HT for Unix, Android, Windows, Linux or use it as a Website.</p>
+  				<p>You can download CMOS for Unix, Android, Windows, Linux or use it as a Website.</p>
   				<a href="#devices"><button class="btn-success btn btn-lg" type="button" style="margin:10px 0 40px 0;">READ MORE</button></a>
   			</div>
   			<div class="col-md-3">
   				<h3>Open-source</h3>
-  				<p>HT is open-source and hosted at github.com. Everyone can contribute to make HT better.</p>
+  				<p>CMOS is open-source and hosted at github.com. Everyone can contribute to make HT better.</p>
   				<a href="#github"><button class="btn-success btn btn-lg" type="button" style="margin:10px 0 40px 0;">READ MORE</button></a>
   			</div>
   			<div class="col-md-3">
-  				<h3>Flexible</h3>
-  				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text</p>
+  				<h3>One account for everything</h3>
+  				<p>Create one account and use CMOSTimer, CubeDB, AlgDB and save data from all of them.</p>
   				<button class="btn-success btn btn-lg" type="button" style="margin:10px 0 40px 0;">READ MORE</button>
   			</div>
           </div>
@@ -180,7 +181,9 @@
 .mb-100 {
     margin-bottom: 100px;
 }
-
+h1.page-header {
+  font-size:25pt;
+}
 .icon {
     width: 32px;
     height: 32px;

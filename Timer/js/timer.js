@@ -18,7 +18,7 @@ timer = (function() {
 	 */
 
 	var moduleList = ["algSets", "cmd", "core", "counter", "cube", "error", "goals", "html", "layout", "scramble", "sessions", "stats", "keyboard", "translate"];
-	var version = ["4", "3", "0", "A"]; // This is the development version, the "real" version 1.0.0 starts at 4.3.0A dev.
+	var version = ["4", "3", "0", "A"]; // This is the development version, the "real" version 1.0.0 starts at 4.3.0A dev. This is because it was renamed from HTTimer to CMOSTimer at Version HT4.3.0A dev.
 	version = [version[0] - 3, version[1] - 3, version[2]].join(".") + " " + version[3]; // build the real version
 
 	function init() {
@@ -141,7 +141,7 @@ timer = (function() {
 			<div class="bottom-menu" onclick="Mousetrap.trigger('l l');"><span class="keycodes">l l/l c</span> Login</div>
 			<div class="bottom-menu" onclick="Mousetrap.trigger('m m');"><span class="keycodes">m m/m c</span> Collection</div>
 			<div class="bottom-menu" onclick="Mousetrap.trigger('p p');"><span class="keycodes">p p/p c</span> Statistics</div>`);
-		layout.write("LOGO", `HTTimer <small onclick="cmd.switchToText()">V${version} ${transl("Alpha Graphic")}</small><span id="timingModeRevert"></span>`);
+		layout.write("LOGO", `CMOSTimer <small onclick="cmd.switchToText()">V${version} ${transl("Alpha Graphic")}</small><span id="timingModeRevert"></span>`);
 		layout.write("TIME", `<span class="keycodes">space</span>0.000`);
 		layout.write("PORT", `<button onclick="alert(timer.exportCsv());">Export CSV</button>`);
 

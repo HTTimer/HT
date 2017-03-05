@@ -1,40 +1,61 @@
 [
   {
+    "name":"Cubikon",
+    "cubes":[
+      {
+        "name":"Ultimate 2x2x2 V1",
+        "type":"222",
+        "colors":0,
+        "size":50
+      },
+      {
+        "name":"Ultimate 2x2x2 V2",
+        "type":"222",
+        "colors":0,
+        "size":50
+      }
+    ]
+  },
+  {
     "name":"Cubing classroom",
     "cubes":[
       {
         "name":"MF2S",
         "type":"222",
-        "colors":0
+        "colors":0,
+        "size":50
       },
       {
         "name":"MF3",
         "type":"333",
-        "colors":0
+        "colors":0,
+        "size":57
       },
       {
         "name":"MF3S",
         "type":"333",
-        "colors":0
+        "colors":0,
+        "size":57
       },
       {
         "name":"MF3RS",
         "type":"333",
-        "colors":0
+        "colors":0,
+        "size":57
       },
       {
         "name":"MF4S",
-        "type":"333",
+        "type":"444",
         "colors":0
       },
       {
         "name":"MF5S",
-        "type":"333",
+        "type":"555",
         "colors":0
       },
       {
         "name":"MF7S",
-        "type":"333",
+        "type":"777",
         "colors":0
       }
     ]
@@ -45,14 +66,122 @@
       {
         "name":"FeiChang",
         "type":"333",
-        "colors":1
+        "colors":1,
+        "size":57
+      },
+      {
+        "name":"2x2x2",
+        "type":"222",
+        "colors":0,
+        "size":50
       }
     ]
   },
   {
     "name":"DaYan",
     "cubes":[
-
+      {
+        "name":"2x2x2 old plastic",
+        "type":"222",
+        "colors":0,
+        "size":50
+      },
+      {
+        "name":"2x2x2 old plastic",
+        "type":"222",
+        "colors":0,
+        "size":46
+      },
+      {
+        "name":"2x2x2 new plastic",
+        "type":"222",
+        "colors":0,
+        "size":50
+      },
+      {
+        "name":"2x2x2 new plastic",
+        "type":"222",
+        "colors":0,
+        "size":46
+      },
+      {
+        "name":"GuHong V1",
+        "type":"333",
+        "colors":0,
+        "size":57
+      },
+      {
+        "name":"GuHong V2",
+        "type":"333",
+        "colors":0,
+        "size":57
+      },
+      {
+        "name":"LingYun V1",
+        "type":"333",
+        "colors":0,
+        "size":57
+      },
+      {
+        "name":"LingYun V2",
+        "type":"333",
+        "colors":0,
+        "size":57
+      },
+      {
+        "name":"LunHui",
+        "type":"333",
+        "colors":0,
+        "size":57
+      },
+      {
+        "name":"ZhanChi",
+        "type":"333",
+        "colors":0,
+        "size":57
+      },
+      {
+        "name":"PanShi",
+        "type":"333",
+        "colors":0,
+        "size":57
+      },
+      {
+        "name":"Pyraminx V1",
+        "type":"pyra",
+        "colors":0,
+        "size":70
+      },
+      {
+        "name":"Pyraminx V2",
+        "type":"pyra",
+        "colors":0,
+        "size":70
+      },
+      {
+        "name":"Megaminx V1",
+        "type":"mega",
+        "colors":0,
+        "size":43
+      },
+      {
+        "name":"Megaminx V1 ridged",
+        "type":"mega",
+        "colors":0,
+        "size":43
+      },
+      {
+        "name":"Megaminx V2",
+        "type":"mega",
+        "colors":0,
+        "size":43
+      },
+      {
+        "name":"Megaminx V2 ridged",
+        "type":"mega",
+        "colors":0,
+        "size":43
+      }
     ]
   },
   {
@@ -64,67 +193,277 @@
   {
     "name":"FangShi",
     "cubes":[
-
+      {
+        "name":"ShuanRen V1",
+        "type":"333",
+        "colors":0,
+        "size":57
+      },
+      {
+        "name":"ShuanRen V2",
+        "type":"333",
+        "colors":0,
+        "size":57
+      },
+      {
+        "name":"ShiShuang",
+        "type":"222",
+        "colors":0,
+        "size":55
+      },
+      {
+        "name":"XingYu",
+        "type":"222",
+        "colors":0,
+        "size":50
+      },
+      {
+        "name":"JieYun",
+        "type":"333",
+        "colors":0,
+        "size":57
+      },
+      {
+        "name":"GuanYing",
+        "type":"333",
+        "colors":0,
+        "size":57
+      },
+      {
+        "name":"JieYun 54.6mm",
+        "type":"333",
+        "colors":0,
+        "size":54.6
+      }
     ]
   },
   {
     "name":"FanXin",
     "cubes":[
-
+      {
+        "name":"Pyraminx",
+        "type":"pyra",
+        "colors":0,
+        "size":70
+      },
+      {
+        "name":"Skewb",
+        "type":"skb",
+        "colors":0,
+        "size":57
+      }
     ]
   },
   {
     "name":"Gan's puzzles",
     "cubes":[
-
+      {
+        "name":"GanAir",
+        "type":"333",
+        "colors":0,
+        "size":56
+      },
+      {
+        "name":"Gans 356",
+        "type":"333",
+        "colors":0,
+        "size":56
+      },
+      {
+        "name":"Gans 357",
+        "type":"333",
+        "colors":0,
+        "size":57
+      }
+    ]
+  },
+  {
+    "name":"KungFu",
+    "cubes":[
+      {
+        "name":"2x2x2",
+        "type":"222",
+        "colors":0,
+        "size":50
+      }
     ]
   },
   {
     "name":"Lanlan",
     "cubes":[
-
+      {
+        "name":"Skewb",
+        "type":"skb",
+        "colors":0,
+        "size":50
+      }
     ]
   },
   {
     "name":"LimCube",
     "cubes":[
-
+      {
+        "name":"Megaminx",
+        "type":"mega",
+        "colors":0,
+        "size":43
+      }
     ]
   },
   {
     "name":"MoYu",
     "cubes":[
-
+      {
+        "name":"Skewb",
+        "type":"skb",
+        "colors":0,
+        "size":50
+      },
+      {
+        "name":"Magnetic Skewb",
+        "type":"skb",
+        "colors":0,
+        "size":50
+      },
+      {
+        "name":"Pyraminx",
+        "type":"pyra",
+        "colors":0,
+        "size":70
+      },
+      {
+        "name":"Magnetic Pyraminx",
+        "type":"pyra",
+        "colors":0,
+        "size":70
+      },
+      {
+        "name":"WeiLong Square-1",
+        "type":"sq1",
+        "colors":0,
+        "size":55
+      },
+      {
+        "name":"LingPo",
+        "type":"222",
+        "colors":0,
+        "size":50
+      },
+      {
+        "name":"WeiPo",
+        "type":"222",
+        "colors":0,
+        "size":50
+      },
+      {
+        "name":"TangPo",
+        "type":"222",
+        "colors":0,
+        "size":50
+      }
     ]
   },
   {
     "name":"QJ",
     "cubes":[
-
+      {
+        "name":"Megaminx",
+        "type":"mega",
+        "colors":0,
+        "size":43
+      }
     ]
   },
   {
     "name":"QiYi",
     "cubes":[
-
+      {
+        "name":"Skewb",
+        "type":"skb",
+        "colors":1,
+        "size":50
+      },
+      {
+        "name":"Pyraminx",
+        "type":"pyra",
+        "colors":0,
+        "size":70
+      },
+      {
+        "name":"Magnetic Pyraminx",
+        "type":"pyra",
+        "colors":0,
+        "size":70
+      },
+      {
+        "name":"Square-1",
+        "type":"sq1",
+        "colors":0,
+        "size":55
+      },
+      {
+        "name":"2x2x2",
+        "type":"222",
+        "colors":0,
+        "size":50
+      }
     ]
   },
   {
     "name":"Rubik's",
     "cubes":[
-
+      {
+        "name":"old 3x3x3",
+        "type":"333",
+        "colors":0,
+        "size":57
+      }
     ]
   },
   {
     "name":"ShengShou",
     "cubes":[
-
+      {
+        "name":"Aurora 2x2x2",
+        "type":"222",
+        "colors":0,
+        "size":50
+      },
+      {
+        "name":"Pyraminx",
+        "type":"pyra",
+        "colors":0,
+        "size":70
+      },
+      {
+        "name":"Megaminx V1",
+        "type":"mega",
+        "colors":0,
+        "size":43
+      },
+      {
+        "name":"Megaminx V2",
+        "type":"mega",
+        "colors":0,
+        "size":43
+      },
+      {
+        "name":"Square-1",
+        "type":"sq1",
+        "colors":0,
+        "size":55
+      }
     ]
   },
   {
     "name":"TheValk",
     "cubes":[
-
+      {
+        "name":"Valk 3",
+        "type":"333",
+        "colors":0,
+        "size":55.5
+      }
     ]
   },
   {
@@ -142,25 +481,74 @@
   {
     "name":"WitEden",
     "cubes":[
-
+      {
+        "name":"WitTwo V1",
+        "type":"222",
+        "colors":0,
+        "size":50
+      },
+      {
+        "name":"WitTwo V2",
+        "type":"222",
+        "colors":0,
+        "size":50
+      }
     ]
   },
   {
     "name":"XMan",
     "cubes":[
-
+      {
+        "name":"Galaxy",
+        "type":"mega",
+        "colors":1,
+        "size":43
+      }
     ]
   },
   {
     "name":"YJ",
     "cubes":[
-
+      {
+        "name":"GuanLong",
+        "type":"333",
+        "colors":0,
+        "size":57
+      },
+      {
+        "name":"GuanLong Skewb",
+        "type":"skb",
+        "colors":0,
+        "size":50
+      },
+      {
+        "name":"GuanHu",
+        "type":"mega",
+        "colors":0,
+        "size":42
+      },
+      {
+        "name":"YuHu",
+        "type":"mega",
+        "colors":0,
+        "size":43
+      }
     ]
   },
   {
     "name":"YuXin",
     "cubes":[
-
+      {
+        "name":"5x5x5",
+        "type":"555",
+        "colors":0
+      },
+      {
+        "name":"2x2x2",
+        "type":"222",
+        "colors":0,
+        "size":50
+      }
     ]
   },
   {

@@ -7,15 +7,15 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">HTTimer</a>
+      <a class="navbar-brand" href="#">CMOS: Cubing Management and Optimization System</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li class="active"><a href="index.php">Home</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">HTTimer <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CMOSTimer <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="index.php?show=Timer">open Timer</a></li>
+            <li><a href="index.php?show=Timer">open CMOSTimer</a></li>
             <li><a href="index.php?show=../../Plugins/createcube">Create cube model</a></li>
           </ul>
         </li>
@@ -39,7 +39,7 @@
             <?php } ?>
           </ul>
         </li>
-        <li><a href="../Timer-Server/errorreport.php">Report bug</a></li>
+        <li><a href="index.php?show=../../Timer-Server/errorreport">Report bug</a></li>
         <li><a href="#">Contact</a></li>
         <?php if(!$login){ ?>
         <li class="dropdown">

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row ">
       <div class="col-md-offset-2 col-md-8 col-sm-12 top-margin" >
-          <h2 style="margin-left:50px;">History of Cube request #48</h2>
+          <h2 style="margin-left:50px;">History of Cube request #<?php echo $_GET["id"]+7; ?></h2>
           <div>
               <ul class="timeline">
                   <li class="time-label">
@@ -9,81 +9,50 @@
                       <br />
                   </li>
 
-                  <li class="time-label">
-                      <span class="bg-light-blue"> January 2017
-                      </span>
-                  </li>
+                  <?php
+                  if($_GET["id"]<0)$_GET["id"]=0;
 
-                  <li>
-                      <i class="fa fa-envelope bg-grey"></i>
-                      <div class="timeline-item">
-                          <span class="time"><i class="fa fa-clock-o"></i>20 January</span>
-                          <h3 class="timeline-header">Request sent</h3>
-                          <div class="timeline-body">
-                              A request to add the MoYu AoLong V2 to HTs CubeDB was sent.
-                          </div>
-                      </div>
-                  </li>
+                  function generate($date,$type){
+                    if($type==0){
+                      $title="Request sent";
+                      $body="Your request was sent.";
+                    }elseif($type==1){
+                      $title="Request seen";
+                      $body="Your request was seen by a administrator.";
+                    }elseif($type==2){
+                      $title="Your request was not accepted.";
+                      $body="Reason: The description does not fit the cube model.<br/>
+                      Solution: Please edit your description and re-request adding.";
+                    }elseif($type==3){
+                      $title="Your request was accepted!";
+                      $body="Your cube model is now included in our CubeDB.<br/>
+                      You can find it in the current HTTimer. It will be included in all future versions.<br/>";
+                    }elseif($type==4){
+                      $title="Comment";
+                      $body="The administrator commented on your request.";
+                    }else{
+                      $title="Error";
+                      $body="HTSoftware encountered an internal error.";
+                    }
+                    return '<li>
+                        <i class="fa fa-user bg-'.($type==3?"green":($type==2?"red":"grey")).'"></i>
+                        <div class="timeline-item">
+                            <span class="time"><i class="fa fa-clock-o"></i>'.$date.'</span>
+                            <h3 class="timeline-header">'.$title.'</h3>
+                            <div class="timeline-body">
+                                '.$body.'
+                            </div>
+                        </div>
+                    </li>';
+                  }
 
-                  <li>
-                      <i class="fa fa-user bg-grey"></i>
-                      <div class="timeline-item">
-                          <span class="time"><i class="fa fa-clock-o"></i>21 January</span>
-                          <h3 class="timeline-header">Request seen</h3>
-                          <div class="timeline-body">
-                              Your request was seen by a administrator.
-                          </div>
-                      </div>
-                  </li>
-
-                  <li class="time-label">
-                      <span class="bg-light-blue"> February 2017
-                      </span>
-                  </li>
-
-                  <li>
-                      <i class="fa fa-camera bg-red"></i>
-                      <div class="timeline-item">
-                          <span class="time"><i class="fa fa-clock-o"></i>03 February</span>
-                          <h3 class="timeline-header">Your request is not accepted.</h3>
-                          <div class="timeline-body">
-                              Reason: The description does not fit the cube model.<br/>
-                              Solution: Please edit your description and re-request adding.
-                          </div>
-                      </div>
-                  </li>
-
-                  <li>
-                      <i class="fa fa-video-camera bg-grey"></i>
-                      <div class="timeline-item">
-                          <span class="time"><i class="fa fa-clock-o"></i>04 February</span>
-                          <h3 class="timeline-header">Request sent</h3>
-                          <div class="timeline-body">
-                              The second request to add the MoYu AoLong V2 to HTs CubeDB was sent.
-                          </div>
-                      </div>
-                  </li>
-                    <li>
-                      <i class="fa fa-envelope bg-grey"></i>
-                      <div class="timeline-item">
-                          <span class="time"><i class="fa fa-clock-o"></i>08 February</span>
-                          <h3 class="timeline-header">Request seen</h3>
-                          <div class="timeline-body">
-                              Your request was seen by a administrator.
-                          </div>
-                      </div>
-                  </li>
-                    <li>
-                      <i class="fa fa-flask bg-green"></i>
-                      <div class="timeline-item">
-                          <span class="time"><i class="fa fa-clock-o"></i>11 Feburary</span>
-                          <h3 class="timeline-header">Your request was accepted!</h3>
-                          <div class="timeline-body">
-                              Your cube model is now included in our CubeDB.<br/>
-                              You can find it in HTTimer 0.0.2 Beta now. It will be included in HTTimer 0.0.2 on release.<br/>
-                          </div>
-                      </div>
-                  </li>
+                  $data=file_get_contents("../CubeDB/requests/changerequests.json");
+                  $data=json_decode($data);
+                  $data=$data[$_GET["id"]]->steps;
+                  for($i=0;$i<count($data);$i++){
+                    echo generate($data[$i]->date,$data[$i]->type);
+                  }
+                  ?>
                   <li>
                       <i class="fa fa-clock-o"></i>
                   </li>
@@ -93,18 +62,6 @@
   </div>
 </div>
 <style>
-/*!
- *   AdminLTE v1.0
- *   Author: AlmsaeedStudio.com
- *   License: Open source - MIT
- *  Please visit http://opensource.org/licenses/MIT for more information
-!*/
-/*
-
-/*====================================
-  --- TIMELINE LIKE ABOUT SECTION CSS ----
-======================================*/
-
 .timeline {
   margin: 0 0 30px 0;
   padding: 0;
@@ -194,26 +151,12 @@
   left: 18px;
   top: 0;
 }
-
-
-/*====================================
-  --- BACKGROUND COLORS OPTIONS ----
-======================================*/
-
 .bg-red,
 .bg-yellow,
 .bg-aqua,
 .bg-blue,
 .bg-light-blue,
 .bg-green,
-.bg-navy,
-.bg-teal,
-.bg-olive,
-.bg-lime,
-.bg-orange,
-.bg-fuchsia,
-.bg-purple,
-.bg-maroon,
 .bg-black {
   color: #f9f9f9 !important;
 }
@@ -229,9 +172,6 @@
 .bg-yellow {
   background-color: #f39c12 !important;
 }
-.bg-aqua {
-  background-color: #00c0ef !important;
-}
 .bg-blue {
   background-color: #37AFFF !important;
 }
@@ -241,43 +181,12 @@
 .bg-green {
   background-color: #00a65a !important;
 }
-.bg-navy {
-  background-color: #001f3f !important;
-}
-.bg-teal {
-  background-color: #39cccc !important;
-}
-.bg-olive {
-  background-color: #3d9970 !important;
-}
-.bg-lime {
-  background-color: #01ff70 !important;
-}
-.bg-orange {
-  background-color: #ff851b !important;
-}
-.bg-fuchsia {
-  background-color: #f012be !important;
-}
-.bg-purple {
-  background-color: #932ab6 !important;
-}
-.bg-maroon {
-  background-color: #85144b !important;
-}
-
-/*====================================
-  --- TEXT COLORS OPTIONS ----
-======================================*/
 
 .text-red {
   color: #f56954 !important;
 }
 .text-yellow {
   color: #f39c12 !important;
-}
-.text-aqua {
-  color: #00c0ef !important;
 }
 .text-blue {
   color: #0073b7 !important;
@@ -287,28 +196,4 @@
 }
 .text-green {
   color: #00a65a !important;
-}
-.text-navy {
-  color: #001f3f !important;
-}
-.text-teal {
-  color: #39cccc !important;
-}
-.text-olive {
-  color: #3d9970 !important;
-}
-.text-lime {
-  color: #01ff70 !important;
-}
-.text-orange {
-  color: #ff851b !important;
-}
-.text-fuchsia {
-  color: #f012be !important;
-}
-.text-purple {
-  color: #932ab6 !important;
-}
-.text-maroon {
-  color: #85144b !important;
-}</style>
+}}</style>

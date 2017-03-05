@@ -1,0 +1,52 @@
+[
+  {
+    "cid":21,
+    "id":9,
+    "uname":"YTCuber",
+    "steps":[
+      {
+        "type":0,
+        "date":"20 January"
+      },
+      {
+        "type":1,
+        "date":"21 January"
+      },
+      {
+        "type":2,
+        "date":"03 February"
+      },
+      {
+        "type":0,
+        "date":"04 February"
+      },
+      {
+        "type":1,
+        "date":"08 February"
+      },
+      {
+        "type":3,
+        "date":"11 February"
+      }
+    ]
+  },
+  {
+    "cid":21,
+    "id":9,
+    "uname":"YTCuber",
+    "steps":[
+      {
+        "type":0,
+        "date":"20 January"
+      },
+      {
+        "type":1,
+        "date":"21 January"
+      },
+      {
+        "type":3,
+        "date":"03 February"
+      }
+    ]
+  }
+]

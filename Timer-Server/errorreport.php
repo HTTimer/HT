@@ -1,6 +1,4 @@
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<div class="container">
 <h1>Please report errors here.</h1>
 <form class="form-horizontal" role="form" method="post" action="doerrorreport.php">
 	<div class="form-group">
@@ -34,7 +32,7 @@
 	</div>
 	<div class="form-group">
 		<div class="col-md-7 col-md-offset-2">
-			<! Will be used to display an alert to the user>
+			Will be used to display an alert to the user
 		</div>
 	</div>
-</form>
+</form></div>

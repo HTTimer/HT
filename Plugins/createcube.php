@@ -22,7 +22,8 @@ function out(c,m){
 }
 </script>
 <h2>Generate own cube model</h2>
-If you use HTTimer and have a cube model to add to your virtual collection you can't find, you can generate the code to import here.
+If you use HTTimer and have a cube model to add to your virtual collection you can't find, you can generate the code to import here.<br/>
+You can also use this to request adding a cube model to HT.<br/>
 Begin by clicking "Generate cube" at the bottom.
 After putting in the neccessary data, copy and paste the code into the timer:
 <div id="out" style="visibility:hidden;"><textarea>You must generate a cube!</textarea></div>
@@ -42,7 +43,7 @@ After putting in the neccessary data, copy and paste the code into the timer:
   <div class="form-group">
     <label class="col-md-4 control-label" for="name">Cube name</label>
     <div class="col-md-4">
-    <input id="name" name="name" placeholder="" class="form-control input-md" required="" type="text">
+    <input id="name" name="name" placeholder="" class="form-control input-md" required="required" type="text" maxlength="18"/>
     </div>
   </div>
 
@@ -59,11 +60,11 @@ After putting in the neccessary data, copy and paste the code into the timer:
     <label class="col-md-4 control-label" for="submitoptions">Request adding this cube to HT</label>
     <div class="col-md-4">
       <label class="radio-inline" for="submitoptions-0">
-        <input name="submitoptions" id="submitoptions-0" value="0" checked="checked" type="radio">
+        <input name="submitoptions" id="submitoptions-0" value="0" checked="checked" type="radio"/>
         No
       </label>
       <label class="radio-inline" for="submitoptions-1">
-        <input name="submitoptions" id="submitoptions-1" value="1" type="radio">
+        <input name="submitoptions" id="submitoptions-1" value="1" type="radio"/>
         Yes
       </label>
     </div>
@@ -91,9 +92,9 @@ After putting in the neccessary data, copy and paste the code into the timer:
       <tr>
         <td>meinerstercube</td><td>MoYu AoLong V2</td><td>F+creqicccNS6ydDS,SrkdYOcPcgSpSuwccF'I8JFov{R5RRvv5ORR[{R</td><td>not requested <button class="btn btn-xs btn-default">Request adding to HT</button></td>
       </tr><tr>
-        <td>abc</td><td>MoYu AoLong V2</td><td>F+creqicccNS6ydDS,SrkdYOcPcgSpSuwccF'I8JFov{R5RRvv5ORR[{R</td><td>Added to HT 2.8 Beta</td>
+        <td>abc</td><td>DaYan ZhanChi</td><td>F+creqicccHe6erd92erG2lcPcgSpSuwccF'I8JFo{[F}F]{O[vF5[O<}{</td><td>Added to HT 2.8 Beta <a role="button" href="index.php?show=cuberequest&id=0" class="btn btn-xs btn-default">View request log</a></td>
       </tr><tr>
-        <td>abcdefghijk2lm...</td><td>MoYu AoLong V2</td><td>F+creqicccNS6ydDS,SrkdYOcPcgSpSuwccF'I8JFov{R5RRvv5ORR[{R</td><td>Won'T be added</td>
+        <td>abcdefghijk2lmnOp</td><td>FangShi ShuanRen V2</td><td>F+creqicccJerkW2ldW2yerVirdYOcPcgSpSuwccF'I8JFoR5Rv<]F}FO}O<<[O5</td><td>Won't be added <a role="button" href="index.php?show=cuberequest&id=1" class="btn btn-xs btn-default">View request log</a></td>
       </tr>
     </tbody>
   </table>
