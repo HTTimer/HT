@@ -138,12 +138,13 @@ timer = (function() {
 			<div class="bottom-menu" onclick="Mousetrap.trigger('g g');"><span class="keycodes">g g (open) g c (close)</span> Goals</div>
 			<div class="bottom-menu" onclick="Mousetrap.trigger('a a');"><span class="keycodes">a a/a c</span> AlgSets</div>
 			<div class="bottom-menu" onclick="Mousetrap.trigger('i i');"><span class="keycodes">i i/i c</span> Import/Export</div>
-			<div class="bottom-menu" onclick="Mousetrap.trigger('l l');"><span class="keycodes">l l/l c</span> Login</div>
+			<div class="bottom-menu" onclick="Mousetrap.trigger('l l');"><span class="keycodes">l l/l c</span> Help</div>
 			<div class="bottom-menu" onclick="Mousetrap.trigger('m m');"><span class="keycodes">m m/m c</span> Collection</div>
 			<div class="bottom-menu" onclick="Mousetrap.trigger('p p');"><span class="keycodes">p p/p c</span> Statistics</div>`);
 		layout.write("LOGO", `CMOSTimer <small onclick="cmd.switchToText()">V${version} ${transl("Alpha Graphic")}</small><span id="timingModeRevert"></span>`);
 		layout.write("TIME", `<span class="keycodes">space</span>0.000`);
 		layout.write("PORT", `<button onclick="alert(timer.exportCsv());">Export CSV</button>`);
+		layout.write("HELP", `<iframe src="../Website/index.php?show=../../Documentation/Documents/help/cmostimer&timerembed" width="100%" height="700"></iframe>This space here is not filled yet.`);
 
 		//Initialize components
 		counter.init();

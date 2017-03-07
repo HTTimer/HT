@@ -63,10 +63,11 @@ var scramble = (function() {
 
 
 	var tmp = [];
-	var types = ["Pyramid", "Cube", "Pentahedron", "Octahedron", "Dodecahedron", "Other"];
+	var types = ["Pyramid", "Cube", "Cuboid", "Pentahedron", "Octahedron", "Dodecahedron", "Other"];
 	var axis = [
 		[4, 6],
 		[3, 4, 6, 12],
+		[4, 6],
 		[5, 0],
 		[8, 0],
 		[12, 20],
@@ -82,6 +83,10 @@ var scramble = (function() {
 			["Skewb", ""],
 			[2, 3, 4, 5, 6, 7],
 			["Helicopter", "Curvy copter"]
+		],
+		[ //Cuboid
+			["1x1xN", 0],
+			["2x2xN", "3x3xN", "4x4xN"]
 		],
 		[ //Pentahedron
 			[0, 0]
@@ -130,6 +135,15 @@ var scramble = (function() {
 			[ //12 axis
 				["Helicopter", "Jumbled", "no jumbling"],
 				["Curvy copter", "Jumbled", "no jumbling"]
+			]
+		],
+		[ //Cuboid
+			[ // 4 Axis
+				["", "1x2x2", "1x3x3"]
+			],
+			[ // 6 Axis
+				["", "2x2x3", "2x2x4"],
+				["", "3x3x4", "3x3x5"]
 			]
 		],
 		[
@@ -197,6 +211,15 @@ var scramble = (function() {
 			[ //12 axis
 				["Helicopter", "HeliJumb", "Heli"],
 				["Curvy copter", "CurvyJumb", "Curvy"]
+			]
+		],
+		[ //Cuboid
+			[ // 4 Axis
+				["", "122", "133"]
+			],
+			[ // 6 Axis
+				["", "223", "224"],
+				["", "334", "335"]
 			]
 		],
 		[
@@ -448,10 +471,32 @@ var scramble = (function() {
 
 			//Special
 			"SkewbSledge": [scramble, [moves.SP_SKEWB_SLEDGE, noSuffix, 11]],
-			"SkewbCO": [scramble, [moves.SP_SKEWB_CO, noSuffix, 11]]
+			"SkewbCO": [scramble, [moves.SP_SKEWB_CO, noSuffix, 11]],
+
+			//Cuboids
+			"122": [scramble, [
+				["R2", "U2"], noSuffix, 3
+			]],
+			"133": [scramble, [
+				["R2", "L2", "U2", "D2"], noSuffix, 7
+			]],
+			"223": [scramble, [
+				["R2", "F2", "U", "U2", "U'", "D", "D2", "D'"], noSuffix, 9
+			]],
+			"224": [scramble, [
+				["R2", "F2", "U", "U2", "U'", "D", "D2", "D'", "u", "u2", "u'"], noSuffix, 18
+			]],
+			"334": [scramble, [
+				["R2", "F2", "B2", "L2", "U", "U2", "U'", "D", "D2", "D'", "u", "u2", "u'"], noSuffix, 25
+			]],
+			"335": [scramble, [
+				["R2", "F2", "U", "U2", "U'", "D", "D2", "D'", "u", "u2", "u'", "d", "d'", "d2"], noSuffix, 35
+			]]
 		};
 
 		var definition = typeToDefinitionsMapping[type] || defaultScrambler;
+
+		clearScrambleImage();
 
 		//Relays: Have type in form of "Relay Scrambler1,Scrambler2,...,ScramblerN"
 		if (type.split(" ")[0] == "Relay") {
@@ -508,6 +553,15 @@ var scramble = (function() {
 		scramblers[s].drawScramble(newDiv, scramblers[s].posit, 250, 200);
 		layout.write("SCRAMBLEIMAGE", newDiv.innerHTML);
 		return [ret, [scramblers[s].scramblestring(0)]];
+	}
+
+	/*
+	 * scramble:clearScrambleImage()
+	 * since not all scramblers have an image generating function, we must clear
+	 * the space of the previous scramble image to only show correct data
+	 */
+	function clearScrambleImage() {
+		layout.write("SCRAMBLEIMAGE", "");
 	}
 
 	/*

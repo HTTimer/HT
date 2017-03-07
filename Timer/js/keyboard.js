@@ -307,7 +307,7 @@ var keyboard = (function() {
 			closeMessage("i");
 		});
 		Mousetrap.bind("l l", function() {
-			document.getElementsByClassName('LOGIN')[0].style.display = "block";
+			document.getElementsByClassName('HELP')[0].style.display = "block";
 			closeMessage("l");
 		});
 		Mousetrap.bind("m m", function() {
@@ -333,7 +333,7 @@ var keyboard = (function() {
 			document.getElementsByClassName('PORT')[0].style.display = "none";
 		});
 		Mousetrap.bind("l c", function() {
-			document.getElementsByClassName('LOGIN')[0].style.display = "none";
+			document.getElementsByClassName('HELP')[0].style.display = "none";
 		});
 		Mousetrap.bind("m c", function() {
 			document.getElementsByClassName('COLLECTION')[0].style.display = "none";
@@ -365,14 +365,14 @@ var keyboard = (function() {
 		Mousetrap.trigger("g c");
 		Mousetrap.trigger("a c");
 		Mousetrap.trigger("i c");
-		//Mousetrap.trigger("l c");
+		Mousetrap.trigger("l c");
 		Mousetrap.trigger("m c");
 		Mousetrap.trigger("p c");
 		document.getElementsByClassName("BOTTOMMENU")[0].innerHTML = `<div class="bottom-menu" onclick="Mousetrap.trigger('o o');"><span class="keycodes">o o (open)/o c (close)</span> Options</div>
 			<div class="bottom-menu" onclick="Mousetrap.trigger('g g');"><span class="keycodes">g g (open) g c (close)</span> Goals</div>
 			<div class="bottom-menu" onclick="Mousetrap.trigger('a a');"><span class="keycodes">a a/a c</span> AlgSets</div>
 			<div class="bottom-menu" onclick="Mousetrap.trigger('i i');"><span class="keycodes">i i/i c</span> Import/Export</div>
-			<div class="bottom-menu" onclick="Mousetrap.trigger('l l');"><span class="keycodes">l l/l c</span> Login</div>
+			<div class="bottom-menu" onclick="Mousetrap.trigger('l l');"><span class="keycodes">l l/l c</span> Help</div>
 			<div class="bottom-menu" onclick="Mousetrap.trigger('m m');"><span class="keycodes">m m/m c</span> Collection</div>
 			<div class="bottom-menu" onclick="Mousetrap.trigger('p p');"><span class="keycodes">p p/p c</span> Statistics</div>`;
 	}
