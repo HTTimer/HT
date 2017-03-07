@@ -59,6 +59,7 @@ body {
 	left: 26%;
 	right:30%;
 	border: none;
+	background-color: #FFFFFF;
 }
 
 .component-author {
@@ -263,6 +264,11 @@ body {
 	font-family: lcd, Roboto, courier;
 	border: none;
 	background-color: white;
+	margin-bottom: 50px;
+}
+
+.FLAGS {
+	background-color: #EEEEEE;
 }
 
 .LOGO {

@@ -15,7 +15,7 @@ function convert(a){
 
 function out(c,m){
   document.getElementById("out").innerHTML=document.getElementById("s").value="<textarea>" +
-  convert("0" + JSON.stringify({name:company+" "+model,type:undefined,colors:0})+"EOF"+Math.random()) +
+  convert("0" + JSON.stringify({name:company+" "+model,type:undefined,colors:0})+"EOF"+(+new Date())) +
   "</textarea>";
   document.getElementById("out").style.visibility="visible";
   document.getElementById("save").style.visibility="visible";

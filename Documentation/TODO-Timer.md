@@ -90,7 +90,6 @@ Export/Import
 - Import from Server
 - Sitzungen beim Import erkennen
 
-
 PBs
 ---
 - PB Import
@@ -118,6 +117,7 @@ Everything else
 - Merge Sessions
 - Collect anonymous user data about on which events they use inspection
 - Allow users to share custom algSets
+- CMD command to view log
 
 Other
 -----

@@ -139,7 +139,7 @@ var stats = (function() {
 		code += "Inspction time: " + math.format(solve.currentInspection) + "s<br/>";
 		code += "Start date: " + math.formatDate(solve.startTime) + "<br/>";
 		code += "End date: " + math.formatDate(solve.endTime) + "<br/>";
-		code += "<br/>";
+		code += "<span onclick='layout.write(\"FLAGS\",\"\")'>Hide details</span>";
 
 		j = i;
 

@@ -20,14 +20,14 @@ html, textarea {
 #display-wrapper {
   vertical-align: bottom;
   display: inline-block;
-  width: 60%;
+  width: 65%;
   height: 100%;
 }
 
 #info-wrapper {
   vertical-align: bottom;
   display: inline-block;
-  width: 40%;
+  width: 35%;
   height: 100%;
 }
 
