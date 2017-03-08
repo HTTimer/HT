@@ -86,7 +86,7 @@ var scramble = (function() {
 		],
 		[ //Cuboid
 			["1x1xN", 0],
-			["2x2xN", "3x3xN", "4x4xN"]
+			["2x2xN", "3x3xN", "4x4xN", "5x5xN", "6x6xN", "7x7xN"]
 		],
 		[ //Pentahedron
 			[0, 0]
@@ -143,7 +143,11 @@ var scramble = (function() {
 			],
 			[ // 6 Axis
 				["", "2x2x3", "2x2x4"],
-				["", "3x3x4", "3x3x5"]
+				["", "3x3x4", "3x3x5"],
+				["", "4x4x2", "4x4x3", "4x4x5", "4x4x6", "4x4x7", "4x4x8"],
+				["", "5x5x3", "5x5x4", "5x5x6", "5x5x7"],
+				["", "6x6x4", "6x6x5", "6x6x8"],
+				["", "7x7x5", "7x7x9"]
 			]
 		],
 		[
@@ -219,7 +223,11 @@ var scramble = (function() {
 			],
 			[ // 6 Axis
 				["", "223", "224"],
-				["", "334", "335"]
+				["", "334", "335"],
+				["", "442", "445", "445", "446", "447", "448"],
+				["", "553", "554", "556", "557"],
+				["", "664", "665", "668"],
+				["", "775", "779"]
 			]
 		],
 		[
@@ -254,146 +262,19 @@ var scramble = (function() {
 		]
 	];
 
-	//Old method of selecting scramblers
-	function draw_step_1() {
-		var code = "Shape:<select>",
-			i;
-		for (i = 0; i < types.length; ++i)
-			code += "<option onclick='scramble.draw_step_2(" + i + ")'>" + types[i];
-		code += "</select>";
-		layout.write("SCRAMBLERSELECT", code);
-	}
-
-	function draw_step_2(j) {
-		var types = axis[j];
-
-		var code = "Axis:<select>",
-			i;
-		for (i = 0; i < types.length; ++i)
-			code += "<option onclick='scramble.draw_step_3(" + j + "," + i + ")'>" + types[i];
-		code += "</select>";
-		layout.write("SCRAMBLERSELECT", code);
-	}
-
-	function draw_step_3(i, j) {
-		var types = layers[i][j],
-			subelementLength = 0;
-
-		var code = [],
-			k;
-		for (k = 0; k < types.length; ++k) {
-			code.push("<option onclick='scramble.draw_step_4(" + i + "," + j + "," + k + ")'>" + types[k]);
-			subelementLength += scrambler[i][j][k].length;
-		}
-
-		//Display all at once if less that 20 entries would be displayed, to save one click
-		if (subelementLength < 20) {
-			code = [];
-			for (k = 0; k < types.length; ++k) {
-				code.push("<optgroup label='" + scrambler[i][j][k][0] + "'/>");
-				for (l = 0; l < scrambler[i][j][k].length; ++l)
-					code.push("<option onclick='scramble.draw_step_5(" + i + "," + j + "," + k + "," + l + ")'>" + scrambler[i][j][k][l]);
-			}
-		}
-		code = "Layers:<select>" + code.join("") + "</select>";
-		layout.write("SCRAMBLERSELECT", code);
-	}
-
-	function draw_step_4(i, j, k) {
-		var types = scrambler[i][j][k];
-
-		var code = [],
-			k;
-		code.push("<optgroup label='" + types[0] + "'>");
-		for (l = (types.length == 1 ? 0 : 1); l < types.length; ++l)
-			code.push("<option onclick='scramble.draw_step_5(" + i + "," + j + "," + k + "," + l + ")'>" + types[l]);
-		code = "Scrambler:<select>" + code.join("") + "</optgroup></select>";
-
-		if (scrambler.length == 1)
-			code = scrambler[0];
-		layout.write("SCRAMBLERSELECT", code);
-	}
-
-	function draw_step_5(i, j, k, l) {
-		layout.write("SCRAMBLERSELECT", scrambler[i][j][k][l] + "<span onclick='scramble.draw_step_1()'>Select scrambler</span>");
-		switchScrambler(scramblerTypes[i][j][k][l]);
-		neu();
-		draw();
-	}
-
-
-	//drawSelect, drawSelect2 and drawSelect3 are the new method of selecting scramblers
-
-	function drawSelect() {
-		var html = "<select size='" + types.length + "'>",
-			i;
-		for (i = 0; i < types.length; ++i) {
-			html += "<option onclick='scramble.drawSelect2(" + i + ")'>" + types[i] + "</option>";
-		}
-		html += "</select>";
-
-		layout.write("SCRAMBLESELECT1", html);
-		layout.write("SCRAMBLESELECT2", "");
-		layout.write("SCRAMBLESELECT3", "");
-		layout.write("SCRAMBLESELECT4", "");
-		document.getElementsByClassName('SCRAMBLESELECT')[0].style.display = "block";
-	}
-
-	function drawSelect2(i) {
-		var html = "<select size='" + axis[i].length + "'>",
-			j;
-		for (j = 0; j < axis[i].length; ++j) {
-			html += "<option onclick='scramble.drawSelect3(" + i + "," + j + ")'>" + axis[i][j] + " Axis" + "</option>";
-		}
-		html += "</select>";
-
-		layout.write("SCRAMBLESELECT4", "");
-		layout.write("SCRAMBLESELECT3", "");
-		layout.write("SCRAMBLESELECT2", html);
-	}
-
-	function drawSelect3(i, j) {
-		var html = "<select size='" + layers[i][j].length + "'>",
-			k;
-		for (k = 0; k < layers[i][j].length; ++k) {
-			html += "<option onclick='scramble.drawSelect4(" + i + "," + j + "," + k + ")'>" + layers[i][j][k] + " Layers" + "</option>";
-		}
-		html += "</select>";
-
-		layout.write("SCRAMBLESELECT4", "");
-		layout.write("SCRAMBLESELECT3", html);
-	}
-
-	function drawSelect4(i, j, k) {
-		var html = "<select size='" + scrambler[i][j][k].length + "'>",
-			l;
-		for (l = 1; l < scrambler[i][j][k].length; ++l) {
-			html += "<option onclick='scramble.drawSelect5(" + i + "," + j + "," + k + "," + l + ")'>" + scrambler[i][j][k][l] + "</option>";
-		}
-		html += "</select>";
-		layout.write("SCRAMBLESELECT4", html);
-	}
-
-	function drawSelect5(i, j, k, l) {
-		layout.write("SCRAMBLERSELECT", scrambler[i][j][k][l] + " <span onclick='scramble.drawSelect()'>Reselect scrambler</span>");
-		switchScrambler(scramblerTypes[i][j][k][l]);
-		neu();
-		draw();
-
-		document.getElementsByClassName('SCRAMBLESELECT')[0].style.display = "none";
-	}
-
 	/*
 	 * scramble:new()
-	 * returns a new scramble of type type
+	 * @returns a new scramble of type type
 	 */
 	function neu() {
 		//Generating new scrambles has changed from V4.2.0: Previously, all scrambles were
 		//generated, the fitting one was chosen and all others were thrown away. Now, only
 		//the necceccary ones are generated, which is much faster and efficient => faster.
 
+		// Scramble with 333jsss (WCA 3x3x3) per default
 		var defaultScrambler = "333jsss";
 
+		// Define suffixes for different types of puzzles
 		var cubicSuffix = ["", "'", "2"],
 			pyraSuffix = ["", "'"],
 			noSuffix = [""];
@@ -428,6 +309,15 @@ var scramble = (function() {
 			"SP_SKEWB_CO": ["x", "x'", "z", "z2", "z'", "x2", "R' F R F' R' F R F'"],
 			"SP_SKEWB_SLEDGE": ["x", "x'", "z", "z'", "z2", "x2", "y", "y'", "y2", "Sledge", "Sledge"]
 		};
+
+		// Some often used opposite tables
+		var opposites = {
+			"NORMAL": {
+				"U": "D",
+				"F": "B",
+				"L": "R"
+			}
+		}
 
 		//Scramblername:[ScrambleFunction,[Arguments]]
 		var typeToDefinitionsMapping = {
@@ -480,20 +370,28 @@ var scramble = (function() {
 			"133": [scramble, [
 				["R2", "L2", "U2", "D2"], noSuffix, 7
 			]],
-			"223": [scramble, [
-				["R2", "F2", "U", "U2", "U'", "D", "D2", "D'"], noSuffix, 9
-			]],
-			"224": [scramble, [
-				["R2", "F2", "U", "U2", "U'", "D", "D2", "D'", "u", "u2", "u'"], noSuffix, 18
-			]],
-			"334": [scramble, [
-				["R2", "F2", "B2", "L2", "U", "U2", "U'", "D", "D2", "D'", "u", "u2", "u'"], noSuffix, 25
-			]],
-			"335": [scramble, [
-				["R2", "F2", "U", "U2", "U'", "D", "D2", "D'", "u", "u2", "u'", "d", "d'", "d2"], noSuffix, 35
-			]]
+			"223": [scramble, [cuboidMoves(2, 3), noSuffix, 9, opposites.NORMAL]],
+			"224": [scramble, [cuboidMoves(2, 4), noSuffix, 18]],
+			"334": [scramble, [cuboidMoves(3, 4), noSuffix, 25]],
+			"335": [scramble, [cuboidMoves(3, 5), noSuffix, 35]],
+			"442": [scramble, [cuboidMoves(4, 2), noSuffix, 35]],
+			"443": [scramble, [cuboidMoves(4, 3), noSuffix, 35]],
+			"445": [scramble, [cuboidMoves(4, 5), noSuffix, 50]],
+			"446": [scramble, [cuboidMoves(4, 6), noSuffix, 70]],
+			"447": [scramble, [cuboidMoves(4, 7), noSuffix, 95]],
+			"448": [scramble, [cuboidMoves(4, 8), noSuffix, 135]],
+			"553": [scramble, [cuboidMoves(5, 3), noSuffix, 35]],
+			"554": [scramble, [cuboidMoves(5, 4), noSuffix, 55]],
+			"556": [scramble, [cuboidMoves(5, 6), noSuffix, 135]],
+			"557": [scramble, [cuboidMoves(5, 7), noSuffix, 175]],
+			"664": [scramble, [cuboidMoves(6, 4), noSuffix, 175]],
+			"665": [scramble, [cuboidMoves(6, 5), noSuffix, 175]],
+			"668": [scramble, [cuboidMoves(6, 8), noSuffix, 175]],
+			"775": [scramble, [cuboidMoves(7, 5), noSuffix, 175]],
+			"779": [scramble, [cuboidMoves(7, 9), noSuffix, 175]]
 		};
 
+		// Get needed definition
 		var definition = typeToDefinitionsMapping[type] || defaultScrambler;
 
 		clearScrambleImage();
@@ -526,24 +424,58 @@ var scramble = (function() {
 			definition = scrambleImagescrambler("333");
 		} else if (type == "222jsss") {
 			definition = scrambleImagescrambler("222");
+		} else if (type.split(" ")[0] == "EXTENDED") {
+			definition = [ret, [eval(xscrambles[type.split(" ")[1]].code)]];
 		}
-		//Draw image
+		// Draw image
 		if (type in ["333", "222", "444", "555"]) {
-			//1. Convert scramble to code
-			//2. Call scrambler2image lib
-			//TODO
+			// 1. Convert scramble to code
+			// 2. Call scrambler2image lib
+			// @TODO
 		}
 
-		//Call scramble function
+		// Call scramble function
 		cur_scramble = definition[0].apply(null, definition[1]);
 
-		//Update session scrambler select
+		// Update session scrambler select
 		sessions.display();
 		sessions.current().scramblerType = type;
 
 		return cur_scramble;
+	}
 
-		//return edgescramble("r b2",["b2 r'","b2 U2 r U2 r U2 r U2 r"],["u"],30);
+	// @TODO: implement edgescramblers (example call) return edgescramble("r b2",["b2 r'","b2 U2 r U2 r U2 r U2 r"],["u"],30);
+
+	/*
+	 * scramble:cuboidMoves
+	 * @param height Int
+	 * @parma width Int
+	 * @returns allowed moves to scramble a width*width*height cuboid
+	 */
+	function cuboidMoves(width, height) {
+		var ishalf = width % 2 == 0,
+			moves = [],
+			outerhalf = ishalf ? (width - 2) / 2 : (width - 1) / 2,
+			i, halfheight = height % 2 == 0 ? height / 2 : (height - 1) / 2;
+		for (i = 0; i < outerhalf; ++i) {
+			moves.push((i > 0 ? i + 1 : "") + "F2");
+			moves.push((i > 0 ? i + 1 : "") + "R2");
+			moves.push((i > 0 ? i + 1 : "") + "L2");
+			moves.push((i > 0 ? i + 1 : "") + "B2");
+		}
+		if (ishalf) {
+			moves.push(width / 2 + "F2");
+			moves.push(width / 2 + "R2");
+		}
+		for (i = 0; i < halfheight; ++i) {
+			moves.push((i > 0 ? i + 1 : "") + "D");
+			moves.push((i > 0 ? i + 1 : "") + "D2");
+			moves.push((i > 0 ? i + 1 : "") + "D'");
+			moves.push((i > 0 ? i + 1 : "") + "U");
+			moves.push((i > 0 ? i + 1 : "") + "U2");
+			moves.push((i > 0 ? i + 1 : "") + "U'");
+		}
+		return moves;
 	}
 
 	function scrambleImagescrambler(s) {
@@ -733,6 +665,167 @@ var scramble = (function() {
 		draw();
 	}
 
+	// Old method of selecting scramblers
+	function draw_step_1() {
+		var code = "Shape:<select>",
+			i;
+		for (i = 0; i < types.length; ++i)
+			code += "<option onclick='scramble.draw_step_2(" + i + ")'>" + types[i];
+		code += "</select>";
+		layout.write("SCRAMBLERSELECT", code);
+	}
+
+	function draw_step_2(j) {
+		var types = axis[j];
+
+		var code = "Axis:<select>",
+			i;
+		for (i = 0; i < types.length; ++i)
+			code += "<option onclick='scramble.draw_step_3(" + j + "," + i + ")'>" + types[i];
+		code += "</select>";
+		layout.write("SCRAMBLERSELECT", code);
+	}
+
+	function draw_step_3(i, j) {
+		var types = layers[i][j],
+			subelementLength = 0;
+
+		var code = [],
+			k;
+		for (k = 0; k < types.length; ++k) {
+			code.push("<option onclick='scramble.draw_step_4(" + i + "," + j + "," + k + ")'>" + types[k]);
+			subelementLength += scrambler[i][j][k].length;
+		}
+
+		//Display all at once if less that 20 entries would be displayed, to save one click
+		if (subelementLength < 20) {
+			code = [];
+			for (k = 0; k < types.length; ++k) {
+				code.push("<optgroup label='" + scrambler[i][j][k][0] + "'/>");
+				for (l = 0; l < scrambler[i][j][k].length; ++l)
+					code.push("<option onclick='scramble.draw_step_5(" + i + "," + j + "," + k + "," + l + ")'>" + scrambler[i][j][k][l]);
+			}
+		}
+		code = "Layers:<select>" + code.join("") + "</select>";
+		layout.write("SCRAMBLERSELECT", code);
+	}
+
+	function draw_step_4(i, j, k) {
+		var types = scrambler[i][j][k];
+
+		var code = [],
+			k;
+		code.push("<optgroup label='" + types[0] + "'>");
+		for (l = (types.length == 1 ? 0 : 1); l < types.length; ++l)
+			code.push("<option onclick='scramble.draw_step_5(" + i + "," + j + "," + k + "," + l + ")'>" + types[l]);
+		code = "Scrambler:<select>" + code.join("") + "</optgroup></select>";
+
+		if (scrambler.length == 1)
+			code = scrambler[0];
+		layout.write("SCRAMBLERSELECT", code);
+	}
+
+	function draw_step_5(i, j, k, l) {
+		layout.write("SCRAMBLERSELECT", scrambler[i][j][k][l] + "<span onclick='scramble.draw_step_1()'>Select scrambler</span>");
+		switchScrambler(scramblerTypes[i][j][k][l]);
+		neu();
+		draw();
+	}
+
+
+	// drawSelect, drawSelect2 and drawSelect3 are the new method of selecting scramblers
+
+	function drawSelect() {
+		var html = "<select size='" + types.length + "'>",
+			i;
+		for (i = 0; i < types.length; ++i) {
+			html += "<option onclick='scramble.drawSelect2(" + i + ")'>" + types[i] + "</option>";
+		}
+		html += "</select><br/><br/><br/>";
+		html += "<button onclick='scramble.displayExtendet();'>View scramblers provided<br/>by other users</button>";
+
+		layout.write("SCRAMBLESELECT1", html);
+		layout.write("SCRAMBLESELECT2", "");
+		layout.write("SCRAMBLESELECT3", "");
+		layout.write("SCRAMBLESELECT4", "");
+		document.getElementsByClassName('SCRAMBLESELECT')[0].style.display = "block";
+	}
+
+	function drawSelect2(i) {
+		var html = "<select size='" + axis[i].length + "'>",
+			j;
+		for (j = 0; j < axis[i].length; ++j) {
+			html += "<option onclick='scramble.drawSelect3(" + i + "," + j + ")'>" + axis[i][j] + " Axis" + "</option>";
+		}
+		html += "</select>";
+
+		layout.write("SCRAMBLESELECT4", "");
+		layout.write("SCRAMBLESELECT3", "");
+		layout.write("SCRAMBLESELECT2", html);
+	}
+
+	function drawSelect3(i, j) {
+		var html = "<select size='" + layers[i][j].length + "'>",
+			k;
+		for (k = 0; k < layers[i][j].length; ++k) {
+			html += "<option onclick='scramble.drawSelect4(" + i + "," + j + "," + k + ")'>" + layers[i][j][k] + " Layers" + "</option>";
+		}
+		html += "</select>";
+
+		layout.write("SCRAMBLESELECT4", "");
+		layout.write("SCRAMBLESELECT3", html);
+	}
+
+	function drawSelect4(i, j, k) {
+		var html = "<select size='" + scrambler[i][j][k].length + "'>",
+			l;
+		for (l = 1; l < scrambler[i][j][k].length; ++l) {
+			html += "<option onclick='scramble.drawSelect5(" + i + "," + j + "," + k + "," + l + ")'>" + scrambler[i][j][k][l] + "</option>";
+		}
+		html += "</select>";
+		layout.write("SCRAMBLESELECT4", html);
+	}
+
+	function drawSelect5(i, j, k, l) {
+		layout.write("SCRAMBLERSELECT", scrambler[i][j][k][l] + " <span onclick='scramble.drawSelect()'>Reselect scrambler</span>");
+		switchScrambler(scramblerTypes[i][j][k][l]);
+		neu();
+		draw();
+
+		document.getElementsByClassName('SCRAMBLESELECT')[0].style.display = "none";
+	}
+
+	/*
+	 * scramble:displayExtendet()
+	 */
+	var xscrambles = [{
+		"uname": "YTCuber",
+		"sname": "Random Number scrambler",
+		"description": "Sets the scramble to a random number between 0 and 1, rounded to 3 decimals.",
+		"compatibleVersion": "all",
+		"code": "Math.round(Math.random()*1e3)/1e3;",
+	}, {
+		"uname": "YTCuber",
+		"sname": "1x1x3",
+		"description": "Uses U and D moves. Orient the puzzle, so that the three layers go from bottom to top.",
+		"compatibleVersion": "all",
+		"code": "['U','Ui','D','Di','U Di','U2','D2','Ui D','U2 D2','U2 Di','D2 Ui'][~~(Math.random() * 11)]"
+	}];
+
+	function displayExtendet() {
+		var html = "",
+			i;
+		for (i = 0; i < xscrambles.length; ++i) {
+			html += "<h3>" + xscrambles[i].uname + ":" + xscrambles[i].sname + "</h3>" +
+				xscrambles[i].description + "<br/>" + (xscrambles[i].compatibleVersion != "all" ? "This scrambler may be incompatible with your timer version. " : "") + "<button onclick='scramble.switchScrambler(\"EXTENDED " + i + "\");document.getElementsByClassName(\"SCRAMBLESELECT\")[0].style.display=\"none\";'>select</button>"
+		}
+		html += "<br/><br/><button onclick='scramble.drawSelect();'>Select from normal scramblers</button>"
+		layout.write("SCRAMBLESELECT1", html);
+		layout.write("SCRAMBLESELECT2", "");
+		layout.write("SCRAMBLESELECT3", "");
+		layout.write("SCRAMBLESELECT4", "");
+	}
+
 	return {
 		init: init,
 		sessionSwitchInit: sessionSwitchInit,
@@ -751,6 +844,7 @@ var scramble = (function() {
 		draw_step_4: draw_step_4,
 		draw_step_5: draw_step_5,
 		getScramble: get_scramble,
-		get_type: get_type
+		get_type: get_type,
+		displayExtendet: displayExtendet
 	}
 })();
