@@ -34,6 +34,7 @@ var options = (function() {
 
 		core.set("optHideScrambleBar", false);
 		core.set("optHideScrambleImage", false);
+		core.set("optHideTimeInDetails", true);
 
 		core.set("optUseInspection", true);
 		core.set("optInspectColor", true);
@@ -57,6 +58,9 @@ var options = (function() {
 		Show log:
 			<button onclick="document.getElementsByClassName('LOG')[0].style.display='${core.get("optHideLog")?"block":"none"}';core.set('optHideLog',${core.get('optHideLog')?'false':'true'});options.draw();">
 				${core.get('optHideLog')?'Enable':'Disable'}</button><br/>
+		Show solve time in details:
+			<button onclick="core.set('optHideTimeInDetails',${core.get('optHideTimeInDetails')?'false':'true'});options.draw();">
+				${core.get('optHideTimeInDetails')?'Enable':'Disable'}</button> (click on "Details" to see the effect)<br/>
 		<h3>Timer</h3>
 		Show scramble select:
 			<button onclick="core.set('optHideScrambleBar',${core.get('optHideScrambleBar')?'false':'true'});options.draw();">

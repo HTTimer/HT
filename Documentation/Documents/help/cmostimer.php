@@ -39,7 +39,12 @@
 
   <!-- Options help -->
   <div id="options">
-    Explain the options here.
+    <h2>Options</h2>
+    The options configure the look and functionality of CMOSTimer.<br/>
+    <ul>
+      <li><a nohref="nohref" onclick="show('option-showscrambleselect');">Show scramble select</a></li>
+      <li><a nohref="nohref" onclick="show('option-showsolvetimeindetails');">Show solve time in details</a></li>
+    </ul>
   </div>
   <div id="option-showscrambleselect">
     <h2>Options: Show scramble select</h2>
@@ -49,12 +54,25 @@
       <li>Go to the section "Timer", and find "Show scramble select".</li>
       <li>Click the button "Disable" or "Enable" to Disable or Enable the scrambler select button.</li>
       <li>Close the options.</li>
-      <li>Refresh the displayed scramble.  You can do that by doing a solve, clicking the "next scramble" button or switching to another session.</li>
+      <li>Refresh the displayed scramble. You can do that by doing a solve, clicking the "next scramble" button or switching to another session.</li>
+    </ol>
+  </div>
+  <div id="option-showsolvetimeindetails">
+    <h2>Options: Show solve time in details</h2>
+    This option shows or hides the solve time in details. The time is hidden per default.<br/>
+    <ol>
+      <li>Open the options menu. <a nohref="nohref" onclick="show('openoptions');">Click here to view how to do that.</a></li>
+      <li>Go to the section "Timer", and find "Show solve time in details".</li>
+      <li>Click the button "Disable" or "Enable" to Disable or Enable the scrambler select button.</li>
+      <li>Close the options.</li>
+      <li>Click on "Details". If you have not done any solve yet, do one and click on "Details".</li>
     </ol>
   </div>
   <div id="openoptions">
-    <h2>Options: open the options menu</h2>
-    Click "Options" at the bottom left.
+    <h2>Options: How to open the options menu</h2>
+    <ol>
+      <li>Click "Options" at the bottom left.</li>
+    </ol>
   </div>
 
   <!-- Scrambler help -->
@@ -75,9 +93,31 @@
       <li>Select the algorithm effect you want to have by clicking. <kbd>&lt;R,U,F&gt;</kbd> means, that only moves on the faces of R, U and F are used. This sometimes intentionally keeps parts of the puzzle solved.</li>
     </ol>
     <img src="../Documentation/Documents/help/scramble-select.png" width="42%"/>
+    <h3>Available non-extended scrambler types</h3>
+    <ul>
+      <li>Pyramid: 11 scramblers</li>
+      <li>Cube: 63 scramblers</li>
+      <li>Cuboid: 21 scramblers</li>
+      <li>Pentahedron: 0 scrambler</li>
+      <li>Octahedron: 2 scramblers</li>
+      <li>Dodecahedron: 8 scramblers</li>
+      <li>Other: 11 relay scramblers</li>
+    </ul>
+    This means that 105 non-extended scramblers + 11 relay scramblers are available.
+    <h3>Extended scrambler types</h3>
+    Extended scramble types are scramblers that are provided by users wanting scramblers for theis custom programs
+    or scramblers for puzzle types nearly noone has, like 3D-printed puzzles and prototypes.
+    <h4>Select extended scrambler types</h4>
+    <ol>
+      <li>Open the options menu. <a nohref="nohref" onclick="show('openoptions');">Click here to view how to do that.</a></li>
+      <li>Click "View scrambler provided by other users".</li>
+      <li>Click "Select" to select the chosen type as the current scramble algorithm.</li>
+      <li>CMOSTimer will automatically close the selection window, initialize the scrambler, generate a scramble and write it to the scramble component.</li>
+    </ol>
+    Please note that generating scramble images is not available for extended scramblers.
     <h3>Other questions</h3>
     To find out, what scramble types are used, when performing a setup using the "Setup"-Dialog, look <a nohref="nohref" onclick="show('setup');">here</a>.<br/>
-    If you can't find the "select scrambler" button, look <a nohref="nohref" onclick="show('option-showscrambleselect');">here</a>.
+    If you can't find the "Select scrambler" button, look <a nohref="nohref" onclick="show('option-showscrambleselect');">here</a>.
   </div>
 
   <!-- other -->

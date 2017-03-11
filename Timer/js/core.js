@@ -68,7 +68,8 @@ var core = (function() {
 	var log = [];
 
 	function get(key) {
-		log.unshift((new Date().getSeconds()) + "." + (new Date().getMilliseconds()) + ": GET " + key + " BY " + arguments.callee.caller.trace());
+		//log.unshift((new Date().getSeconds()) + "." + (new Date().getMilliseconds()) + ": GET " + key + " BY " + arguments.callee.caller.trace());
+		// Disabled because Relay scrambler was causing crashes
 		return core.list[key];
 	}
 

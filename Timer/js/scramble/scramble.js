@@ -71,7 +71,7 @@ var scramble = (function() {
 		[5, 0],
 		[8, 0],
 		[12, 20],
-		["Relay"]
+		["Relay", "Other"]
 	];
 	var layers = [
 		[ //Pyramid
@@ -256,8 +256,8 @@ var scramble = (function() {
 		],
 		[ //Other
 			[
-				["Cubic Relay", "Relay 222,333", "Relay 222,333,444", "Relay 222,333,444,555", "Relay 222,333,444,555,666", "Relay 222,333,444,555,666,777", "Relay 222,333,444,555,666,777 888", , "Relay 222,333,444,555,666,777,888,999"],
-				["Other Relay", "Relay Pyra,Mega,Skewb", "Relay 222,333,Pyra,Skewb", "Relay 222,333,444,555,666,777,333,333BLD,444BLD,555BLD,Square1,Skewb,Clock,Mega,Pyra,333", "Relay 444,666,Square1"]
+				["Cubic Relay", "Relay 222,333", "Relay 222,333,444", "Relay 222,333,444,555", "Relay 222,333,444,555,666", "Relay 222,333,444,555,666,777", "Relay 222,333,444,555,666,777 888", , "Relay 222,333,444,555,666,777 888,999"],
+				["Other Relay", "Relay Pyra,Mega,Skewb", "Relay 222,333,Pyra,Skewb", "Relay 222,333,444,555,666,777,333,333BLD,444BLD,555BLD,Skewb,Mega,Pyra,333 Clock,Square1", "Relay 444,666,Square1"]
 			]
 		]
 	];
@@ -333,6 +333,13 @@ var scramble = (function() {
 			"Skewb": [scramble, [moves.P2, pyraSuffix, 11]], //Skewb is cubic but turns like a pyra
 			"Square1": [ret, ["Not available"]],
 			"Mega": [scrambleMega, [moves.D3, ["U", "U'"], 10, 5]],
+
+			"222BLD": [scrambleBld, [moves.C2, cubicSuffix, 11]],
+			"333BLD": [scrambleBld, [moves.C3, cubicSuffix, 22]],
+			"444BLD": [scrambleBld, [moves.C4, cubicSuffix, 50]],
+			"555BLD": [scrambleBld, [moves.C5, cubicSuffix, 80]],
+			"666BLD": [scrambleBld, [moves.C6, cubicSuffix, 110]],
+			"777BLD": [scrambleBld, [moves.C7, cubicSuffix, 140]],
 
 			//Short scramblers
 			"111sh": [scramble, [moves.C1, cubicSuffix, 3]],
@@ -527,27 +534,37 @@ var scramble = (function() {
 			scrambleMoves = [];
 		if (!oppositeTable) oppositeTable = {};
 
-		//Check
-		if (turns.length < 2 || suffixes.length < 1) return;
+		// Check: We can't generate a scramble with only one move available and move than one move needed
+		// Check: We need at least one suffix. It may be "".
+		if ((turns.length < 2 && length > 1) || suffixes.length < 1) return;
 
-		//Generate list of all permutations of turns and suffixes
+		// Generate list of all permutations of turns and suffixes
 		for (i = 0; i < turns.length; ++i)
 			for (j = 0; j < suffixes.length; ++j)
 				moves.push("" + turns[i] + suffixes[j]);
 
-
+		// Add moves until the needed length is reached
 		while (scrambleMoves.length < length) {
 			scrambleMoves.push(rndEl(moves));
-			//Don't turn the same face twice
-			//This means, that it theoretically can have infinite running time :(
-			//@TODO know opposite faces to avoid R L R', look ahead 2 moves, when
-			//more than 2 moves are allowed to use for scrambling
-			if (scrambleMoves.length > 1 && oppositeTable[scrambleMoves[scrambleMoves.length - 1][0]] == scrambleMoves[scrambleMoves.length - 2][0])
+			// Don't do R R
+			if (scrambleMoves.length > 1 && scrambleMoves[scrambleMoves.length - 1][0] == scrambleMoves[scrambleMoves.length - 2][0])
 				scrambleMoves.pop();
-			if (scrambleMoves.length > 2 && scrambleMoves[scrambleMoves.length - 1][0] == scrambleMoves[scrambleMoves.length - 2][0])
+			// Don't do R L R'
+			if (scrambleMoves.length > 1 && oppositeTable[scrambleMoves[scrambleMoves.length - 1][0]] == scrambleMoves[scrambleMoves.length - 2][0])
 				scrambleMoves.pop();
 		}
 		return scrambleMoves.join(" ");
+	}
+
+	/*
+	 * scramble:scramble(turns,suffixes,length)
+	 * @param turns
+	 * @param suffixes
+	 * @param length
+	 * @return scramble
+	 */
+	function scrambleBld(turns, suffixes, length, oppositeTable) {
+		return scramble(turns, suffixes, length, oppositeTable) + " " + scramble(["x", "y", "z"], ["", "'", "2"], 2);
 	}
 
 	/*
@@ -556,7 +573,7 @@ var scramble = (function() {
 	 * @param rotations Array[String]
 	 * @param movesPerRow Int
 	 * @param rows Int
-	 * @param Scramble for Megaminx with given Moves and size
+	 * @param Scramble for Dodecahedron with given Moves and size
 	 */
 	function scrambleMega(turns, rotations, movesPerRow, rows) {
 		var i, j, alg = "",
@@ -574,7 +591,7 @@ var scramble = (function() {
 	}
 
 	/*
-	 * scramble:edgescramble(start,end,moves,len
+	 * scramble:edgescramble(start,end,moves,len)
 	 * @param start String
 	 * @param end Array[String]
 	 * @param moves Array[String]
@@ -665,7 +682,7 @@ var scramble = (function() {
 		draw();
 	}
 
-	// Old method of selecting scramblers
+	// Old methods of selecting scramblers
 	function draw_step_1() {
 		var code = "Shape:<select>",
 			i;
@@ -733,7 +750,7 @@ var scramble = (function() {
 	}
 
 
-	// drawSelect, drawSelect2 and drawSelect3 are the new method of selecting scramblers
+	// drawSelect, drawSelect2, drawSelect3, drawSelect4 and drawSelect5 are the new methods of selecting scramblers
 
 	function drawSelect() {
 		var html = "<select size='" + types.length + "'>",
