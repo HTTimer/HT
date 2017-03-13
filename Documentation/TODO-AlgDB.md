@@ -2,6 +2,11 @@
 
 AlgDB is a database for Algorithms. The algorithms are loaded into the Timer and can be practised there.
 
+View AlgSets
+------------
+- Seperate y/y2/y' and U/U'/U2 before and after from algorithm
+- allow rotating all algs to the users preference by adding/removing from these moves
+
 Shared algSets
 --------------
 - From Timer, users can share their algSets.

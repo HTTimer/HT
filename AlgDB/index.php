@@ -11,11 +11,11 @@ function indexiere($url,$split1,$split2,$split,$remove,$xpl,$name){
   for($i=0;$i<count($code)-1;++$i){
     $code[$i] = implode(explode($remove,$code[$i]),"");
     $code[$i] = explode($xpl,$code[$i]);
-    $json.= '{"likes":[],"dislikes":[],"name":"'.splithtml($code[$i][1]).'","image":"';
+    $json.= '{"name":"'.splithtml($code[$i][1]).'","image":"';
     $json.= explode('"',explode("</td>",$code[$i][2])[0])[1].'","alg":[';
     $k = explode("<br />",explode("</td>",$code[$i][3])[0]);
     for($j=0;$j<count($k)-1;$j++){
-      $json.='"'.$k[$j].'"'.",";
+      $json.='{"name":"'.$k[$j].'","likes":[],"dislikes":[]},';
     }
     $json=substr($json, 0,-1);
     $json.=']},';

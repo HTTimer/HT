@@ -31,6 +31,7 @@ var options = (function() {
 		core.set("optUseMilliseconds", true);
 		core.set("optHideScrambleWhenTiming", false);
 		core.set("optHideLog", true);
+		core.set("optUseCheats", false);
 
 		core.set("optHideScrambleBar", false);
 		core.set("optHideScrambleImage", false);
@@ -68,6 +69,9 @@ var options = (function() {
 		Show virtual stackmat timer:
 			<button onclick="document.getElementById('stackmat-base').style.display='${core.get("optHideScrambleImage")?"block":"none"}';core.set('optHideScrambleImage',${core.get('optHideScrambleImage')?'false':'true'});options.draw();">
 				${core.get('optHideScrambleImage')?'Disable':'Enable'}</button><br/>
+		Allow cheating:
+			<button onclick="core.set('optUseCheats',${core.get('optUseCheats')?'false':'true'});options.draw();">
+				${core.get('optUseCheats')?'Disable':'Enable'}</button><br/>
 		<h3>Design</h3>
 		<button onclick='layout.setTheme(0)'>normal Theme</button><br/>
 		<button onclick='layout.setTheme(1)'>yellow Theme</button><br/>

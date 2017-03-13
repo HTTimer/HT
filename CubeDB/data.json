@@ -285,6 +285,12 @@
         "type":"222",
         "colors":0,
         "size":50
+      },
+      {
+        "name":"3x3x3",
+        "type":"333",
+        "colors":0,
+        "size":57
       }
     ]
   },
@@ -307,6 +313,18 @@
         "type":"mega",
         "colors":0,
         "size":43
+      },
+      {
+        "name":"Dreidel",
+        "type":"nonwca",
+        "colors":0,
+        "size":70
+      },
+      {
+        "name":"Simplified reidel",
+        "type":"nonwca",
+        "colors":0,
+        "size":70
       }
     ]
   },
@@ -360,6 +378,36 @@
         "type":"222",
         "colors":0,
         "size":50
+      },
+      {
+        "name":"AoLong V1",
+        "type":"333",
+        "colors":0,
+        "size":57
+      },
+      {
+        "name":"AoLong V2",
+        "type":"333",
+        "colors":0,
+        "size":57
+      },
+      {
+        "name":"WeiLong V1",
+        "type":"333",
+        "colors":0,
+        "size":57
+      },
+      {
+        "name":"WeiLong V2",
+        "type":"333",
+        "colors":0,
+        "size":57
+      },
+      {
+        "name":"WeiLong GTS",
+        "type":"333",
+        "colors":0,
+        "size":57
       }
     ]
   },
@@ -452,6 +500,12 @@
         "type":"sq1",
         "colors":0,
         "size":55
+      },
+      {
+        "name":"Wind 3x3x3",
+        "type":"333",
+        "colors":0,
+        "size":57
       }
     ]
   },
@@ -469,7 +523,62 @@
   {
     "name":"V-Cube",
     "cubes":[
-
+      {
+        "name":"3a",
+        "type":"333",
+        "colors":0,
+        "size":57
+      },
+      {
+        "name":"3b",
+        "type":"333",
+        "colors":0,
+        "size":57
+      },{
+        "name":"2a",
+        "type":"222",
+        "colors":0,
+        "size":50
+      },
+      {
+        "name":"2b",
+        "type":"222",
+        "colors":0,
+        "size":50
+      },{
+        "name":"4a",
+        "type":"444",
+        "colors":0,
+        "size":0
+      },
+      {
+        "name":"4b",
+        "type":"444",
+        "colors":0,
+        "size":0
+      },{
+        "name":"5",
+        "type":"555",
+        "colors":0,
+        "size":0
+      },
+      {
+        "name":"6",
+        "type":"666",
+        "colors":0,
+        "size":0
+      },{
+        "name":"7",
+        "type":"777",
+        "colors":0,
+        "size":0
+      },
+      {
+        "name":"8",
+        "type":"nonwca",
+        "colors":0,
+        "size":0
+      },
     ]
   },
   {
@@ -609,7 +718,7 @@
 ]
 
 //ENDOFDATA
-colors=0 means black,White
+/*colors=0 means black,White
 colors=1 means black,white,stickerless
 colors=2 means stickerless
 

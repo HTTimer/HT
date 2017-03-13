@@ -1,3 +1,9 @@
+<!--
+@TODO
+Inspection
+Cheats
+Fake
+-->
 <div class="container">
   <h1 onclick="show('index');">CMOSTimer help</h1>
   <div id="index">
@@ -13,7 +19,7 @@
     <ol>
       <li onclick="show('versionnumber');">Version Number</li>
       <li>Time list</li>
-      <li>"Select scrambler" button</li>
+      <li onclick="show('scrambler');">"Select scrambler" button</li>
       <li>Current scramble</li>
       <li>Sesssion, Type, Method and cube</li>
       <li>"Next scramble >" button</li>
@@ -44,6 +50,7 @@
     <ul>
       <li><a nohref="nohref" onclick="show('option-showscrambleselect');">Show scramble select</a></li>
       <li><a nohref="nohref" onclick="show('option-showsolvetimeindetails');">Show solve time in details</a></li>
+      <li><a nohref="nohref" onclick="show('option-enablecheats');">Enable cheats</a></li>
     </ul>
   </div>
   <div id="option-showscrambleselect">
@@ -66,6 +73,17 @@
       <li>Click the button "Disable" or "Enable" to Disable or Enable the scrambler select button.</li>
       <li>Close the options.</li>
       <li>Click on "Details". If you have not done any solve yet, do one and click on "Details".</li>
+    </ol>
+  </div>
+  <div id="option-enablecheats">
+    <h2>Options: Enable cheating</h2>
+    This option shows or hides the solve time in details. The time is hidden per default.<br/>
+    <ol>
+      <li>Open the options menu. <a nohref="nohref" onclick="show('openoptions');">Click here to view how to do that.</a></li>
+      <li>Go to the section "Timer", and find "Allow cheating".</li>
+      <li>Click the button "Disable" or "Enable" to Disable or Enable the cheating interface.</li>
+      <li>Close the options.</li>
+      <li>Do a solve.</li>
     </ol>
   </div>
   <div id="openoptions">
@@ -105,11 +123,11 @@
     </ul>
     This means that 105 non-extended scramblers + 11 relay scramblers are available.
     <h3>Extended scrambler types</h3>
-    Extended scramble types are scramblers that are provided by users wanting scramblers for theis custom programs
+    Extended scramble types are scramblers that are provided by users wanting scramblers for their custom programs
     or scramblers for puzzle types nearly noone has, like 3D-printed puzzles and prototypes.
     <h4>Select extended scrambler types</h4>
     <ol>
-      <li>Open the options menu. <a nohref="nohref" onclick="show('openoptions');">Click here to view how to do that.</a></li>
+      <li>Open the scramble select menu. <a nohref="nohref" onclick="show('openoptions');">Click here to view how to do that.</a></li>
       <li>Click "View scrambler provided by other users".</li>
       <li>Click "Select" to select the chosen type as the current scramble algorithm.</li>
       <li>CMOSTimer will automatically close the selection window, initialize the scrambler, generate a scramble and write it to the scramble component.</li>

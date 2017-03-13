@@ -88,7 +88,9 @@ var stats = (function() {
 			code += "<b>DNF</b>";
 		else
 			code += "DNF";
-		code += "</span></td><td onclick='stats.showDetails(" + i + ")'>Details<br><!--UWR--><br>" +
+		code += "</span></td><td><span onclick='stats.showDetails(" + i + ")'>Details</span><br>" +
+			(core.get("optUseCheats") ? "<span onclick='stats.showCheats(" + i + ")'>Cheats</span>" : "") +
+			"<br>" +
 			(solve.flags.fake ? "Fake" : "\&nbsp;") +
 			"</td></table>";
 		layout.write("TIME", code);
@@ -153,16 +155,28 @@ var stats = (function() {
 	}
 
 	/*
+	 * stats:showCheats(i)
+	 * @param i Int SolveID
+	 */
+	function showCheats(i) {
+		var solve = core.get("config").timeList[core.get("config").currentSession][i],
+			html = "Cheats:<br/>";
+		html += "<button onclick='core.get(\"config\").timeList[core.get(\"config\").currentSession][" + i + "].zeit=prompt(\"Neue Zeit\",\"" + solve.zeit + "\");stats.update();'>change time</button><br/>";
+		html += "<span onclick='layout.write(\"FLAGS\",\"\")'>Hide cheats</span>";
+		layout.write("FLAGS", html);
+	}
+
+	/*
 	 * stats:togglePenalty(i,p)
 	 * @param i Int SolveID
 	 * @param p Int Penalty (2 for +2, -1 for DNF)
 	 */
 	function togglePenalty(i, p) {
 		var solve = core.get("config").timeList[core.get("config").currentSession][i];
-		if (solve.penalty / 1000 == p)
+		if (solve.penalty / 1e3 == p)
 			solve.penalty = 0;
 		else if (solve.penalty == 0 && p > 0)
-			solve.penalty = p * 1000;
+			solve.penalty = p * 1e3;
 		if (solve.penalty == -1 && p == -1)
 			solve.penalty = 0;
 		else if (p == -1)
@@ -218,6 +232,7 @@ var stats = (function() {
 		update: update,
 		showBig: showBig,
 		showDetails: showDetails,
+		showCheats: showCheats,
 		togglePenalty: togglePenalty,
 		display: display
 	}
