@@ -79,6 +79,62 @@ body {
 	z-index: 2;
 }
 
+.buttonstart {
+	border-bottom-left-radius: 5px !important;
+	border-top-left-radius: 5px !important;
+}
+
+.buttonmiddle {
+
+}
+
+.buttonend {
+	border-bottom-right-radius: 5px !important;
+	border-top-right-radius: 5px !important;
+	border-right: none !important;
+}
+
+.multibutton > button {
+	padding-left:0;
+	padding-right:0;
+	border:0;
+	border-radius:0;
+	float:left;
+	border-right: 1px solid rgb(102,102,102);
+}
+
+/*
+ * Options-menü
+ */
+
+.OPTIONS {
+	padding-left: 5px;
+}
+
+.col-1 {
+	float:left;
+	width: 40%;
+}
+
+.col-2 {
+}
+
+.option-description {
+	float: left;
+	width: 300px;
+	margin-top:5px;vertical-align:middle;
+}
+
+.option-button {
+	text-align: center;
+	width:150px;
+	float: left;
+	margin-top:5px;vertical-align:middle;
+}
+
+.OPTIONS > .options-option > .option-button > button {
+	height: 30px;
+}
 
 /*
  * Virtual stackmat and stopwatch

@@ -37,10 +37,12 @@ timer = (function() {
 		}
 
 		//Check browser
-		var isIE = /*@cc_on=!@*/ false;
+		var isIE = /*@cc_on=true;@*/ false;
 		if (isIE) {
 			//Do something. I suggest downloading Firefox.  ^_^
 		}
+
+		//@TODO: Backup data
 
 		//Try to load data from previous sessions
 		//Old versions saves will not get lost, as they save in HTexport, while we

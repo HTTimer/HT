@@ -49,37 +49,78 @@ var options = (function() {
 
 	function draw() {
 		layout.write("OPTIONS", `
+		<div class="col-1">
 		<h3>Display</h3>
-		Show milliseconds:
-			<button onclick="core.set('optUseMilliseconds',${core.get('optUseMilliseconds')?'false':'true'});options.draw();">
-				${core.get('optUseMilliseconds')?'Disable':'Enable'}</button><br/>
-		Color inspection time after 8, 12, 15 seconds:
-			<button onclick="core.set('optInspectColor',${core.get('optInspectColor')?'false':'true'});options.draw();">
-				${core.get('optInspectColor')?'Disable':'Enable'}</button><br/>
-		Show log:
-			<button onclick="document.getElementsByClassName('LOG')[0].style.display='${core.get("optHideLog")?"block":"none"}';core.set('optHideLog',${core.get('optHideLog')?'false':'true'});options.draw();">
-				${core.get('optHideLog')?'Enable':'Disable'}</button><br/>
-		Show solve time in details:
-			<button onclick="core.set('optHideTimeInDetails',${core.get('optHideTimeInDetails')?'false':'true'});options.draw();">
-				${core.get('optHideTimeInDetails')?'Enable':'Disable'}</button> (click on "Details" to see the effect)<br/>
+		<div class="options-option">
+			<label class="option-description" for="optUseMilliseconds">Show milliseconds:</label>
+			<div class="option-button">
+				<input type="checkbox" onclick="core.set('optUseMilliseconds',${core.get('optUseMilliseconds')?'false':'true'});options.draw();" id="optUseMilliseconds"${core.get('optUseMilliseconds')?' checked="checked"':''}/>
+			</div>
+		</div>
+		<div style="clear:both;"></div>
+		<div class="options-option">
+			<label class="option-description" for="optInspectColor">Color inspection time after 8, 12, 15 seconds:</label>
+			<div class="option-button"><button onclick="core.set('optInspectColor',${core.get('optInspectColor')?'false':'true'});options.draw();">
+				${core.get('optInspectColor')?'Disable':'Enable'}</button>
+			</div>
+		</div>
+		<div style="clear:both;"></div>
+		<div class="options-option">
+			<label class="option-description" for="optInspectColor">Show log:</label>
+			<div class="option-button">
+				<button onclick="document.getElementsByClassName('LOG')[0].style.display='${core.get("optHideLog")?"block":"none"}';core.set('optHideLog',${core.get('optHideLog')?'false':'true'});options.draw();">
+				${core.get('optHideLog')?'Enable':'Disable'}</button>
+			</div>
+		</div>
+		<div style="clear:both;"></div>
+		<div class="options-option">
+			<label class="option-description" for="optInspectColor">Show solve time in details:</label>
+			<div class="option-button">
+				<button onclick="core.set('optHideTimeInDetails',${core.get('optHideTimeInDetails')?'false':'true'});options.draw();">
+				${core.get('optHideTimeInDetails')?'Enable':'Disable'}</button>
+			</div>
+		</div>
+		<div style="clear:both;"></div>
 		<h3>Timer</h3>
-		Show scramble select:
-			<button onclick="core.set('optHideScrambleBar',${core.get('optHideScrambleBar')?'false':'true'});options.draw();">
-				${core.get('optHideScrambleBar')?'Enable':'Disable'}</button> (generate a new scramble to see the change)<br/>
-		Show virtual stackmat timer:
-			<button onclick="document.getElementById('stackmat-base').style.display='${core.get("optHideScrambleImage")?"block":"none"}';core.set('optHideScrambleImage',${core.get('optHideScrambleImage')?'false':'true'});options.draw();">
-				${core.get('optHideScrambleImage')?'Disable':'Enable'}</button><br/>
-		Allow cheating:
-			<button onclick="core.set('optUseCheats',${core.get('optUseCheats')?'false':'true'});options.draw();">
-				${core.get('optUseCheats')?'Disable':'Enable'}</button><br/>
+		<div class="options-option">
+			<label class="option-description" for="optInspectColor">Show scramble select:</label>
+			<div class="option-button"><button onclick="core.set('optHideScrambleBar',${core.get('optHideScrambleBar')?'false':'true'});options.draw();">
+				${core.get('optHideScrambleBar')?'Enable':'Disable'}</button>
+			</div>
+		</div>
+		<div style="clear:both;"></div>
+		<div class="options-option">
+			<label class="option-description" for="optInspectColor">Show virtual stackmat timer:</label>
+			<div class="option-button">
+				<button onclick="document.getElementById('stackmat-base').style.display='${core.get("optHideScrambleImage")?"block":"none"}';core.set('optHideScrambleImage',${core.get('optHideScrambleImage')?'false':'true'});options.draw();">
+				${core.get('optHideScrambleImage')?'Disable':'Enable'}</button>
+			</div>
+		</div>
+		<div style="clear:both;"></div>
+		<div class="options-option">
+			<label class="option-description" for="optInspectColor">Allow cheating:</label>
+			<div class="option-button">
+				<button onclick="core.set('optUseCheats',${core.get('optUseCheats')?'false':'true'});options.draw();">
+				${core.get('optUseCheats')?'Disable':'Enable'}</button>
+			</div>
+		</div>
+		<div style="clear:both;"></div>
+		</div>
+		<div class="col-2">
 		<h3>Design</h3>
-		<button onclick='layout.setTheme(0)'>normal Theme</button><br/>
-		<button onclick='layout.setTheme(1)'>yellow Theme</button><br/>
-		<button onclick='layout.setTheme(2)'>orange Theme</button><br/>
-		<button onclick='layout.setTheme(3)'>green Theme</button><br/>
-		<button onclick='layout.setTheme(4)'>blue Theme</button><br/><br/>
-		<button onclick='layout.themes[layout.themes.length-1][1][1]=prompt("Color 1 as Hex value (example: 434343)");layout.setTheme(5)'>Change color 1</button><br/>
-		<button onclick='layout.themes[layout.themes.length-1][2][1]=prompt("Color 3 as Hex value (example: 434343)");layout.setTheme(5)'>Change color 2</button><br/>
+		<div class="multibutton">
+			<button onclick='layout.setTheme(0)' class="buttonstart">normal Theme</button>
+			<button onclick='layout.setTheme(1)' class="buttonmiddle">yellow Theme</button>
+			<button onclick='layout.setTheme(2)' class="buttonmiddle">orange Theme</button>
+			<button onclick='layout.setTheme(3)' class="buttonmiddle">green Theme</button>
+			<button onclick='layout.setTheme(4)' class="buttonend">blue Theme</button>
+		</div>
+		<br/><br/>
+		<input type="color" onchange='layout.themes[layout.themes.length-1][1][1]=(this.value.split("#")[1]);layout.setTheme(5)'/>
+		</div> <input type="color" onchange='layout.themes[layout.themes.length-1][2][1]=(this.value.split("#")[1]);layout.setTheme(5)'/>
+		<!--<button onclick='layout.themes[layout.themes.length-1][1][1]=prompt("Color 1 as Hex value (example: 434343)");layout.setTheme(5)'>Change color 1</button><br/>
+		<button onclick='layout.themes[layout.themes.length-1][2][1]=prompt("Color 3 as Hex value (example: 434343)");layout.setTheme(5)'>Change color 2</button><br/>-->
+		</div>
 		`);
 	}
 
