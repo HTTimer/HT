@@ -1,23 +1,8 @@
 #Timer-TODO
 
-- Fix options
-
-Goals
------
-- Disable Goal
-- Set goals for Date
-- Show percentage as progress bar in background of goals card
-
 Login to
 --------
-- Export from Server
-- Import from Server
-- Animate algs in algSets
-- FTO Scrambler
-- Import AlgSets from AlgDb
-- Use more that 10 stages
-- Predefined AlgSets: ZBLL,SummerVariation,VLS,EG1,EG2,TCLL+,TCLL-
-- Selftest, selffix
+- use CMOSTimer
 
 Translate
 ---------
@@ -33,9 +18,14 @@ Options
 - What String to display of timingMode is off
 - Translations: pointer to translations
 - Allow +2 and DNF on old solves
-- Max inspection time
 - alert on pb
 - Enable Clock +2
+
+Goals
+-----
+- Disable Goal
+- Set goals for Date
+- Show percentage as progress bar in background of goals card
 
 Layout edit
 -----------
@@ -45,7 +35,6 @@ Layout edit
 Fake,UWR
 --------
 - Remove fake flag if solve is considered fake but gets valid by a +2,+4,...
-- Fake autodetect Option
 - Fake thereshold Option
 - UWR List
 - Download current UWRs from Speedsolving.com wiki
@@ -76,7 +65,7 @@ AlgSets
 - Learn Alg
 - Rotate alg by x,y,z,x2,y2,z2,x',y',z'
 - Predefined AlgSets: OLL,F2L,CLL,BigCubeParity,WV + Login - SummerVariation,VLS,ZBLL,EG1,EG2,TCLL+,TCLL-
-- View AlgSet at alg.cubing.net
+- View AlgSet with CMOSAlgView
 
 Export/Import
 -------------
