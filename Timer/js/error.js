@@ -2,11 +2,11 @@
  * error.js
  */
 
-var error=(function(){
+var error = (function() {
 	/*
 	 * error:Init()
 	 */
-	function init(){
+	function init() {
 
 	}
 
@@ -14,15 +14,16 @@ var error=(function(){
 	 * error:error(msg)
 	 * @param msg String Error description
 	 */
-	var errors=[];
-	function error(msg){
+	var errors = [];
+
+	function error(msg) {
 		errors.push(msg);
 		console.warn(msg);
 	}
 
 	return {
-		init:init,
-		error:error,
-		errors:errors
+		init: init,
+		error: error,
+		errors: errors
 	}
 })();

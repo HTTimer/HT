@@ -1,6 +1,7 @@
 /*
  * Polyfill for <progress> HTML Element
  * @author Lea Verou http://leaverou.me
+ * Do not change anything in this file
  */
 
 (function(){

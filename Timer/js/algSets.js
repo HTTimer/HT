@@ -3,85 +3,73 @@
  */
 
 var algSets = (function() {
-	var sets = [];
-	var setprops = [];
 	var currentSet = 0;
-	var predefined = {
-		//"AlgSetName":"AlgDBSetName,hasAlgDb Algnames CompressedAlgs"
-		//Compression ensures a proper formatted alg after uncompression, and saves spaces and direction characters
-		//These are just for normal AlgSets, you can always load sets from algdb (at least you will be able to later on)
-		"PLL": "PLL,1 Aa,Ab,E,F,Ga,Gb,Gc,Gd,H,Ja,Jb,Na,Nb,Ra,Rb,T,Ua,Ub,V,Y,Z YBIBSAJBSCZ,YCSAIBSAJAZ,ZAJBQAIBRAIBRAJBQY,BJFAIBJBECJBJAIBIA,BJAIRCIBIAJAJCQ,LOL,CQcBIBJARGeBIA,AIBJQCJAJBIBICR,CKAKCKCKAKC,VJUEVJUIUFWIU,IAIBFAIBJBECJBJ,AIBIAIBFAIBJBECJBKAJB,BIVKAJUBIVKAJU,UKVKUFVJUIUEW,BKAKBEAIBJBFCJ,AIBJBECJBJAIBF,CIAIBJBJBIB,AJAIAIAJBJC,AKBQAJAJAICQBJAS,EAJBJAIBFAIBJBEAF,BJCIAIBJAIAJAJB",
-		"OLL": "OLL,1 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57 AINAMCJBEAF,EAIBJFkfAIBJkf',cEIAJBFIEAIBJF,cEIAJBFJEAIBJF,VJWFVGJF,eAICEAGIE,VKUKUFVE,AKBKBEAF,cAIBJBECIBJF,AIBIBEAFAKB,kMAIBIAKBIkM,EAIBJFIEAIBJF,EIAKBJAIBF,BEAIBFAEJF,eBFAVJUIBEA,eBEAIBJFAJBKA,AIBIBEAFKBEAF,eEAIBIdBKBEAF,BKEAIBJGKEA,EIAJBFKBJBEAFIA,cAKBJAIBJAJB,AKCJCJCKA,CQBKARBKB,UEBFVEAF,BEANBFAM,eVJUJVKU,AIBIAKB,EAIBJGVJUIE,eBEAFAKBJFJE,CIBNAJCIAMB,BJEIAJBFA,AINJBIAMB,AIBJBEAF,eAIBJNBEAFM,AKDEAFAKB,BJAJBIAIklJBIY,EAJBJAIBF,AIBIAJBJBEAF,cUFVJUIEJV,cBEAIBJFIA,AJBKAIcAJBJF,BJAJBKAEAIBJF,FJVIUE,EIAJBF,EAIBJF,BJBEAFIA,FVJUIVJUIE,EAIBJAIBJF,ANCECMCFA,BECNCFCMB,eEIAJBIAJBF,BJAJBIFIEA,EAIBJAJBIAIBF,FVJUIVIUJVJUE,AKCJAJBKEAF,EAIBJAFUEBFV,AIBJVZBIAJUY",
-		"COLL": "2x2_OLL,1 H,Pi,U,T,L,Antisune,Sune AKBJAIBJAJB,AKCJCJCKA,CQBKARBKB,UEBFVEAF,BEANBFAM,VJUJVKU,AIBIAKB",
-		"CPLL": "2x2_PLL,1 J,L,Y AIBFAIBJBECJBJ,YBJAIBJAZIAJDEAJ,EAJBJAIBFAIBJBEAF"
-	};
 
 	/*
 	 * algSets:Init()
 	 */
 	function init() {
-		algSets.loadPredefinedAlgSet("PLL");
-		algSets.loadPredefinedAlgSet("OLL");
-		algSets.loadPredefinedAlgSet("COLL");
-		algSets.loadPredefinedAlgSet("CPLL");
+
 	}
 
 	/*
 	 * algSets:display()
 	 */
 	function display() {
-		var i, outhtml = html.td("<span onclick='algSets.favorite()'>Favorites</span>"),
-			outhtml2 = "";
+		var outhtml = html.td("<span onclick='algSets.favorite()'>Favorites</span>"),
+			outhtml2 = ' <table class="table table-condensed table-hover table-striped">',
+			data = window.algs[currentSet],
+			i;
 
-		//Menu
-		for (i = 0; i < sets.length; ++i) {
-			if (!setprops[i].hidden) {
-				outhtml += html.td("<span onclick='algSets.switchCurrentSet(" + i + ");'>" + setprops[i].name + "</span>");
-			}
+		// Menu
+		for (i = 0; i < window.algs.length; ++i) {
+			outhtml += html.td("<span onclick='algSets.switchCurrentSet(" + i + ");'>" + window.algs[i].name + "</span>");
 		}
 		outhtml += html.td("<span onclick='algSets.addSet();'>+</span>");
 		outhtml = html.table("<tr>" + outhtml + "</tr>");
 
-		//Headline
-		outhtml += html.el("h2", "<span onclick='algSets.changeSetName()'><u>" + setprops[currentSet].name + "</u></span> <span onclick='algSets.removeSet()'>x</span> <span onclick='algSets.addAlg()'>+</span>");
+		// Headline
+		outhtml += html.el("h2", "<span onclick='algSets.changeSetName()'><u>" + data.name + "</u></span> <span onclick='algSets.removeSet()'>x</span> <span onclick='algSets.addAlg()'>+</span>");
 
-		//Algs
-		for (i = 0; i < sets[currentSet].length; ++i) {
+		// Algs
+		for (i = 0; i < data.algs.length; ++i) {
 			outhtml2 += html.tr(
-				"<span onclick='algSets.changeName(" + i + ")'>" + sets[currentSet][i].name + "</span>",
-				"<span onclick='algSets.changeAlg (" + i + ")'>" + sets[currentSet][i].alg + "</span>",
+				"<span onclick='algSets.changeName(" + i + ")'>" + data.algs[i].name + "</span>",
+				"<span onclick='algSets.changeAlg (" + i + ")'>" + data.algs[i].alg[0].name + "</span>",
 				"Flags",
 				"x",
-				"<span onclick='algSets.toggleStar(" + i + ");'>" + (sets[currentSet][i].flags.star ? "Unfavorite" : "Favorite") + "</span>",
+				//"<span onclick='algSets.toggleStar(" + i + ");'>" + (data.algs[i].flags.star ? "Unfavorite" : "Favorite") + "</span>",
 				"<span onclick='algSets.invert(" + i + ")'>invert</span>",
 				//"learn",
-				sets[currentSet][i].practiseTimes.length > 0 ? math.format(math.average(sets[currentSet][i].practiseTimes)) + "s" : "DNF",
-				"<span onclick='algSets.enterPractiseMode(" + currentSet + "," + i + ")'>practise</span>",
+				//sets[currentSet][i].practiseTimes.length > 0 ? math.format(math.average(sets[currentSet][i].practiseTimes)) + "s" : "DNF",
+				//"<span onclick='algSets.enterPractiseMode(" + currentSet + "," + i + ")'>practise</span>",
 				"<span onclick='algSets.algCubingNet(" + i + ")'>view</span>",
-				"help"
+				"help",
+				"statistics"
 			);
 		}
+		outhtml2 += "</table>";
 		outhtml += html.table(outhtml2);
+
+		// Buttons
 		outhtml += "<br/><button onclick='algSets.addSet()'>" + transl("Add set") + "</button>";
 		outhtml += "     <button onclick='algSets.importSet()'>" + transl("Add set") + " (Import code)</button>"
 		outhtml += "<br/><button onclick='algSets.removeSet()'>" + transl("Remove current set") + "</button>";
-
 		layout.write("ALGSETS", outhtml);
 
-		core.set("algSets", sets);
-		core.set("algProps", setprops);
+		/*core.set("algSets", sets);
+		core.set("algProps", setprops);*/
 
-		return outhtml;
+		return html;
 	}
 
 	/*
 	 * algSets:addSet()
 	 */
 	function addSet() {
-		sets.push([]);
-		setprops.push({
-			name: "New set #" + sets.length,
-			hidden: false
+		window.algs.push({
+			name: "Set name",
+			algs: []
 		});
 		display();
 	}
@@ -96,57 +84,16 @@ var algSets = (function() {
 	}
 
 	/*
-	 * algSets:importSet()
-	 */
-	function importSet() {
-		predefined["c"] = prompt();
-		loadPredefinedAlgSet("c");
-	}
-
-	/*
-	 * algSets:loadPredefinedAlgSet(id)
-	 * @param id Int ID
-	 */
-	function loadPredefinedAlgSet(id) {
-		var content, name, algNames, algS, i, currentSet;
-		content = predefined[id].split(" ");
-		name = content[0];
-		algNames = content[1].split(",");
-		algS = content[2].split(",");
-		i, currentSet;
-
-		sets.push([]);
-		setprops.push({
-			name: name.split(",")[0],
-			hidden: false
-		});
-
-		currentSet = sets.length - 1;
-		for (i = 0; i < algS.length; ++i) {
-			sets[currentSet].push({
-				name: algNames[i],
-				alg: math.decompressAlgorithm(algS[i]),
-				flags: {
-					star: false
-				},
-				practiseTimes: []
-			});
-		}
-
-		display();
-	}
-
-	/*
 	 * algSets:addAlg()
 	 */
 	function addAlg() {
-		sets[currentSet].push({
+		window.algs[currentSet].algs.push({
 			name: prompt("Name"),
-			alg: prompt("Alg"),
-			flags: {
-				star: false
-			},
-			practiseTimes: []
+			alg: [{
+				likes: [],
+				dislikes: [],
+				name: prompt("Alg"),
+			}]
 		});
 		display();
 	}
@@ -156,7 +103,7 @@ var algSets = (function() {
 	 * algSets:changeSetName()
 	 */
 	function changeSetName() {
-		setprops[currentSet].name = prompt();
+		window.algs[currentSet].name = prompt("Set new name", window.algs[currentSet].name);
 		display();
 	}
 
@@ -165,7 +112,7 @@ var algSets = (function() {
 	 * @param i Int
 	 */
 	function changeName(i) {
-		sets[currentSet][i].name = prompt("", sets[currentSet][i].name);
+		window.algs[currentSet].algs[i].name = prompt("Set new name", window.algs[currentSet].algs[i].name);
 		display();
 	}
 
@@ -174,7 +121,7 @@ var algSets = (function() {
 	 * @param i int
 	 */
 	function changeAlg(i) {
-		sets[currentSet][i].alg = prompt("", sets[currentSet][i].alg);
+		window.algs[currentSet].algs[i].alg[0].name = prompt("Set new Algorithm", window.algs[currentSet].algs[i].alg[0].name);
 		display();
 	}
 
@@ -201,7 +148,7 @@ var algSets = (function() {
 	 * @param i int
 	 */
 	function invert(i) {
-		sets[currentSet][i].alg = math.invertAlg(sets[currentSet][i].alg);
+		window.algs[currentSet].algs[i].alg[0].name = math.invertAlg(window.algs[currentSet].algs[i].alg[0].name);
 		display();
 	}
 
@@ -210,7 +157,7 @@ var algSets = (function() {
 	 * @param i int
 	 */
 	function algCubingNet(i) {
-		var alg = sets[currentSet][i].alg;
+		var alg = window.algs[currentSet].algs[i].alg[0].name;
 		layout.write("ALGSETS", '<iframe src="https://alg.cubing.net/?alg=' + alg + '&setup=' + math.invertAlg(alg) + '&view=fullscreen" width="800" height="550"></iframe>'); //77.247.30.42
 	}
 
@@ -297,8 +244,6 @@ var algSets = (function() {
 		init: init,
 		display: display,
 		addSet: addSet,
-		importSet: importSet,
-		loadPredefinedAlgSet: loadPredefinedAlgSet,
 		addAlg: addAlg,
 		removeSet: removeSet,
 		changeSetName: changeSetName,
@@ -312,7 +257,6 @@ var algSets = (function() {
 		addTime: addTime,
 		enterPractiseMode: enterPractiseMode,
 		leavePractiseMode: leavePractiseMode,
-		sets: sets,
 		practiseUpdateLeft: practiseUpdateLeft
 	}
 })();

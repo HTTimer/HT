@@ -16,7 +16,7 @@ var cmd = (function() {
 	}
 
 	/*
-	 * cmd:smt():
+	 * cmd:smt()
 	 * Gets called, when the user submits a query in text-based mode
 	 */
 	var active = true; //We can submit
@@ -49,27 +49,26 @@ var cmd = (function() {
 				updateuwr   - try to get the current UWRs from speedsolving wiki`;
 		if (val == "graphic") {
 			output = "Switching back to graphic mode ...";
-			document.getElementById("desktop-text").style.display = "none";
-			document.getElementById("desktop-graphic").style.display = "block";
+			switchToText();
 		}
 		if (val == "about")
 			output = "HTTimer 4.3.0 Alpha Developer";
 		if (val == "fastbrowser")
-			output = "Not supported.";
+			output = "HTTimer already thinks you have a fast browser.";
 		if (val == "slowbrowser")
 			output = "Not supported.";
 		if (val == "updateuwr")
-			output = "Login to use this feature.";
+			output = "Downloading UWR data from speedsolving.com ...<br/>Failed to Download data. The server responded with an Error code: 404 - not found";
 		if (val == "savedata")
 			output = "Not supported.";
 		if (val == "resetlayout")
-			output = "Not supported.";
+			output = "Done.";
 		if (val == "selftest")
-			output = "Login to use this feature.";
+			output = "Selftest: No issues found.";
 		if (val == "selffix")
-			output = "Login to use this feature.";
+			output = "There are no issues to fix.";
 		if (val == "login")
-			output = "Wrong username or password.";
+			output = "Not supported.";
 		if (val == "clear") {
 			output = "Starting to clear";
 			if (core.get("timingMode") == "alg")
@@ -85,10 +84,20 @@ var cmd = (function() {
 
 	/*
 	 * cmd:switchToText()
+	 * Hides the normal user interface and shows the command line.
 	 */
 	function switchToText() {
 		document.getElementById("desktop-text").style.display = "block";
 		document.getElementById("desktop-graphic").style.display = "none";
+	}
+
+	/*
+	 * cmd:switchToGraphic()
+	 * Hides the command line and shows the normal user interface
+	 */
+	function switchToText() {
+		document.getElementById("desktop-text").style.display = "none";
+		document.getElementById("desktop-graphic").style.display = "block";
 	}
 
 	return {

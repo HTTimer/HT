@@ -32,6 +32,7 @@ var options = (function() {
 		core.set("optHideScrambleWhenTiming", false);
 		core.set("optHideLog", true);
 		core.set("optUseCheats", false);
+		core.set("optDisplayFake", true);
 
 		core.set("optHideScrambleBar", false);
 		core.set("optHideScrambleImage", false);
@@ -39,6 +40,10 @@ var options = (function() {
 
 		core.set("optUseInspection", true);
 		core.set("optInspectColor", true);
+		core.set("optInspectColor8", "black");
+		core.set("optInspectColor12", "#ff0");
+		core.set("optInspectColor15", "#f80");
+		core.set("optInspectColor17", "#f00");
 
 		core.set("optDefaultScrambleTypeForNewSession", "333");
 
@@ -90,6 +95,13 @@ var options = (function() {
 		</div>
 		<div style="clear:both;"></div>
 		<div class="options-option">
+			<label class="option-description" for="optInspectColor">Enable displaying "Fake":</label>
+			<div class="option-button"><button onclick="core.set('optDisplayFake',${core.get('optDisplayFake')?'false':'true'});options.draw();">
+				${core.get('optDisplayFake')?'Disable':'Enable'}</button>
+			</div>
+		</div>
+		<div style="clear:both;"></div>
+		<div class="options-option">
 			<label class="option-description" for="optInspectColor">Show virtual stackmat timer:</label>
 			<div class="option-button">
 				<button onclick="document.getElementById('stackmat-base').style.display='${core.get("optHideScrambleImage")?"block":"none"}';core.set('optHideScrambleImage',${core.get('optHideScrambleImage')?'false':'true'});options.draw();">
@@ -116,8 +128,18 @@ var options = (function() {
 			<button onclick='layout.setTheme(4)' class="buttonend">blue Theme</button>
 		</div>
 		<br/><br/>
-		<input type="color" onchange='layout.themes[layout.themes.length-1][1][1]=(this.value.split("#")[1]);layout.setTheme(5)'/>
-		</div> <input type="color" onchange='layout.themes[layout.themes.length-1][2][1]=(this.value.split("#")[1]);layout.setTheme(5)'/>
+		Color 1: <input type="color" onchange='layout.themes[layout.themes.length-1][1][1]=(this.value.split("#")[1]);layout.setTheme(5)'/><br/>
+		Color 2: <input type="color" onchange='layout.themes[layout.themes.length-1][2][1]=(this.value.split("#")[1]);layout.setTheme(5)'/><br/>
+		<br/>
+
+		<label class="option-description">Color inspection time based on time:</label>
+		<button onclick="core.set('optInspectColor',${core.get('optInspectColor')?'false':'true'});options.draw();">
+			${core.get('optInspectColor')?'Disable':'Enable'}</button>
+		<br/>
+		Inspection time color <8s: <input type="color" onchange='core.set("optInspectColor8",this.value);'/><br/>
+		Inspection time color <12s: <input type="color" onchange='core.set("optInspectColor12",this.value);'/><br/>
+		Inspection time color <15s: <input type="color" onchange='core.set("optInspectColor15",this.value);'/><br/>
+		Inspection time color >15s: <input type="color" onchange='core.set("optInspectColor17",this.value);'/><br/>
 		<!--<button onclick='layout.themes[layout.themes.length-1][1][1]=prompt("Color 1 as Hex value (example: 434343)");layout.setTheme(5)'>Change color 1</button><br/>
 		<button onclick='layout.themes[layout.themes.length-1][2][1]=prompt("Color 3 as Hex value (example: 434343)");layout.setTheme(5)'>Change color 2</button><br/>-->
 		</div>

@@ -91,7 +91,7 @@ var stats = (function() {
 		code += "</span></td><td><span onclick='stats.showDetails(" + i + ")'>Details</span><br>" +
 			(core.get("optUseCheats") ? "<span onclick='stats.showCheats(" + i + ")'>Cheats</span>" : "") +
 			"<br>" +
-			(solve.flags.fake ? "Fake" : "\&nbsp;") +
+			(solve.flags.fake && core.get("optDisplayFake") ? "Fake" : "\&nbsp;") +
 			"</td></table>";
 		layout.write("TIME", code);
 		layout.write("FLAGS", "");

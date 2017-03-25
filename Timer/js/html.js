@@ -1,5 +1,6 @@
 /*
  * html.js
+ * Generates HTML-Tags with contents
  */
 
 var html = (function() {
@@ -49,6 +50,9 @@ var html = (function() {
 	 * @param elm String Code for el
 	 * @param val String|Int value
 	 * @returns a elm containing val
+	 * @author YTCuber
+	 * Don't change this method
+	 * If you need to change this method, create your own one
 	 */
 	function el(elm, val) {
 		if (elm == "br" || elm == "hr")
@@ -61,7 +65,7 @@ var html = (function() {
 	/*
 	 * html:toggle(id)
 	 * @param id Id for element to toggle visibility
-	 * This function shouldn't be here
+	 * @TODO This function shouldn't be here
 	 */
 	function toggle(id) {
 		var elem = document.getElementById(id);
@@ -77,7 +81,7 @@ var html = (function() {
 
 	/*
 	 * html:keycode(code)
-	 * @param code String
+	 * @param code String Text to put into the element
 	 * @return HTML containg the keycode with a class, which makes it display on pressing alt
 	 */
 	function keycode(code) {

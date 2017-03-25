@@ -159,7 +159,7 @@ var counter = (function() {
 	}
 
 	function inspectColor(a) {
-		return core.get("optInspectColor") ? ("<span style='color:" + (a < 8 ? "black" : (a < 12 ? "#ff0" : (a < 15 ? "#f80" : "#f00"))) + "'>") : "<span>";
+		return core.get("optInspectColor") ? ("<span style='color:" + (a < 8 ? core.get("optInspectColor8") : (a < 12 ? core.get("optInspectColor12") : (a < 15 ? core.get("optInspectColor15") : core.get("optInspectColor17")))) + "'>") : "<span>";
 	}
 
 	return {

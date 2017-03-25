@@ -142,7 +142,7 @@ var scramble = (function() {
 				["", "1x2x2", "1x3x3"]
 			],
 			[ // 6 Axis
-				["", "2x2x3", "2x2x4"],
+				["", "2x2x3", "2x2x4", "2x2x5", "2x2x6"],
 				["", "3x3x4", "3x3x5"],
 				["", "4x4x2", "4x4x3", "4x4x5", "4x4x6", "4x4x7", "4x4x8"],
 				["", "5x5x3", "5x5x4", "5x5x6", "5x5x7"],
@@ -222,7 +222,7 @@ var scramble = (function() {
 				["", "122", "133"]
 			],
 			[ // 6 Axis
-				["", "223", "224"],
+				["", "223", "224", "225", "226"],
 				["", "334", "335"],
 				["", "442", "445", "445", "446", "447", "448"],
 				["", "553", "554", "556", "557"],
@@ -379,6 +379,8 @@ var scramble = (function() {
 			]],
 			"223": [scramble, [cuboidMoves(2, 3), noSuffix, 9, opposites.NORMAL]],
 			"224": [scramble, [cuboidMoves(2, 4), noSuffix, 18]],
+			"225": [N22CuboidMoves, [5, 13]],
+			"226": [scramble, [cuboidMoves(2, 6), noSuffix, 28]],
 			"334": [scramble, [cuboidMoves(3, 4), noSuffix, 25]],
 			"335": [scramble, [cuboidMoves(3, 5), noSuffix, 35]],
 			"442": [scramble, [cuboidMoves(4, 2), noSuffix, 35]],
@@ -456,7 +458,7 @@ var scramble = (function() {
 	/*
 	 * scramble:cuboidMoves
 	 * @param height Int
-	 * @parma width Int
+	 * @param width Int
 	 * @returns allowed moves to scramble a width*width*height cuboid
 	 */
 	function cuboidMoves(width, height) {
@@ -470,9 +472,13 @@ var scramble = (function() {
 			moves.push((i > 0 ? i + 1 : "") + "L2");
 			moves.push((i > 0 ? i + 1 : "") + "B2");
 		}
-		if (ishalf) {
+		if (ishalf && width / 2 > 1) {
 			moves.push(width / 2 + "F2");
 			moves.push(width / 2 + "R2");
+		} else if (ishalf) {
+			// 2x2xN Cuboids would have 1F2 and 1R2, which is unusual and unneccecary complex
+			moves.push("F2");
+			moves.push("R2");
 		}
 		for (i = 0; i < halfheight; ++i) {
 			moves.push((i > 0 ? i + 1 : "") + "D");
@@ -483,6 +489,29 @@ var scramble = (function() {
 			moves.push((i > 0 ? i + 1 : "") + "U'");
 		}
 		return moves;
+	}
+
+	/*
+	 * scramble:N22CuboidMoves(height,suffixes,length)
+	 * @param height Int
+	 * @param suffixes Array[""]
+	 * @param length Int
+	 */
+	function N22CuboidMoves(height, length) {
+		var scramble = [],
+			i, j, k, layers = [];
+		for (j = 1; j < height; ++j)
+			if (j < height / 2)
+				layers[j] = (j > 1 ? j : "") + "U";
+			else
+				layers[j] = ((height - j) > 1 ? (height - j) : "") + "D";
+		for (i = 0; i < length; ++i) {
+			for (j = 1; j < height; ++j)
+				if ((k = Math.round(Math.random() * 3)) > 0)
+					scramble.push(layers[j] + (k == 3 ? "'" : k == 1 ? "" : 2));
+			scramble.push(rndEl(["R2", "F2"]));
+		}
+		return scramble.join(" ");
 	}
 
 	function scrambleImagescrambler(s) {
