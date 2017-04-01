@@ -36,5 +36,6 @@ function build(){
 build();
 $(document).ready(function(){
   $("#products").tablesorter({sortList: [[2,0], [0,0]], theme:"blue"} );
+  $("table").filterTable();
 });
 </script>

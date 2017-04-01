@@ -1,6 +1,10 @@
 <?php
 //Check login
 $login=isset($_COOKIE["HTTimer-login"]);
+$username="";
+if($login)
+  $username=$_COOKIE["HTTimer-login"];
+$isAdministrator=$login=="HTTimer-developer";
 
 //If no location, set it to index
 if(!isset($_GET["show"])){
@@ -22,8 +26,9 @@ if($_GET["show"]=="Timer"){
     <link href="lib/bootstrap.min.css" rel="stylesheet" />
     <link href="lib/custom.css" rel="stylesheet" />
     <script src="lib/bootstrap.min.js"></script>
+    <script src="lib/tablefilter.js"></script>
   </head>
-  <body style="margin-top: 10px;">
+  <body>
     <?php
     include_once("menu.php");
     include_once("includes/".$_GET["show"].".php");

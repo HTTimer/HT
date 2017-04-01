@@ -21,6 +21,13 @@
         </li>
         <li><a href="index.php?show=lscubedb">CubeDB</a></li>
         <li><a href="index.php?show=lsalgdb ">AlgDB </a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cubing resources <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="index.php?show=../../Patterns/index">Patterns</a></li>
+            <li><a href="index.php?show=links">Website links</a></li>
+          </ul>
+        </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <?php if($login){ ?>

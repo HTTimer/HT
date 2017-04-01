@@ -8,12 +8,12 @@
 	margin: 10px 0 15px;
 	text-align: left;
 	border-spacing: 0;
-	border: #cdcdcd 1px solid;
+	border: #f57c00 1px solid;
 	border-width: 1px 0 0 1px;
 }
 .tablesorter-blue th,
 .tablesorter-blue td {
-	border: #cdcdcd 1px solid;
+	border: #f57c00 1px solid;
 	border-width: 0 1px 1px 0;
 }
 
@@ -23,7 +23,7 @@
 	font: 12px/18px Arial, Sans-serif;
 	font-weight: bold;
 	color: #000;
-	background-color: #99bfe6;
+	background-color: #f57c00;
 	border-collapse: collapse;
 	padding: 4px;
 	text-shadow: 0 1px 0 rgba(204, 204, 204, 0.7);
@@ -51,7 +51,7 @@
 .tablesorter-blue .headerSortUp,
 .tablesorter-blue .tablesorter-headerSortUp,
 .tablesorter-blue .tablesorter-headerAsc {
-	background-color: #9fbfdf;
+	background-color: #f57c00;
 	/* black asc arrow */
 	background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjI8Bya2wnINUMopZAQA7);
 	/* white asc arrow */
@@ -62,7 +62,7 @@
 .tablesorter-blue .headerSortDown,
 .tablesorter-blue .tablesorter-headerSortDown,
 .tablesorter-blue .tablesorter-headerDesc {
-	background-color: #8cb3d9;
+	background-color: #f57c00;
 	/* black desc arrow */
 	background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjB+gC+jP2ptn0WskLQA7);
 	/* white desc arrow */
@@ -87,7 +87,7 @@
 
 /* tbody */
 .tablesorter-blue td {
-	color: #3d3d3d;
+	color: #000;
 	background-color: #fff;
 	padding: 4px;
 	vertical-align: top;
@@ -105,13 +105,13 @@
 .tablesorter-blue tbody > tr.even:hover > td,
 .tablesorter-blue tbody > tr.even:hover + tr.tablesorter-childRow > td,
 .tablesorter-blue tbody > tr.even:hover + tr.tablesorter-childRow + tr.tablesorter-childRow > td {
-	background-color: #d9d9d9;
+	background-color: #f57c00;
 }
 .tablesorter-blue tbody > tr.odd.hover > td,
 .tablesorter-blue tbody > tr.odd:hover > td,
 .tablesorter-blue tbody > tr.odd:hover + tr.tablesorter-childRow > td,
 .tablesorter-blue tbody > tr.odd:hover + tr.tablesorter-childRow + tr.tablesorter-childRow > td {
-	background-color: #bfbfbf;
+	background-color: #f57c00;
 }
 
 /* table processing indicator */
@@ -124,7 +124,7 @@
 
 /* Zebra Widget - row alternating colors */
 .tablesorter-blue tbody tr.odd > td {
-	background-color: #ebf2fa;
+	background-color: #ffa726;
 }
 .tablesorter-blue tbody tr.even > td {
 	background-color: #fff;

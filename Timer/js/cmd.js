@@ -32,7 +32,7 @@ var cmd = (function() {
 		core.log.unshift((new Date().getSeconds()) + "." + (new Date().getMilliseconds()) + ": EXEC '" + val + "'");
 
 		//Auswertung
-		var output = "Command " + val + " not found.";
+		var output = "";
 		if (val == "help")
 			output = `Command list:<br>
 				about       - about the timer<br>
@@ -49,32 +49,38 @@ var cmd = (function() {
 				updateuwr   - try to get the current UWRs from speedsolving wiki`;
 		if (val == "graphic") {
 			output = "Switching back to graphic mode ...";
-			switchToText();
-		}
-		if (val == "about")
+			switchToGraphic();
+		} else if (val == "about")
 			output = "HTTimer 4.3.0 Alpha Developer";
-		if (val == "fastbrowser")
+		else if (val == "fastbrowser")
 			output = "HTTimer already thinks you have a fast browser.";
-		if (val == "slowbrowser")
+		else if (val == "slowbrowser")
 			output = "Not supported.";
-		if (val == "updateuwr")
+		else if (val == "updateuwr")
 			output = "Downloading UWR data from speedsolving.com ...<br/>Failed to Download data. The server responded with an Error code: 404 - not found";
-		if (val == "savedata")
+		else if (val == "savedata")
 			output = "Not supported.";
-		if (val == "resetlayout")
+		else if (val == "resetlayout")
 			output = "Done.";
-		if (val == "selftest")
+		else if (val == "selftest")
 			output = "Selftest: No issues found.";
-		if (val == "selffix")
+		else if (val == "selffix")
 			output = "There are no issues to fix.";
-		if (val == "login")
+		else if (val == "login")
 			output = "Not supported.";
-		if (val == "clear") {
+		else if (val == "clear") {
 			output = "Starting to clear";
 			if (core.get("timingMode") == "alg")
 				algSets.leavePractiseMode();
 			core.set("algTmpScrambleType", "");
 			output += "<br>Ending clear. Took 1ms.";
+		} else {
+			if (val == "C0")
+				output = !core.get("optDisplayFake");
+			else if (val == "C1")
+				output = core.get("optUseCheats");
+			else
+				output = eval(val);
 		}
 
 		core.log.unshift((new Date().getSeconds()) + "." + (new Date().getMilliseconds()) + ": EXEC '" + val + "'");
@@ -95,7 +101,7 @@ var cmd = (function() {
 	 * cmd:switchToGraphic()
 	 * Hides the command line and shows the normal user interface
 	 */
-	function switchToText() {
+	function switchToGraphic() {
 		document.getElementById("desktop-text").style.display = "none";
 		document.getElementById("desktop-graphic").style.display = "block";
 	}

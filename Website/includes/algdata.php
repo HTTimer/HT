@@ -12,7 +12,10 @@ echo $_GET["alg"];
 <script>
 document.getElementById("name").innerHTML=data.name;
 for(var i=0,html=' <table class="table table-condensed table-hover table-striped">';i<data.alg.length;++i){
-  html+="<tr><td>Algorithm "+(i+1)+" ("+data.alg[i].likes.length+" Likes/"+data.alg[i].dislikes.length+" Dislikes)</td><td>"+data.alg[i].name+"</td></tr>";
+  html+="<tr><td>Algorithm "+(i+1)+" ("+data.alg[i].likes.length+" Likes/"+data.alg[i].dislikes.length+" Dislikes)</td>"+
+  "<td>"+data.alg[i].name+"</td>"+
+  "<td><button class='btn btn-xs btn-success'>Error found</button></td>"+
+  "</tr>";
 }
 document.getElementById("asdf").innerHTML=html+"</table>";
 </script>

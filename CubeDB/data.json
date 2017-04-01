@@ -1,5 +1,33 @@
 [
   {
+    "name":"Calvins puzzle",
+    "cubes":[
+      {
+        "name":"Square-1",
+        "type":"sq1",
+        "colors":1,
+        "size":0
+      }
+    ]
+  },
+  {
+    "name":"Cong's Design",
+    "cubes":[
+      {
+        "name":"MeiYing",
+        "type":"333",
+        "colors":0,
+        "size":57
+      },
+      {
+        "name":"YueYing",
+        "type":"333",
+        "colors":0,
+        "size":57
+      }
+    ]
+  },
+  {
     "name":"Cubikon",
     "cubes":[
       {
@@ -17,7 +45,7 @@
     ]
   },
   {
-    "name":"Cubing classroom",
+    "name":"MoFang JiaoShi",
     "cubes":[
       {
         "name":"MF2S",
@@ -200,6 +228,12 @@
         "size":57
       },
       {
+        "name":"ShuanRen V1 56.4mm",
+        "type":"333",
+        "colors":0,
+        "size":57
+      },
+      {
         "name":"ShuanRen V2",
         "type":"333",
         "colors":0,
@@ -258,13 +292,31 @@
     "name":"Gan's puzzles",
     "cubes":[
       {
-        "name":"GanAir",
+        "name":"356 Air",
         "type":"333",
         "colors":0,
         "size":56
       },
       {
-        "name":"Gans 356",
+        "name":"356 Air UM",
+        "type":"333",
+        "colors":0,
+        "size":56
+      },
+      {
+        "name":"356",
+        "type":"333",
+        "colors":0,
+        "size":56
+      },
+      {
+        "name":"356s",
+        "type":"333",
+        "colors":0,
+        "size":56
+      },
+      {
+        "name":"356s v2",
         "type":"333",
         "colors":0,
         "size":56
@@ -278,10 +330,27 @@
     ]
   },
   {
+    "name":"GuoGuan",
+    "cubes":[
+      {
+        "name":"YueXiao",
+        "type":"333",
+        "colors":0,
+        "size":57
+      },
+      {
+        "name":"XingHen",
+        "type":"222",
+        "colors":0,
+        "size":50
+      }
+    ]
+  },
+  {
     "name":"KungFu",
     "cubes":[
       {
-        "name":"2x2x2",
+        "name":"YueHun",
         "type":"222",
         "colors":0,
         "size":50
@@ -325,6 +394,29 @@
         "type":"nonwca",
         "colors":0,
         "size":70
+      }
+    ]
+  },
+  {
+    "name":"MF8",
+    "cubes":[
+      {
+        "name":"Square-1 V1",
+        "type":"sq1",
+        "colors":0,
+        "size":57
+      },
+      {
+        "name":"Square-1 V2",
+        "type":"sq1",
+        "colors":0,
+        "size":57
+      },
+      {
+        "name":"Square-1 V3",
+        "type":"sq1",
+        "colors":0,
+        "size":57
       }
     ]
   },
@@ -506,6 +598,36 @@
         "type":"333",
         "colors":0,
         "size":57
+      },
+      {
+        "name":"Aurora 3x3x3",
+        "type":"333",
+        "colors":0,
+        "size":57
+      },
+      {
+        "name":"FangYuan 3x3x3",
+        "type":"333",
+        "colors":0,
+        "size":57
+      },
+      {
+        "name":"Legend 3x3x3",
+        "type":"333",
+        "colors":0,
+        "size":57
+      },
+      {
+        "name":"Legend 3x3x3 70mm",
+        "type":"333",
+        "colors":0,
+        "size":70
+      },
+      {
+        "name":"46mm 3x3x3",
+        "type":"333",
+        "colors":0,
+        "size":46
       }
     ]
   },
@@ -601,6 +723,30 @@
         "type":"222",
         "colors":0,
         "size":50
+      },
+      {
+        "name":"C IV",
+        "type":"333",
+        "colors":0,
+        "size":57
+      },
+      {
+        "name":"C V",
+        "type":"333",
+        "colors":0,
+        "size":57
+      },
+      {
+        "name":"C V V2",
+        "type":"333",
+        "colors":0,
+        "size":57
+      },
+      {
+        "name":"30mm 3x3x3",
+        "type":"333",
+        "colors":0,
+        "size":30
       }
     ]
   },
@@ -612,6 +758,12 @@
         "type":"mega",
         "colors":1,
         "size":43
+      },
+      {
+        "name":"Tornado",
+        "type":"333",
+        "colors":0,
+        "size":57
       }
     ]
   },
@@ -641,6 +793,30 @@
         "type":"mega",
         "colors":0,
         "size":43
+      },
+      {
+        "name":"Chilong",
+        "type":"333",
+        "colors":0,
+        "size":57
+      },
+      {
+        "name":"LingGan",
+        "type":"333",
+        "colors":0,
+        "size":57
+      },
+      {
+        "name":"SuLong",
+        "type":"333",
+        "colors":0,
+        "size":57
+      },
+      {
+        "name":"YuLong",
+        "type":"333",
+        "colors":0,
+        "size":57
       }
     ]
   },
@@ -653,7 +829,7 @@
         "colors":0
       },
       {
-        "name":"2x2x2",
+        "name":"White 2x2x2",
         "type":"222",
         "colors":0,
         "size":50

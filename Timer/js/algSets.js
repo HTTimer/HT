@@ -53,7 +53,6 @@ var algSets = (function() {
 
 		// Buttons
 		outhtml += "<br/><button onclick='algSets.addSet()'>" + transl("Add set") + "</button>";
-		outhtml += "     <button onclick='algSets.importSet()'>" + transl("Add set") + " (Import code)</button>"
 		outhtml += "<br/><button onclick='algSets.removeSet()'>" + transl("Remove current set") + "</button>";
 		layout.write("ALGSETS", outhtml);
 
