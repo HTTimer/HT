@@ -1,5 +1,5 @@
 <script src="lib/tablesorter.js"></script>
-<link rel="stylesheet" type="text/css" href="lib/tablesorter.css" />
+<link rel="stylesheet" type="text/css" href="lib/tablesorter2.css" />
 <div class="container">
 <script>var data=<?php
 $data=file_get_contents("../CubeDB/data.json");
@@ -8,7 +8,7 @@ $data=$data[0];
 echo $data;
 ?>;
 function build(){
-  var i,j,c_b,html="<table id='products' class='table table-hover table-condensed'><thead><tr><th>Company</th><th>Model name</th><th>Type</th><th>Colors</th><th>Size</th><th>Edit</th></tr></head><tbody>";
+  var i,j,c_b,html="<table id='products' class='table table-hover table-condensed table-striped'><thead><tr><th>Company</th><th>Model name</th><th>Type</th><th>Colors</th><th>Size</th><th>Edit</th></tr></head><tbody>";
   for(i=0;i<data.length;++i){
     c_b=data[i].name;
     for(j=0;j<data[i].cubes.length;++j){

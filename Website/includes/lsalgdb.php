@@ -2,11 +2,11 @@
   <h1>AlgDB list</h1>
   <div class="row">
     <?php
-    function add_set($name,$id){
+    function add_set($name){
       return "
       <div class='col-xs-3 col-md-3 col-lg-3 col-sm-3 addset'>
         <b>
-          <a href='index.php?show=lsalgset&set=$id'>$name</a>
+          <a href='index.php?show=lsalgset&set=$name'>$name</a>
         </b>
       </div>
       ";
@@ -19,25 +19,11 @@
         </h3>
       <div class='row'>";
     }
-    echo headerf("2x2");
-    echo add_set("OLL",0);
-    echo add_set("PLL",1);
-    echo add_set("CLL",0);
-    echo add_set("EG-1",0);
-    echo add_set("LEG-1",0);
-    echo add_set("EG-2",0);
-    echo add_set("TCLL+",0);
-    echo add_set("TCLL-",0);
-
     echo headerf("3x3");
-    echo add_set("PLL",1);
-    echo add_set("OLL",0);
-    echo add_set("COEPLL",0);
-    echo add_set("EOCPLL",0);
-    echo add_set("WV",3);
-    echo add_set("SV",0);
-    echo add_set("ELL",2);
-    echo add_set("F2L",4);
+
+    $lsalgdb=explode(",",file_get_contents("../AlgDB/data/algsets"));
+    for($i=0;$i<count($lsalgdb);++$i)
+      echo add_set($lsalgdb[$i]);
     ?>
   </div>
 </div>

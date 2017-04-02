@@ -1,0 +1,19 @@
+y' r' D' r U' r' D r2 U' r' U r U r',0,0,0
+M U' L' U' L U L F' L' F M',0,0,0
+y2 F R' F R2 U' R' U' R U R' F2,0,0,0
+R2 U R' B' R U' R2 U R B R',0,0,0
+y2 F U R U2 R' U' R U2 R' U' F',0,0,0
+f R U R2 U' R' U R2 U' R' f',0,0,0
+y2 r2 D r' U' r D' r2 U r U r',0,0,0
+R U2 R' F2 r U2 R' U' r' F R,0,0,0
+y' M' U R U' r' U2 l2 F' l' U l',0,0,0
+y' R' F' r U r' R2 U' r' F M',0,0,0
+y' F' L' U' L U F R U R' U' R' F R F',0,0,0
+y' L' U' L U L' U L F U F' L' U' L,0,0,0
+l2 D l' U' l D' l2' U l U l',0,0,0
+r' U2 R U R' U r R U2 R' U' R U' R',0,0,0
+y' r U2 R2 F R F' R U' R' U R U2 r',0,0,0
+y x' R U R' D R U2 R U R2' D',0,0,0
+R U R' F' R U2 R' U' R U' R' U F R U' R',0,0,0
+R' U R U' R' U R B U B' R' U' R,0,0,0
+y x' R U R' D R U2 R U R2' D' x,0,0,0
