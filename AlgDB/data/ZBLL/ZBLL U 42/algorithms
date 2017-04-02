@@ -1,0 +1,5 @@
+y2 x R2 D2 R U2 R' D2 R U2 R x',0,0,0
+y F' R U2 R' U2 R' F R U2 R U2 R',0,0,0
+R' U2 R U2 L U2 R' U2 R U2 L',0,0,0
+R' U2 R F' R' F U2 F' R F,0,0,0
+z R2 U' R F' r U R2 U' r' F R U R2,0,0,0

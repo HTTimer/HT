@@ -1,0 +1,10 @@
+x' R U' R' D R U R' D' x,0,0,0
+y F R' F' r U R U' r',0,0,0
+y F l' U' L U l F' L',0,0,0
+y' R' F' L' F R F' L F,0,0,0
+y L' R U R' U' L U R U' R',0,0,0
+y2 R2 D R' U R D' R' U' R',0,0,0
+y' l' U' L' U R U' L U x',0,0,0
+y2 x D' R' U' R D R' U R x',0,0,0
+y x U R' U' L U R U' L' x',0,0,0
+y' R' F' r' D R D' r F,0,0,0

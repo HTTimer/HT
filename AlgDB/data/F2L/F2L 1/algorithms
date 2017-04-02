@@ -1,0 +1,10 @@
+U R U' R',0,0,0
+R' F R F',0,0,0
+U2 R U2 R',0,0,0
+U2 R' F R F' U2 R' F R F',0,0,0
+M' U R U' r',0,0,0
+y U2 R2 F R F' R,0,0,0
+y F' L F L',0,0,0
+U F' L' U' L F,0,0,0
+y U F R U' R' F',0,0,0
+U2 R' F R F' R U2 R',0,0,0

@@ -41,8 +41,8 @@
             <li><a href="../Timer-Server/register.php">Create account</a></li>
             <?php }else{ ?>
             <li><a href="#">Logout</a></li>
-            <li><a href="#">View Account</a></li>
-            <li><a href="#">My DB list</a></li>
+            <li><a href="index.php?show=profileedit">Edit my profile</a></li>
+            <li><a href="index.php?show=profile&u=<?php echo $username; ?>">View my profile</a></li>
             <?php } ?>
           </ul>
         </li>

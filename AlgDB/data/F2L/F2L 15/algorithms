@@ -1,0 +1,11 @@
+R U R' U2 R U' R' U R U' R',0,0,0
+y L' U L U2 y' R U R',0,0,0
+R U2 R' U R U R' U R U' R',0,0,0
+R B L U' L' B' R',0,0,0
+M U r U' r' U' M',0,0,0
+y' R' U R U2 y R U R',0,0,0
+U R' F R F' U R U R',0,0,0
+l U r U' r' U' l',0,0,0
+R' D' R U' R' D R U R U' R',0,0,0
+U' R' U2 R' U R' U' R U2 R,0,0,0
+F' U F U2 R U R',0,0,0

@@ -1,0 +1,11 @@
+U R U' R' U' F' U F,0,0,0
+y r U r' U' r' F r F',0,0,0
+y' R U R U R U' R' U' R',0,0,0
+U R U' R' F R' F' R,0,0,0
+U R U' R' d' L' U L,0,0,0
+U R U R' U' y L' U' L,0,0,0
+U R U' R' U' y L' U L,0,0,0
+y U F r' F' r U r U' r',0,0,0
+l' F' R U R' U' R' F R l,0,0,0
+R' U' R F' R' U R F,0,0,0
+U R U' M' U R' U' M,0,0,0
