@@ -2,35 +2,39 @@
 <div class="container">
   <div class="row ">
       <div class="col-md-offset-2 col-md-8 col-sm-12 top-margin" >
-          <h2 style="margin-left:50px;">History of Cube request #<?php echo $_GET["id"]+7; ?></h2>
+          <h2 style="margin-left:50px;">History of Alg request #<?php echo $_GET["id"]; ?></h2>
           <div>
               <ul class="timeline">
                   <li class="time-label">
-                      <br />
-                      <br />
+                      <br/><br/>
                   </li>
 
                   <?php
-                  if($_GET["id"]<0)$_GET["id"]=0;
+                  $id=$_GET["id"];
 
-                  function generate($date,$type){
+                  function generate($data){
+                    global $case;
+                    global $algorithm;
+
+                    $date=explode(",",$data)[1];
+                    $type=explode(",",$data)[0];
                     if($type==0){
                       $title="Request sent";
-                      $body="Your request was sent.";
+                      $body="Your request was sent. Request details:<br/>Case: $case<br/>Algorithm: $algorithm<br/>Database: CMOSAlgDB/Public";
                     }elseif($type==1){
                       $title="Request seen";
                       $body="Your request was seen by a administrator.";
                     }elseif($type==2){
                       $title="Your request was not accepted.";
-                      $body="Reason: The description does not fit the cube model.<br/>
-                      Solution: Please edit your description and re-request adding.";
+                      $body="Possible reasons are:
+                      <ul><li>The alg does not work<li>The alg is a dublicate<li>The alg uses nonstandard notation";
                     }elseif($type==3){
                       $title="Your request was accepted!";
-                      $body="Your cube model is now included in our CubeDB.<br/>
-                      You can find it in the current HTTimer. It will be included in all future versions.<br/>";
+                      $body="Your cube model is now included in CMOSAlgDB. Thank you for your contribution!";
+                      // @TODO write ID into Finished-File for easier sorting later on
                     }elseif($type==4){
                       $title="Comment";
-                      $body="The administrator commented on your request.";
+                      $body="The administrator commented on your request. The message is:<br/>'".explode(",",$data)[2]."'";
                     }else{
                       $title="Error";
                       $body="HTSoftware encountered an internal error.";
@@ -47,11 +51,12 @@
                     </li>';
                   }
 
-                  $data=file_get_contents("../CubeDB/requests/changerequests.json");
-                  $data=json_decode($data);
-                  $data=$data[$_GET["id"]]->steps;
-                  for($i=0;$i<count($data);$i++){
-                    echo generate($data[$i]->date,$data[$i]->type);
+                  $data=file_get_contents("../AlgDB/addrequests/$id");
+                  $data=explode("\n",$data);
+                  $algorithm=$data[0];
+                  $case=$data[1];
+                  for($i=2;$i<count($data)-1;$i++){
+                    echo generate($data[$i]);
                   }
                   ?>
                   <li>

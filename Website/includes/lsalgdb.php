@@ -3,6 +3,9 @@
   <div class="row">
     <?php
     function add_set($name){
+      if($name[0]=="!"){
+        return headerf(explode("!",$name)[1]);
+      }
       return "
       <div class='col-xs-3 col-md-3 col-lg-3 col-sm-3 addset'>
         <b>
@@ -11,6 +14,7 @@
       </div>
       ";
     }
+
     function headerf($content){
       return "
       </div>
@@ -19,7 +23,6 @@
         </h3>
       <div class='row'>";
     }
-    echo headerf("3x3");
 
     $lsalgdb=explode(",",file_get_contents("../AlgDB/data/algsets"));
     for($i=0;$i<count($lsalgdb);++$i)

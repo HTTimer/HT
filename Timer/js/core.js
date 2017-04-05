@@ -2,50 +2,15 @@
  * core.js
  */
 
-// Extend the function prototype to allow logging the full call trace
-Function.prototype.trace = function() {
-	var trace = [];
-	var current = this;
-	while (current) {
-		trace.push(current.signature());
-		current = current.caller;
-	}
-	return trace;
-}
-Function.prototype.signature = function() {
-	var signature = {
-		name: this.getName(),
-		params: [],
-		toString: function() {
-			var params = this.params.length > 0 ?
-				"'" + this.params.join("', '") + "'" : "";
-			return this.name + "(" + params + ")"
-		}
-	};
-	if (this.arguments) {
-		for (var x = 0; x < this.arguments.length; x++)
-			signature.params.push(this.arguments[x]);
-	}
-	return signature;
-}
-Function.prototype.getName = function() {
-	if (this.name)
-		return this.name;
-	var definition = this.toString().split("\n")[0];
-	var exp = /^function ([^\s(]+).+/;
-	if (exp.test(definition))
-		return definition.split("\n")[0].replace(exp, "$1") || "anonymous";
-	return "anonymous";
-}
-
 var core = (function() {
 	var list = {};
+	var start = new Date();
 
 	/*
 	 * core:Init()
 	 */
 	function init() {
-
+		core.start = new Date();
 	}
 
 	/*
@@ -56,7 +21,11 @@ var core = (function() {
 	 * Registers value with the identifier key, and marks it to be included in every export
 	 */
 	function set(key, value) {
-		log.unshift((new Date().getSeconds()) + "." + (new Date().getMilliseconds()) + ": SET " + key + " TO " + value + " BY " + arguments.callee.caller.trace());
+		var tr = (new Error).stack;
+		tr = tr.split("\n");
+		for (var i = 0; i < tr.length; ++i)
+			tr[i] = tr[i].split("@")[0] + "@" + tr[i].split("/")[tr[i].split("/").length - 1];
+		log.unshift((new Date().getSeconds() - core.start.getSeconds()) + "." + (new Date().getMilliseconds()) + ": SET " + key + " TO " + value + " BY \n" + tr.join("\n"));
 		core.list[key] = value;
 	}
 
@@ -68,8 +37,11 @@ var core = (function() {
 	var log = [];
 
 	function get(key) {
-		//log.unshift((new Date().getSeconds()) + "." + (new Date().getMilliseconds()) + ": GET " + key + " BY " + arguments.callee.caller.trace());
-		// Disabled because Relay scrambler was causing crashes
+		var tr = (new Error).stack;
+		tr = tr.split("\n");
+		for (var i = 0; i < tr.length; ++i)
+			tr[i] = tr[i].split("@")[0] + "@" + tr[i].split("/")[tr[i].split("/").length - 1];
+		log.unshift((new Date().getSeconds() - core.start.getSeconds()) + "." + (new Date().getMilliseconds()) + ": GET " + key + " BY\n" + tr.join("\n"));
 		return core.list[key];
 	}
 
@@ -82,7 +54,7 @@ var core = (function() {
 	}
 
 	function displayLog() {
-		layout.write("LOG", html.el("pre", log.join("\n")).substr(0, 10000));
+		layout.write("LOG", html.el("pre", log.join("\n")).substr(0, 100000));
 	}
 
 	return {
@@ -92,6 +64,7 @@ var core = (function() {
 		getAll: getAll,
 		displayLog: displayLog,
 		list: list,
-		log: log
+		log: log,
+		start: start
 	}
 })();

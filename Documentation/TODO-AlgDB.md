@@ -4,7 +4,6 @@ Alg
 ----
 - Fingertricks
 - Button "I use this alg"
-- No like/dislike
 
 Fingertrick
 -----------

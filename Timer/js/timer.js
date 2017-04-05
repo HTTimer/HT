@@ -24,6 +24,8 @@ timer = (function() {
 	function init() {
 		var i, config, check, html;
 
+		core.init();
+
 		//Let the server check, whether the user is logged in. Assume, the user is not, in case it fails.
 		core.set("login", false);
 		server.json("../Timer-Server/isloggedin.php", function(t) {

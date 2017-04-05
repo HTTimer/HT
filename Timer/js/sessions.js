@@ -16,19 +16,19 @@ var sessions = (function() {
 	 */
 	function display() {
 		var code = "<select style='width:100%;'>",
-			i, sessionTypes, method;
+			i, sessionTypes, method, current = sessions.current();
 
 		//Session select menu
 		for (i = 0; i < core.get("config").timeList.length; ++i) {
 			code += "<option" + (i == core.get("config").currentSession ? " selected " : " ") + "onclick='sessions.switchS(" + i + ")'>" + (i + 1) + ".: " + core.get("config").sessionData[i].name;
 		}
 
-		code += "<option onclick='sessions.create();'>New</select><br/><select style='width:40%;'>";
+		code += "<option onclick='sessions.createSwitchDisplay();'>New</select><br/><select style='width:40%;'>";
 
 		//Session Event type menu
 		sessionTypes = ["2H", "OH", "OH BLD", "BLD", "FMC", "FT"];
 		for (i = 0; i < sessionTypes.length; ++i) {
-			code += "<option" + (sessions.current().solveType == sessionTypes[i] ? " selected " : " ") + "onclick='sessions.current().solveType=\"" + sessionTypes[i] + "\";stats.update();'>" + sessionTypes[i];
+			code += "<option" + (current.solveType == sessionTypes[i] ? " selected " : " ") + "onclick='sessions.current().solveType=\"" + sessionTypes[i] + "\";stats.update();'>" + sessionTypes[i];
 		}
 
 		code += "</select>";
@@ -86,7 +86,7 @@ var sessions = (function() {
 			method.push("other");
 			code += "<option>select " + transl("Method") + "</option>";
 			for (i = 0; i < method.length; ++i)
-				code += "<option" + (sessions.current().method == method[i] ? " selected " : " ") + "onclick='sessions.current().method=\"" + method[i] + "\";'>" + method[i] + "</option>";
+				code += "<option" + (current.method == method[i] ? " selected " : " ") + "onclick='sessions.current().method=\"" + method[i] + "\";'>" + method[i] + "</option>";
 		}
 
 		code += "</select><br/>" +
@@ -136,7 +136,10 @@ var sessions = (function() {
 				cube: [, "no cube"]
 			});
 		}
+	}
 
+	function createSwitchDisplay() {
+		create();
 		switchS(core.get("config").timeList.length - 1);
 		display();
 	}
@@ -166,6 +169,7 @@ var sessions = (function() {
 		display: display,
 		current: current,
 		switchS: switchS,
-		create: create
+		create: create,
+		createSwitchDisplay: createSwitchDisplay
 	}
 })();
