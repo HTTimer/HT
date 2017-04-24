@@ -90,9 +90,9 @@ var sessions = (function() {
 		}
 
 		code += "</select><br/>" +
-			"<select style='width:100%;'><option>" + sessions.current().cube[1] + "</option>";
-		for (i = 0; i < cube.cube_collection.length; ++i)
-			code += "<option onclick='sessions.current().cube=cube.cube_collection[" + i + "];'>" + cube.cube_collection[i][1] + "</option>";
+			"<select style='width:100%;'><option>" + cube.identifierToName(sessions.current().cube) + "</option>";
+		for (i = 0; i < cube.collection.length; ++i)
+			code += "<option onclick='sessions.current().cube=cube.collection[" + i + "].identifier;'>" + cube.collection[i].name + "</option>";
 
 		code += "</select><br/><br/>";
 		layout.write("SESSIONSELECT", code);

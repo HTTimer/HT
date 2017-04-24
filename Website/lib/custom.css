@@ -1092,9 +1092,13 @@ body {
 }
 input,
 button,
-select,
-textarea {
+select {
   font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+textarea {
+  font-family: courier;
   font-size: inherit;
   line-height: inherit;
 }

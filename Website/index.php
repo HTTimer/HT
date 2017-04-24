@@ -9,12 +9,16 @@ $isAdministrator=$login=="HTTimer-developer";
 //If no location, set it to index
 if(!isset($_GET["show"])){
   $_GET["show"]="index";
+
+  //If logged in, set it to dashboard
+  if($login)
+    $_GET["show"]="dashboard";
 }
 
 //Do not build menu if the user wants to see the timer
 if($_GET["show"]=="Timer"){
   echo "redirecting you, please wait...";
-  echo "<script>window.location.href='../Timer/index.htm';</script>";
+  echo "<script>window.location.href='../Timer/index.php';</script>";
 }else{
   //build website
 ?>

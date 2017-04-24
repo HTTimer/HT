@@ -24,7 +24,7 @@ function addAlg($alg){
   <td>$lgth</td>
   <td>$qlgth</td>
   <td>$elgth</td>
-  <td><button class='btn btn-xs btn-success'>Error found</button></td>
+  <td><button class='btn btn-xs btn-flat'>Error found</button></td>
   </tr>";
 }
 ?>
@@ -48,11 +48,12 @@ function addAlg($alg){
         ?>
       </tbody>
     </table>
-    <button class="btn btn-success" onclick="showAdd();">Add alg</button><br/><br/>
+    <?php if($login){ ?><button class="btn btn-success" onclick="window.location.href='../AlgDB/zip.php?set=<?php echo $set; ?>&alg=<?php echo $case; ?>';">Download Algorithms</button><?php } ?>
+    <button class="btn btn-success" onclick="showAdd();">Add algorithms</button><br/><br/>
     <div id="add">
       <div id="inputs"></div><br/>
       <div id="errors" class="alert alert-danger"></div>
-      <button onclick="addInput();" class="btn btn-success">Add another alg</button>
+      <button onclick="addInput();" class="btn btn-success">Add another algorithm</button>
       <button onclick="submit();" class="btn btn-success">Submit</button><br/><br/>
     </div>
   </div>
@@ -63,7 +64,8 @@ $(document).ready(function(){
   $("table").tablesorter({sortList: [[3,0], [0,0]],theme:"blue"});
   $("table").filterTable();
 });
-
+// https://medium.freecodecamp.com/the-programming-language-pipeline-91d3f449c919
+// http://imgur.com/a/Gwu73#0
 var currentRotation=0;
 function switchRotation(to){
   document.getElementById("rotationbuttons").children[0].classList.remove("active");
@@ -91,8 +93,7 @@ function submit(){
     algs.push(els[i].value);
     if(algs[i].split(" ").length<3&&algs[i]!=""){
       fehlertext+="Algorithm "+(i+1)+" is too short, must be at least three moves!<br/>";
-    }
-    if(algs[i].split(" ").length>30){
+    }else if(algs[i].split(" ").length>30){
       fehlertext+="Algorithm "+(i+1)+" is too long, may be at most 30 moves!<br/>";
     }
     if(algs[i].length>300){

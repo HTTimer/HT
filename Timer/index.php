@@ -1,3 +1,6 @@
+<?php
+include ("php/timer.php");
+?>
 <!doctype html>
 <html>
 	<head>
@@ -25,7 +28,6 @@
 		<script src="js/scramble/scramble.js"></script>
 		<script src="js/counter.js"></script>
 		<script src="js/stats.js"></script>
-		<script src="../AlgDB/getdata.php"></script>
 		<script src="js/algSets.js"></script>
 		<script src="js/goals.js"></script>
 		<script src="js/keyboard.js"></script>
@@ -58,7 +60,7 @@
 		<!--
 		Graphic mode for Desktop PCs and tablets
 		-->
-		<div id="desktop-graphic">
+		<div id="desktop-graphic" style="display:block;">
 			<!--
 			Initialize containers for components.
 			These will be filled later using javascript.
@@ -106,8 +108,8 @@
 			Components addable to the timer, normally hidden, with absolute positioning, but not full size
 			-->
 			<div class="STACKMAT hidden" id="stackmat-base">
-				<img src="https://lh4.ggpht.com/WDeNuUqNfaI5w2GxL2JaMpVJcdZRLA2hPadVbP_d8p4Cwh8qXUveEvVQC9HAVq30zmvS=w300" width="180" id="stackmat-left" onclick="javascript:if(timer.running){stop();}else{start()};"/>
-				<img src="https://lh4.ggpht.com/WDeNuUqNfaI5w2GxL2JaMpVJcdZRLA2hPadVbP_d8p4Cwh8qXUveEvVQC9HAVq30zmvS=w300" width="180" id="stackmat-right" onclick="javascript:if(timer.running){stop();}else{start()};"/>
+				<img src="img/stackmat.png" width="180" id="stackmat-left" onclick="javascript:if(timer.running){stop();}else{start()};"/>
+				<img src="img/stackmat.png" width="180" id="stackmat-right" onclick="javascript:if(timer.running){stop();}else{start()};"/>
 				<div id="stackmat-displays">
 					<div id="stackmat-display" class="TIME">0.000</div>
 					<div id="stackmat-reset" onclick="document.getElementById('stackmat-display').innerHTML='0.000';">&nbsp;</div>
@@ -125,25 +127,7 @@
 		-->
 		<div id="desktop-text">
 			<div id="console">
-			<span id="console-output">
-				You are viewing the text-based mode of CMOSTimer. Type help and press enter to get Help. Press tab to focus command input.<br>
-				<span style='color:#22DD22'>HT4.3.0A&gt;</span> </span><input class="text-input" id="btn_cmd" type="text"/>
-			</div>
-		</div>
-
-		<!--
-		Setup dialog, shown at first start
-		-->
-		<div id="begin">
-			<h2>Welcome to CMOSTimer!</h2>
-			<h3>Setup Sessions</h3>
-			CMOSTimer can setup your data to save time when actually using it. Select, for which events you want to have a session.<br/>Each session will have the correct scrambler and inspection time. FMC sessions will get a 60 minute counter.
-			<br/><br/>
-			<div class="SETUP"></div>
-			<br/><br/>
-			<div style="width:90%;">
-				<button class="half-width" onclick='timer.setup();document.getElementById("begin").style.display="none";document.getElementById("desktop-graphic").style.display="block";'>Setup</button>
-				<button class="half-width" onclick='document.getElementById("begin").style.display="none";document.getElementById("desktop-graphic").style.display="block";'>Continue without Setup (not recommended)</button>
+				<span id="console-output"></span>
 			</div>
 		</div>
 
@@ -154,5 +138,25 @@
 			</script>
 			Please enable Javascript.
 		</noscript>
+		<script>
+		// Set values read from PHP
+		var start={
+			timerTheme:<?php echo $timerTheme; ?>,
+			username:"<?php echo $username; ?>",
+			myCubes:[
+				{
+					"company":"DaYan",
+					"model":"ZhanChi",
+					"color":"black",
+					"identifier":"0040020A"
+				},{
+					"company":"MoYu",
+					"model":"WeiLong GTS 2",
+					"color":"green",
+					"identifier":"00301ABB"
+				}
+			]
+		}
+		</script>
 	</body>
 </html>

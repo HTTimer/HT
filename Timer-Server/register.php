@@ -4,7 +4,7 @@
 
 <div class="modal-dialog">
 	<div class="loginmodal-container">
-		<h1>Register your HTTimer Account</h1><br>
+		<h1>Register your new CMOSTimer Account</h1><br>
 		<form action="doregister.php" method="POST">
 			<input type="text" name="uname" placeholder="Username"/>
 			<input type="text" name="wca" placeholder="WCA-Id (if existing)"/>

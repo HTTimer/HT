@@ -18,7 +18,7 @@ document.getElementById("asdf").innerHTML=html+"</table>";
 $id=$_GET["set"];
 function print_case($case){
   global $id;
-  echo "<tr><td><a href='index.php?show=algdata&set=$id&alg=$case'>$case</a></td><td>$case</td></tr>";
+  echo "<tr><td><a href='index.php?show=algdata&set=$id&alg=$case'>$case</a></td><td>$id/$case</td></tr>";
 }
 ?>
 <div class="container">

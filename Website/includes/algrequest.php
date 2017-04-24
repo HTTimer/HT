@@ -1,6 +1,6 @@
 <link rel="stylesheet" type="text/css" href="lib/timeline.css"/>
 <div class="container">
-  <div class="row ">
+  <div class="row">
       <div class="col-md-offset-2 col-md-8 col-sm-12 top-margin" >
           <h2 style="margin-left:50px;">History of Alg request #<?php echo $_GET["id"]; ?></h2>
           <div>
@@ -66,4 +66,19 @@
           </div>
       </div>
   </div>
+  <?php
+  if($isAdministrator){
+  ?>
+  <div class="row">
+    <div class="col-md-offset-2 col-md-8 col-sm-12 top-margin" >
+      <div class="btn-group" role="group">
+        <br/>
+        <button class="btn btn-success" onclick="window.location.href='../AlgDB/closerequest.php?yes&id=<?php echo $id; ?>';">Close and accept</button>
+        <button class="btn btn-success" onclick="window.location.href='../AlgDB/closerequest.php?no&id=<?php echo $id; ?>';">Close and don't accept</button>
+        <button class="btn btn-success" onclick="window.location.href='../AlgDB/commentrequest.php?id=<?php echo $id; ?>';">Comment</button>
+        <br/>
+      </div>
+    </div>
+  </div>
+  <?php } ?>
 </div>

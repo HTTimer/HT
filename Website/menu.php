@@ -7,7 +7,7 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
       </button>
-      <b><a class="navbar-brand" href="#">CMOS<?php if(!$login){ ?>: Cubing Management and Optimization System</a><?php } ?></b>
+      <b><a class="navbar-brand" href="#">CMOS<?php if(!$login){ ?>: Cubing Management and Optimization System<?php } ?></a></b>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -20,12 +20,18 @@
           </ul>
         </li>
         <li><a href="index.php?show=lscubedb">CubeDB</a></li>
-        <li><a href="index.php?show=lsalgdb ">AlgDB </a></li>
+        <li><a href="index.php?show=lsalgdb ">AlgDB</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cubing resources <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="index.php?show=../../Patterns/index">Patterns</a></li>
             <li><a href="index.php?show=links">Website links</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Other <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="index.php?show=userlist">Userlist</a></li>
           </ul>
         </li>
       </ul>
@@ -43,6 +49,7 @@
             <li><a href="#">Logout</a></li>
             <li><a href="index.php?show=profileedit">Edit my profile</a></li>
             <li><a href="index.php?show=profile&u=<?php echo $username; ?>">View my profile</a></li>
+            <li><a href="index.php?show=preferences">Preferences</a></li>
             <?php } ?>
           </ul>
         </li>

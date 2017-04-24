@@ -3,7 +3,7 @@
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <div class="modal-dialog">
 	<div class="loginmodal-container">
-		<h1>Login to your HTTimer Account <?php if($login=isset($_COOKIE['HTTimer-login']))echo "(Already logged in)";?></h1><br>
+		<h1>Login to your CMOSTimer Account <?php if($login=isset($_COOKIE['HTTimer-login']))echo "(Already logged in)";?></h1><br>
 		<form action="dologin.php" method="POST">
 			<input type="text" name="uname" placeholder="Username"/>
 			<input type="password" name="pword" placeholder="Password"/>

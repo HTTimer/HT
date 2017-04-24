@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>AlgDB list</h1>
+  <h1>AlgSet list</h1>
   <div class="row">
     <?php
     function add_set($name){
@@ -28,6 +28,11 @@
     for($i=0;$i<count($lsalgdb);++$i)
       echo add_set($lsalgdb[$i]);
     ?>
+  </div>
+  <div class="row">
+    <br/>
+    <a href="../AlgDB/zipbase.php" class="btn btn-success">Download list</a>
+    <a href="index.php?show=algdbstats" class="btn btn-success">View statistics</a>
   </div>
 </div>
 <style>

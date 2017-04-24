@@ -49,48 +49,41 @@ timer = (function() {
 		//Try to load data from previous sessions
 		//Old versions saves will not get lost, as they save in HTexport, while we
 		//save in HTExport and HTAutoSave
-		/*check=false;
-		do{
-			if(!localStorage.HTExport||check){
-				if(localStorage.HTAutoSave.length>100){
-					core.list=JSON.parse(localStorage.HTAutoSave);
-				}else{
-					config={
-						timeList:[[]],
-						currentScrambler:"333",
-						customScramblerList:[],
-						algSets:[],
-						goals:[],
-						sessionData:[
-							{
-								phases:1,
-								inspection:15,
-								name:transl("New Session"),
-								solveType:"normal",
-								method:"",
-								scrambleType:"333"
-							}
-						],
-						currentSession:0
-					};
-				}
-			}else{
-				core.list=JSON.parse(localStorage.HTExport);
-			}
-
-
-			if(config&&!config.version&&!check) //There must be a config.version to have an importable data structure,
-												//as only HT 4.3.0A and up are supported. Other versions are usable
-												//using the import function, which is only available in a fully loaded
-												//timer. Older timers did not have timerExport.version or have it false
-				check=true;
-			else
-				check=false;
-		}while(check);*/
 
 		//TEST MODE ONLY: Always start new Session
 		config = {
 			timeList: [
+				[{
+					"startTime": 1492862010666,
+					"endTime": 1492862011210,
+					"currentInspection": 461,
+					"zeit": 545,
+					"penalty": 0,
+					"flags": {
+						"fake": false,
+						"uwr": false,
+						"overinspect": false
+					},
+					"scramble": "F2 U L F2 D2 B' D' U L R F2 L' U L' F2 R2 F L B' F2",
+					"scrambletype": "333jsss",
+					"cube": [null, "no cube"],
+					"solveType": "normal",
+					"method": ""
+				}],
+				[],
+				[],
+				[],
+				[],
+				[],
+				[],
+				[],
+				[],
+				[],
+				[],
+				[],
+				[],
+				[],
+				[],
 				[]
 			],
 			currentScrambler: "333",
@@ -98,24 +91,146 @@ timer = (function() {
 			algSets: [],
 			goals: [],
 			sessionData: [{
-				phases: 1,
-				inspection: 15,
-				name: transl("New Session"),
-				solveType: "normal",
-				method: "",
-				scrambleType: "333",
-				cube: [, "no cube"]
+				"phases": 1,
+				"inspection": 0,
+				"name": "2x2x2",
+				"solveType": "normal",
+				"method": "",
+				"scrambleType": "222jsss",
+				"cube": [null, "no cube"],
+				"scramblerType": "222jsss"
+			}, {
+				"phases": 1,
+				"inspection": 0,
+				"name": "3x3x3",
+				"solveType": "normal",
+				"method": "",
+				"scrambleType": "333jsss",
+				"cube": [null, "no cube"]
+			}, {
+				"phases": 1,
+				"inspection": 0,
+				"name": "4x4x4",
+				"solveType": "normal",
+				"method": "",
+				"scrambleType": "444jsss",
+				"cube": [null, "no cube"]
+			}, {
+				"phases": 1,
+				"inspection": 0,
+				"name": "5x5x5",
+				"solveType": "normal",
+				"method": "",
+				"scrambleType": "555jsss",
+				"cube": [null, "no cube"]
+			}, {
+				"phases": 1,
+				"inspection": 0,
+				"name": "6x6x6",
+				"solveType": "normal",
+				"method": "",
+				"scrambleType": "666jsss",
+				"cube": [null, "no cube"]
+			}, {
+				"phases": 1,
+				"inspection": 0,
+				"name": "7x7x7",
+				"solveType": "normal",
+				"method": "",
+				"scrambleType": "777jsss",
+				"cube": [null, "no cube"]
+			}, {
+				"phases": 1,
+				"inspection": 0,
+				"name": "Pyraminx",
+				"solveType": "normal",
+				"method": "",
+				"scrambleType": "Pyra",
+				"cube": [null, "no cube"]
+			}, {
+				"phases": 1,
+				"inspection": 0,
+				"name": "Megaminx",
+				"solveType": "normal",
+				"method": "",
+				"scrambleType": "Mega",
+				"cube": [null, "no cube"]
+			}, {
+				"phases": 1,
+				"inspection": 0,
+				"name": "3x3x3 Onehanded",
+				"solveType": "OH",
+				"method": "",
+				"scrambleType": "333",
+				"cube": [null, "no cube"]
+			}, {
+				"phases": 1,
+				"inspection": 0,
+				"name": "3x3x3 BLD",
+				"solveType": "BLD",
+				"method": "",
+				"scrambleType": "333",
+				"cube": [null, "no cube"]
+			}, {
+				"phases": 1,
+				"inspection": 0,
+				"name": "4x4x4 BLD",
+				"solveType": "BLD",
+				"method": "",
+				"scrambleType": "444",
+				"cube": [null, "no cube"]
+			}, {
+				"phases": 1,
+				"inspection": 0,
+				"name": "5x5x5 BLD",
+				"solveType": "BLD",
+				"method": "",
+				"scrambleType": "555",
+				"cube": [null, "no cube"]
+			}, {
+				"phases": 1,
+				"inspection": 0,
+				"name": "3x3x3 MBLD",
+				"solveType": "BLD",
+				"method": "",
+				"scrambleType": "333",
+				"cube": [null, "no cube"]
+			}, {
+				"phases": 1,
+				"inspection": 0,
+				"name": "Square-1",
+				"solveType": "normal",
+				"method": "",
+				"scrambleType": "Square1",
+				"cube": [null, "no cube"]
+			}, {
+				"phases": 1,
+				"inspection": 0,
+				"name": "Skewb",
+				"solveType": "normal",
+				"method": "",
+				"scrambleType": "Skewb",
+				"cube": [null, "no cube"]
+			}, {
+				"phases": 1,
+				"inspection": 0,
+				"name": "3x3x3 Fewest moves",
+				"solveType": "normal",
+				"method": "",
+				"scrambleType": "333",
+				"cube": [null, "no cube"],
+				"scramblerType": "333"
 			}],
 			currentSession: 0
 		};
 
 		// Load cube database
-		server.json("../CubeDB/read.php", function(t) {
+		/*server.json("../CubeDB/read.php", function(t) {
 			cube.init(t.response);
-		});
+		});*/
 
-		//Apply stylesheet with general style
-		layout.setTheme(0);
+		//Apply stylesheet
+		layout.setTheme(start.timerTheme);
 		//Set some variables
 		//Set variables using core.set (and core.get to get them) are NOT const and will be exported.
 		core.set("running", false);
@@ -148,7 +263,8 @@ timer = (function() {
 		layout.write("LOGO", `CMOSTimer <small onclick="cmd.switchToText()">V${version} ${transl("Alpha Graphic")}</small><span id="timingModeRevert"></span>`);
 		layout.write("TIME", `<span class="keycodes">space</span>0.000`);
 		layout.write("PORT", `<button onclick="alert(timer.exportCsv());">Export CSV</button>`);
-		layout.write("HELP", `<iframe src="../Website/index.php?show=../../Documentation/Documents/help/cmostimer&timerembed" width="100%" height="700"></iframe>This space here is not filled yet.`);
+		//layout.write("HELP", `<iframe src="../Website/index.php?show=../../Documentation/Documents/help/cmostimer&timerembed" width="100%" height="700"></iframe>This space here is not filled yet.`);
+		document.getElementById("console-output").innerHTML = "You are viewing the text-based mode of CMOSTimer. Type help and press enter to get Help. Press tab to focus command input.<br><span style='color:#22DD22'>HT4.3.0A&gt;</span></span><input class='text-input' id='btn_cmd' type='text'/>"
 
 		//Initialize components
 		counter.init();
@@ -159,7 +275,7 @@ timer = (function() {
 		stats.init();
 		cmd.init();
 		options.init();
-		cube.init();
+		cube.init(start.myCubes);
 
 		//Generate scramble and display it
 		scramble.neu();
@@ -173,12 +289,6 @@ timer = (function() {
 			localStorage.HTAutoSave = JSON.stringify(core.getAll());
 		}, 5e3);
 
-		//Setup
-		html = "", i;
-		const WCA_EVENTS = ["2x2x2", "3x3x3", "4x4x4", "5x5x5", "6x6x6", "7x7x7", "Pyraminx", "Megaminx", "3x3x3 Onehanded", "3x3x3 BLD", "4x4x4 BLD", "5x5x5 BLD", "3x3x3 MBLD", "Square-1", "Skewb", "3x3x3 Fewest moves"];
-		for (i = 0; i < WCA_EVENTS.length; ++i)
-			html += "<input type='checkbox' id='setup-event-" + i + "' checked/>" + WCA_EVENTS[i] + "<br/>";
-		layout.write("SETUP", html);
 
 		//Initialize scramblers
 		scramblers["222"].initialize();
@@ -187,25 +297,11 @@ timer = (function() {
 		scramblers["555"].initialize();
 		scramblers["666"].initialize();
 		scramblers["777"].initialize();
+
+		// We don't need the starting values anymore.
+		window.start = false;
 	}
 
-	/*
-	 * timer:setup()
-	 * Reads the data the user entered in the setup dialogs, and creates sessions accordingly.
-	 */
-	function setup() {
-		const WCA_EVENTS = ["2x2x2", "3x3x3", "4x4x4", "5x5x5", "6x6x6", "7x7x7", "Pyraminx", "Megaminx", "3x3x3 Onehanded", "3x3x3 BLD", "4x4x4 BLD", "5x5x5 BLD", "3x3x3 MBLD", "Square-1", "Skewb", "3x3x3 Fewest moves"];
-		const WCA_SCRAMBLER = ["222jsss", "333jsss", "444jsss", "555jsss", "666jsss", "777jsss", "Pyra", "Mega", "333", "333", "444", "555", "333", "Square1", "Skewb", "333"];
-		var i;
-		for (i = 0; i < WCA_EVENTS.length; ++i) {
-			if (document.getElementById("setup-event-" + i).checked) {
-				sessions.create(1, (~~WCA_EVENTS[i].search("BLD") ? 0 : 15), WCA_EVENTS[i], "normal", "", WCA_SCRAMBLER[i]);
-			}
-		}
-		//Switch to 3x3 Session, or 4x4, if 2x2 has not been selected (shame on the user who does that)
-		sessions.switchS(2);
-		sessions.display();
-	}
 
 	function exportCode() {
 		return JSON.stringify(core.getAll())
@@ -222,7 +318,6 @@ timer = (function() {
 	return {
 		init: init,
 		exportCode: exportCode,
-		exportCsv: exportCsv,
-		setup: setup
+		exportCsv: exportCsv
 	}
 })();
