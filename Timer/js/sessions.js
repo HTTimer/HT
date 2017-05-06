@@ -89,8 +89,7 @@ var sessions = (function() {
 				code += "<option" + (current.method == method[i] ? " selected " : " ") + "onclick='sessions.current().method=\"" + method[i] + "\";'>" + method[i] + "</option>";
 		}
 
-		code += "</select><br/>" +
-			"<select style='width:100%;'><option>" + cube.identifierToName(sessions.current().cube) + "</option>";
+		code += "</select><br/><select style='width:100%;'><option>" + cube.identifierToName(sessions.current().cube) + "</option>";
 		for (i = 0; i < cube.collection.length; ++i)
 			code += "<option onclick='sessions.current().cube=cube.collection[" + i + "].identifier;'>" + cube.collection[i].name + "</option>";
 

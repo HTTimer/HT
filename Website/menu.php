@@ -24,6 +24,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cubing resources <span class="caret"></span></a>
           <ul class="dropdown-menu">
+            <li><a href="index.php?show=documents_read">Documents</a></li>
             <li><a href="index.php?show=../../Patterns/index">Patterns</a></li>
             <li><a href="index.php?show=links">Website links</a></li>
           </ul>
@@ -32,6 +33,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Other <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="index.php?show=userlist">Userlist</a></li>
+            <li><a href="index.php?show=collection_read">Collection</a></li>
           </ul>
         </li>
       </ul>

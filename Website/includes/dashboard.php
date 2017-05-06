@@ -44,7 +44,7 @@ if(!$login)
     <!-- Storage -->
     <h3>Storage</h3>
     <?php
-      $fz=filesize("../Users/$username/Algsets")+filesize("../Users/$username/Data")+filesize("../Users/$username/PBs")+filesize("../Users/$username/Pointlog")+filesize("../Users/$username/Preferences")+filesize("../Users/$username/Tmp");
+      $fz=filesize("../Users/$username/Algsets")+filesize("../Users/$username/Collection")+filesize("../Users/$username/Data")+filesize("../Users/$username/PBs")+filesize("../Users/$username/Pointlog")+filesize("../Users/$username/Preferences")+filesize("../Users/$username/Tmp");
       echo round($fz/1048576*1000)/1000;
     ?>MB/10 MB (<?php echo $fz; ?>/10485760 bytes)
     <div class="progress">

@@ -9,6 +9,8 @@ $counter=0;
 
 function addAlg($alg){
   global $counter;
+  global $set;
+  global $case;
   $counter++;
 
   $alg=explode(",",$alg);
@@ -24,7 +26,7 @@ function addAlg($alg){
   <td>$lgth</td>
   <td>$qlgth</td>
   <td>$elgth</td>
-  <td><button class='btn btn-xs btn-flat'>Error found</button></td>
+  <td><a href='index.php?show=algstats&set=$set&case=$case&nr=$counter' class='btn btn-xs btn-flat'>Show statistics and memo help</a></td>
   </tr>";
 }
 ?>
