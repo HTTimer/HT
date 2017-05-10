@@ -3,14 +3,16 @@
  */
 
 var scramble = (function() {
-	var type, cur_scramble = "";
+	var type, cur_scramble;
 
 	/*
 	 * scramble:Init()
-	 * Set default scrambler type
+	 * - Set default scrambler type to 3x3x3 WCA
+	 * - Set the current scramble to "".
 	 */
 	function init() {
 		type = "333jsss";
+		cur_scramble = "";
 	}
 
 	/*
@@ -61,215 +63,107 @@ var scramble = (function() {
 			</div>`);
 	}
 
+	/*
+	 * scramble:drawSelect()
+	 * Remap all function calls to the new system
+	 */
+	function drawSelect() {
+		selectScrambler1();
+	}
 
-	var tmp = [];
-	var types = ["Pyramid", "Cube", "Cuboid", "Pentahedron", "Octahedron", "Dodecahedron", "Other"];
-	var axis = [
-		[4, 6],
-		[3, 4, 6, 12],
-		[4, 6],
-		[5, 0],
-		[8, 0],
-		[12, 20],
-		["Relay", "Other"]
+	/*
+	 * scrambe:selectScrambler1()
+	 * Display the first screen of scramble selecting
+	 */
+	function selectScrambler1() {
+		var wca = ["2x2x2", "3x3x3", "4x4x4", "5x5x5", "6x6x6", "7x7x7", "Pyraminx", "Megaminx", "Square-1", "Skewb", "Cuboid", "Dodecahedra", "Other", "Relays"];
+		var html = "<select size='15'>",
+			i;
+		for (i = 0; i < wca.length; ++i) {
+			html += "<option onclick='scramble.selectScrambler2(" + i + ")'>" + wca[i] + "</option>";
+		}
+		html += "</select><br/><br/><br/>";
+		html += "<button onclick='scramble.displayExtendet();'>View scramblers provided<br/>by other users</button>";
+
+		layout.write("SCRAMBLESELECT1", html);
+		layout.write("SCRAMBLESELECT2", "");
+		layout.write("SCRAMBLESELECT3", "");
+		layout.write("SCRAMBLESELECT4", "");
+		document.getElementsByClassName('SCRAMBLESELECT')[0].style.display = "block";
+	}
+
+	/*
+	 * scrambe:selectScrambler2(i)
+	 * @param i Int
+	 * Display the second screen of scramble selecting
+	 */
+	function selectScrambler2(i) {
+		var html = "<select size='15'>",
+			j;
+		for (j = 0; j < data[i].length; ++j) {
+			html += "<option onclick='scramble.selectScrambler3(" + i + "," + j + ")'>" + data[i][j] + "</option>";
+		}
+		html += "</select>";
+
+		layout.write("SCRAMBLESELECT4", "");
+		layout.write("SCRAMBLESELECT3", "");
+		layout.write("SCRAMBLESELECT2", html);
+	}
+
+	/*
+	 * scrambe:selectScrambler3(i,j)
+	 * @param i Int
+	 * @param j Int
+	 * Switch to the selected scrambler
+	 */
+	function selectScrambler3(i, j) {
+		neu();
+		draw();
+		switchScrambler(data2[i][j]);
+		document.getElementsByClassName('SCRAMBLESELECT')[0].style.display = "none";
+	}
+
+	var data = [
+		["WCA", "Random moves", "&lt;R,U&gt;", "&lt;R2,U&gt;", "&lt;RUFDBL&gt;", "Short", "BLD", "BLD Random orientation moves", "Transparent"],
+		["WCA", "Random moves", "&lt;R,U&gt;", "&lt;R,U,F&gt;", "&lt;R,U,L&gt;", "Short", "BLD", "BLD Random orientation moves", "Transparent", "Center orientation", "Half center orientation"],
+		["WCA", "Random moves", "&lt;R,r,U,u&gt;", "Edges only", "Short", "BLD", "BLD Random orientation moves", "Transparent", "Supercube"],
+		["WCA", "Random moves", "&lt;R,r,U,u&gt;", "Edges only", "Short", "BLD", "BLD Random orientation moves", "Center orientation"],
+		["WCA", "Random moves", "Edges only", "Short", "BLD", "BLD Random orientation moves", "Supercube"],
+		["WCA", "Random moves", "Edges only", "Short", "BLD", "BLD Random orientation moves", "Center orientation"],
+		["WCA", "Random State", "Pyraminx Duo"],
+		["Megaminx"],
+		["Random moves", "No Shapeshift", "EP only"],
+		["WCA", "Random moves", "Sledge scrambler", "CO only"],
+		["1x2x2", "1x3x3", "2x2x3", "2x2x4", "2x2x5", "2x2x6", "3x3x4", "3x3x5", "4x4x2", "4x4x3", "4x4x5", "4x4x6", "4x4x7", "4x4x8", "5x5x3", "5x5x4", "5x5x6", "5x5x7", "6x6x4", "6x6x5", "6x6x8", "7x7x5", "7x7x9"],
+		["Kilominx", "Megaminx", "Master Kilominx", "Gigaminx", "Elite Kilominx", "Teraminx", "Petaminx", "Examinx"],
+		["Master Pyraminx", "Professor Pyraminx", "Pyramorphix", "Mastermorphix", "Megamorphix", "Helicopter cube (jumbled)", "Helicopter cube", "Curvy copter (jumbled", "Curvy copter", "Octahedron (face turning)", "Octahedron (corner turning)"],
+		["2x2x2-3x3x3", "2x2x2-4x4x4", "2x2x2-5x5x5", "2x2x2-6x6x6", "2x2x2-7x7x7", "2x2x2-8x8x8", "2x2x2-9x9x9", "Pyraminx, Megaminx, Skewb", "2x2x2, 3x3x3, Pyraminx, Skewb", "WCA", "Parity"]
 	];
-	var layers = [
-		[ //Pyramid
-			[2, 3, 4],
-			[2, 3, 4, 5]
-		],
-		[ //Cube
-			["Square-1", "Square-2"],
-			["Skewb", ""],
-			[2, 3, 4, 5, 6, 7],
-			["Helicopter", "Curvy copter"]
-		],
-		[ //Cuboid
-			["1x1xN", 0],
-			["2x2xN", "3x3xN", "4x4xN", "5x5xN", "6x6xN", "7x7xN"]
-		],
-		[ //Pentahedron
-			[0, 0]
-		],
-		[ //Octahedron
-			[3, 0]
-		],
-		[ //Dodecahedron
-			[2, 3, 4, 5, 7, 9, 11],
-			[0]
-		],
-		[ //Other
-			["Cubic Relay", "Other Relay"]
-		]
-	];
-	var scrambler = [ //Innerste arrays haben erst Titel, dann scramblerliste, nur wenn length==1, dann ist erster eintrag Name und scrambler gleichzeitig
-		[ //Pyramid
-			[ //4 axis
-				["Pyraminx", "WCA", "Random State", "Pyraminx Duo"],
-				["Master Pyraminx", "Master Pyraminx"],
-				["Professor Pyraminx", "Professor Pyraminx"]
-			],
-			[ //6 axis
-				["Pyramorphix", "WCA 2x2", "Random moves"],
-				["Mastermorphix", "Random moves with center orientation", "Random moves without center orientation"],
-				["Megamorphix", "Megamorphix"],
-				["Ultramorphix", "Megamorphix"]
-			]
-		],
-		[ //Cube
-			[ //3 axis
-				["Square-1", "Random moves", "No Shapeshift", "EP only"],
-				["Square-2", "Square-2"]
-			],
-			[ //4 axis
-				["Skewb", "WCA", "Random moves", "Sledge scrambler", "CO only"]
-			],
-			[ //6 axis
-				["2x2", "WCA", "Random moves", "&lt;R,U&gt;", "&lt;R2 U&gt;", "&lt;RUFDBL&gt;", "Short", "BLD", "BLD Random orientation moves", "Transparent"],
-				["3x3", "WCA", "Random moves", "&lt;R,U&gt;", "&lt;R,U,F&gt;", "&lt;R,U,L&gt;", "Short", "BLD", "BLD Random orientation moves", "Transparent", "Center orientation", "Half center orientation"],
-				["4x4", "WCA", "Random moves", "&lt;R,r,U,u&gt;", "Edges only", "Short", "BLD", "BLD Random orientation moves", "Transparent", "Supercube"],
-				["5x5", "WCA", "Random moves", "&lt;R,r,U,u&gt;", "Edges only", "Short", "BLD", "BLD Random orientation moves", "Center orientation"],
-				["6x6", "WCA", "Random moves", "Edges only", "Short", "BLD", "BLD Random orientation moves", "Supercube"],
-				["7x7", "WCA", "Random moves", "Edges only", "Short", "BLD", "BLD Random orientation moves", "Center orientation"]
-			],
-			[ //12 axis
-				["Helicopter", "Jumbled", "no jumbling"],
-				["Curvy copter", "Jumbled", "no jumbling"]
-			]
-		],
-		[ //Cuboid
-			[ // 4 Axis
-				["", "1x2x2", "1x3x3"]
-			],
-			[ // 6 Axis
-				["", "2x2x3", "2x2x4", "2x2x5", "2x2x6"],
-				["", "3x3x4", "3x3x5"],
-				["", "4x4x2", "4x4x3", "4x4x5", "4x4x6", "4x4x7", "4x4x8"],
-				["", "5x5x3", "5x5x4", "5x5x6", "5x5x7"],
-				["", "6x6x4", "6x6x5", "6x6x8"],
-				["", "7x7x5", "7x7x9"]
-			]
-		],
-		[
-			[
-				["Crazy Pentahedron (all types) (TODO)", "TODO"]
-			]
-		], //Pentahedron
-		[
-			[
-				["Octahedron", "FTO", "CTO"]
-			]
-		], //Octahedron
-		[ //Dodecahedron
-			[ //12 axis
-				["Kilominx", "Kilominx"],
-				["Megaminx", "Megaminx"],
-				["Master Kilominx", "Master Kilominx"],
-				["Gigaminx", "Gigaminx"],
-				["Teraminx", "Teraminx"],
-				["Petaminx", "Petaminx"],
-				["Examinx", "Examinx"]
-			],
-			[ //20 axis
-				["Bauhinia Dodecahedron (TODO)", "Bauhinia (TODO)"]
-			]
-		],
-		[ //Other
-			[ //Relay
-				["Cubic Relay", "2x2-3x3", "2x2-4x4", "2x2-5x5", "2x2-6x6", "2x2-7x7", "2x2-8x8", "2x2-9x9"],
-				["Other Relay", "Minx", "2x2, 3x3, Pyra, Skewb", "WCA", "Parity"]
-			]
-		]
-	];
-	//Convert index of array to scrambler type id
-	var scramblerTypes = [
-		[ //Pyramid
-			[ //4 axis
-				["Pyraminx", "Pyra", "Pyra", "Pyra"],
-				["Master Pyraminx", "Pyra"],
-				["Professor Pyraminx", "Pyra"]
-			],
-			[ //6 axis
-				["Pyramorphix", "222", "222"],
-				["Mastermorphix", "333", "333"],
-				["Megamorphix", "444"],
-				["Ultramorphix", "555"]
-			]
-		],
-		[ //Cube
-			[ //3 axis
-				["Square-1", "Square1", "No Shapeshift", "EP only"],
-				["Square-2", "Square-2"]
-			],
-			[ //4 axis
-				["Skewb", "Skewb", "Skewb", "SkewbSledge", "SkewbCO"]
-			],
-			[ //6 axis
-				["2x2", "222jsss", "222", "222RU", "222R2U", "222RUFDBL", "222sh", "BLD", "222BLDROM", "222T"],
-				["3x3", "333jsss", "333", "333RU", "333RUF", "333RUL", "333sh", "333BLD", "333BLDROM", "333T", "333Co", "333HCo"],
-				["4x4", "444jsss", "444", "444RrUu", "555Eo", "444sh", "444BLD", "444BLDROM", "444T", "444Su"],
-				["5x5", "555jsss", "555", "555RrUu", "555Eo", "555sh", "555BLD", "555BLDROM", "555Co"],
-				["6x6", "666jsss", "666", "666Eo", "666sh", "666BLD", "666BLDROM", "666Su"],
-				["7x7", "777jsss", "777", "777Eo", "777sh", "777BLD", "777BLDR", "777Co"]
-			],
-			[ //12 axis
-				["Helicopter", "HeliJumb", "Heli"],
-				["Curvy copter", "CurvyJumb", "Curvy"]
-			]
-		],
-		[ //Cuboid
-			[ // 4 Axis
-				["", "122", "133"]
-			],
-			[ // 6 Axis
-				["", "223", "224", "225", "226"],
-				["", "334", "335"],
-				["", "442", "445", "445", "446", "447", "448"],
-				["", "553", "554", "556", "557"],
-				["", "664", "665", "668"],
-				["", "775", "779"]
-			]
-		],
-		[
-			[
-				["CRPT", ""]
-			]
-		], //Pentahedron
-		[
-			[
-				["Octahedron", "FTO", "CTO"]
-			]
-		], //Octahedron
-		[ //Dodecahedron
-			[ //12 axis
-				["Kilo", "Kilo"],
-				["Mega", "Mega"],
-				["MKilo", "MKilo"],
-				["Giga", "Giga"],
-				["Tera", "Tera"],
-				["Peta", "Peta"],
-				["Exa", "Exa"]
-			],
-			[ //20 axis
-				["BHDOD", "BHDOD"]
-			]
-		],
-		[ //Other
-			[
-				["Cubic Relay", "Relay 222,333", "Relay 222,333,444", "Relay 222,333,444,555", "Relay 222,333,444,555,666", "Relay 222,333,444,555,666,777", "Relay 222,333,444,555,666,777 888", , "Relay 222,333,444,555,666,777 888,999"],
-				["Other Relay", "Relay Pyra,Mega,Skewb", "Relay 222,333,Pyra,Skewb", "Relay 222,333,444,555,666,777,333,333BLD,444BLD,555BLD,Skewb,Mega,Pyra,333 Clock,Square1", "Relay 444,666,Square1"]
-			]
-		]
+	var data2 = [
+		["222jsss", "222", "222RU", "222R2U", "222RUFDBL", "222sh", "BLD", "222BLDROM", "222T"],
+		["333jsss", "333", "333RU", "333RUF", "333RUL", "333sh", "333BLD", "333BLDROM", "333T", "333Co", "333HCo"],
+		["444jsss", "444", "444RrUu", "555Eo", "444sh", "444BLD", "444BLDROM", "444T", "444Su"],
+		["555jsss", "555", "555RrUu", "555Eo", "555sh", "555BLD", "555BLDROM", "555Co"],
+		["666jsss", "666", "666Eo", "666sh", "666BLD", "666BLDROM", "666Su"],
+		["777jsss", "777", "777Eo", "777sh", "777BLD", "777BLDR", "777Co"],
+		["Pyra", "Pyra", "Pyra"],
+		["Mega"],
+		["Square1", "No Shapeshift", "EP only"],
+		["Skewb", "Skewb", "SkewbSledge", "SkewbCO"],
+		["122", "133", "223", "224", "225", "226", "334", "335", "442", "443", "445", "446", "447", "448", "553", "554", "556", "557", "664", "665", "668", "775", "779"],
+		["Kilo", "Mega", "MKilo", "Giga", "MGiga", "Tera", "Peta", "Exa"],
+		["Pyra", "Pyra", "222", "333", "444", "HeliCumb", "Heli", "CurvyJumb", "Curvy", "FTO", "CTO"],
+		["Relay 222,333", "Relay 222,333,444", "Relay 222,333,444,555", "Relay 222,333,444,555,666", "Relay 222,333,444,555,666,777", "Relay 222,333,444,555,666,777 888", "Relay 222,333,444,555,666,777 888,999", "Relay Pyra,Mega,Skewb", "Relay 222,333,Pyra,Skewb", "Relay 222,333,444,555,666,777,333,333BLD,444BLD,555BLD,Skewb,Mega,Pyra,333 Clock,Square1", "Relay 444,666,Square1"]
 	];
 
 	/*
-	 * scramble:new()
+	 * scramble:neu()
 	 * @returns a new scramble of type type
 	 */
 	function neu() {
 		//Generating new scrambles has changed from V4.2.0: Previously, all scrambles were
 		//generated, the fitting one was chosen and all others were thrown away. Now, only
-		//the necceccary ones are generated, which is much faster and efficient => faster.
+		//the neccessary ones are generated, which is much faster and efficient => faster.
 
 		// Scramble with 333jsss (WCA 3x3x3) per default
 		var defaultScrambler = "333jsss";
@@ -294,6 +188,7 @@ var scramble = (function() {
 			"D3": ["R", "D"],
 			"D4": ["R", "D", "r", "d"],
 			"D5": ["R", "D", "r", "d"],
+			"D6": ["R", "D", "r", "d", "3r", "3d"],
 			"D7": ["R", "D", "r", "d", "3r", "3d"],
 			"D9:": ["R", "D", "r", "d", "3r", "3d", "4r", "4d"],
 			"D11": ["R", "D", "r", "d", "3r", "3d", "4r", "4d", "5r", "5d"],
@@ -304,6 +199,7 @@ var scramble = (function() {
 			"RUF": ["R", "U", "F"],
 			"RUL": ["R", "U", "L"],
 			"RrUu": ["R", "r", "U", "u"],
+			"R2U": ["R2", "U", "U2", "U'"],
 
 			//Special groups of moves
 			"SP_SKEWB_CO": ["x", "x'", "z", "z2", "z'", "x2", "R' F R F' R' F R F'"],
@@ -319,7 +215,7 @@ var scramble = (function() {
 			}
 		}
 
-		//Scramblername:[ScrambleFunction,[Arguments]]
+		//ScrambleDefinition:[ScrambleFunction,[Arguments]]
 		var typeToDefinitionsMapping = {
 			//WCA Puzzles + 1x1x1
 			"111": [scramble, [moves.C1, cubicSuffix, 5]],
@@ -354,12 +250,14 @@ var scramble = (function() {
 			"Kilo": [scrambleMega, [moves.D2, moves.D0, 10, 5]],
 			"MKilo": [scrambleMega, [moves.D4, moves.D0, 15, 5]],
 			"Giga": [scrambleMega, [moves.D5, moves.D0, 20, 5]],
+			"MGiga": [scrambleMega, [moves.D6, moves.D0, 15, 10]],
 			"Tera": [scrambleMega, [moves.D7, moves.D0, 20, 10]],
 			"Peta": [scrambleMega, [moves.D9, moves.D0, 20, 15]],
 			"Exa": [scrambleMega, [moves.D11, moves.D0, 20, 20]],
 
 			//Subsets
 			"222RU": [scramble, [moves.RU, cubicSuffix, 10]],
+			"222R2U": [scramble, [moves.R2U, noSuffix, 8]],
 			"222RUFDBL": [scramble, [moves.C3, cubicSuffix, 11]],
 			"333RU": [scramble, [moves.RU, cubicSuffix, 21]],
 			"333RUF": [scramble, [moves.RUF, cubicSuffix, 21]],
@@ -403,6 +301,7 @@ var scramble = (function() {
 		// Get needed definition
 		var definition = typeToDefinitionsMapping[type] || defaultScrambler;
 
+		// Remove the old scramble image
 		clearScrambleImage();
 
 		//Relays: Have type in form of "Relay Scrambler1,Scrambler2,...,ScramblerN"
@@ -436,15 +335,12 @@ var scramble = (function() {
 		} else if (type.split(" ")[0] == "EXTENDED") {
 			definition = [ret, [eval(xscrambles[type.split(" ")[1]].code)]];
 		}
-		// Draw image
-		if (type in ["333", "222", "444", "555"]) {
-			// 1. Convert scramble to code
-			// 2. Call scrambler2image lib
-			// @TODO
-		}
 
 		// Call scramble function
-		cur_scramble = definition[0].apply(null, definition[1]);
+		if (typeof definition[0] === "function")
+			cur_scramble = definition[0].apply(null, definition[1]);
+		else
+			console.log("This scrambler does not work.");
 
 		// Update session scrambler select
 		sessions.display();
@@ -459,7 +355,7 @@ var scramble = (function() {
 	 * scramble:cuboidMoves
 	 * @param height Int
 	 * @param width Int
-	 * @returns allowed moves to scramble a width*width*height cuboid
+	 * @return Array[String] allowed moves to scramble a width*width*height cuboid
 	 */
 	function cuboidMoves(width, height) {
 		var ishalf = width % 2 == 0,
@@ -476,7 +372,8 @@ var scramble = (function() {
 			moves.push(width / 2 + "F2");
 			moves.push(width / 2 + "R2");
 		} else if (ishalf) {
-			// 2x2xN Cuboids would have 1F2 and 1R2, which is unusual and unneccecary complex
+			// 2x2xN Cuboids would have 1F2 and 1R2, which is unusual and complex
+			// A better way to scramble 2x2xN cuboids is to use N22CuboidMoves.
 			moves.push("F2");
 			moves.push("R2");
 		}
@@ -493,9 +390,11 @@ var scramble = (function() {
 
 	/*
 	 * scramble:N22CuboidMoves(height,suffixes,length)
+	 * scramble 2x2xN cuboids
 	 * @param height Int
 	 * @param suffixes Array[""]
 	 * @param length Int
+	 * @return scramble
 	 */
 	function N22CuboidMoves(height, length) {
 		var scramble = [],
@@ -514,6 +413,11 @@ var scramble = (function() {
 		return scramble.join(" ");
 	}
 
+	/*
+	 * scramble:scrambleImagescrambler(s)
+	 * @param s
+	 * @return ScrambleDefinition
+	 */
 	function scrambleImagescrambler(s) {
 		scramblers[s].scramble();
 		scramblers[s].imagestring(0);
@@ -544,6 +448,7 @@ var scramble = (function() {
 
 	/*
 	 * scramble:rn(n)
+	 * @param n Int range
 	 * @return random number
 	 */
 
@@ -553,9 +458,10 @@ var scramble = (function() {
 
 	/*
 	 * scramble:scramble(turns,suffixes,length)
-	 * @param turns
-	 * @param suffixes
-	 * @param length
+	 * @param turns Array[String]
+	 * @param suffixes Array[String], length>0
+	 * @param length Int
+	 * @param oppositeTable Object[String: String]
 	 * @return scramble
 	 */
 	function scramble(turns, suffixes, length, oppositeTable) {
@@ -711,153 +617,9 @@ var scramble = (function() {
 		draw();
 	}
 
-	// Old methods of selecting scramblers
-	function draw_step_1() {
-		var code = "Shape:<select>",
-			i;
-		for (i = 0; i < types.length; ++i)
-			code += "<option onclick='scramble.draw_step_2(" + i + ")'>" + types[i];
-		code += "</select>";
-		layout.write("SCRAMBLERSELECT", code);
-	}
-
-	function draw_step_2(j) {
-		var types = axis[j];
-
-		var code = "Axis:<select>",
-			i;
-		for (i = 0; i < types.length; ++i)
-			code += "<option onclick='scramble.draw_step_3(" + j + "," + i + ")'>" + types[i];
-		code += "</select>";
-		layout.write("SCRAMBLERSELECT", code);
-	}
-
-	function draw_step_3(i, j) {
-		var types = layers[i][j],
-			subelementLength = 0;
-
-		var code = [],
-			k;
-		for (k = 0; k < types.length; ++k) {
-			code.push("<option onclick='scramble.draw_step_4(" + i + "," + j + "," + k + ")'>" + types[k]);
-			subelementLength += scrambler[i][j][k].length;
-		}
-
-		//Display all at once if less that 20 entries would be displayed, to save one click
-		if (subelementLength < 20) {
-			code = [];
-			for (k = 0; k < types.length; ++k) {
-				code.push("<optgroup label='" + scrambler[i][j][k][0] + "'/>");
-				for (l = 0; l < scrambler[i][j][k].length; ++l)
-					code.push("<option onclick='scramble.draw_step_5(" + i + "," + j + "," + k + "," + l + ")'>" + scrambler[i][j][k][l]);
-			}
-		}
-		code = "Layers:<select>" + code.join("") + "</select>";
-		layout.write("SCRAMBLERSELECT", code);
-	}
-
-	function draw_step_4(i, j, k) {
-		var types = scrambler[i][j][k];
-
-		var code = [],
-			k;
-		code.push("<optgroup label='" + types[0] + "'>");
-		for (l = (types.length == 1 ? 0 : 1); l < types.length; ++l)
-			code.push("<option onclick='scramble.draw_step_5(" + i + "," + j + "," + k + "," + l + ")'>" + types[l]);
-		code = "Scrambler:<select>" + code.join("") + "</optgroup></select>";
-
-		if (scrambler.length == 1)
-			code = scrambler[0];
-		layout.write("SCRAMBLERSELECT", code);
-	}
-
-	function draw_step_5(i, j, k, l) {
-		layout.write("SCRAMBLERSELECT", scrambler[i][j][k][l] + "<span onclick='scramble.draw_step_1()'>Select scrambler</span>");
-		switchScrambler(scramblerTypes[i][j][k][l]);
-		neu();
-		draw();
-	}
-
-
-	// drawSelect, drawSelect2, drawSelect3, drawSelect4 and drawSelect5 are the new methods of selecting scramblers
-
-	function drawSelect() {
-		var html = "<select size='" + types.length + "'>",
-			i;
-		for (i = 0; i < types.length; ++i) {
-			html += "<option onclick='scramble.drawSelect2(" + i + ")'>" + types[i] + "</option>";
-		}
-		html += "</select><br/><br/><br/>";
-		html += "<button onclick='scramble.displayExtendet();'>View scramblers provided<br/>by other users</button>";
-
-		layout.write("SCRAMBLESELECT1", html);
-		layout.write("SCRAMBLESELECT2", "");
-		layout.write("SCRAMBLESELECT3", "");
-		layout.write("SCRAMBLESELECT4", "");
-		document.getElementsByClassName('SCRAMBLESELECT')[0].style.display = "block";
-	}
-
-	function drawSelect2(i) {
-		var html = "<select size='" + axis[i].length + "'>",
-			j;
-		for (j = 0; j < axis[i].length; ++j) {
-			html += "<option onclick='scramble.drawSelect3(" + i + "," + j + ")'>" + axis[i][j] + " Axis" + "</option>";
-		}
-		html += "</select>";
-
-		layout.write("SCRAMBLESELECT4", "");
-		layout.write("SCRAMBLESELECT3", "");
-		layout.write("SCRAMBLESELECT2", html);
-	}
-
-	function drawSelect3(i, j) {
-		var html = "<select size='" + layers[i][j].length + "'>",
-			k;
-		for (k = 0; k < layers[i][j].length; ++k) {
-			html += "<option onclick='scramble.drawSelect4(" + i + "," + j + "," + k + ")'>" + layers[i][j][k] + " Layers" + "</option>";
-		}
-		html += "</select>";
-
-		layout.write("SCRAMBLESELECT4", "");
-		layout.write("SCRAMBLESELECT3", html);
-	}
-
-	function drawSelect4(i, j, k) {
-		var html = "<select size='" + scrambler[i][j][k].length + "'>",
-			l;
-		for (l = 1; l < scrambler[i][j][k].length; ++l) {
-			html += "<option onclick='scramble.drawSelect5(" + i + "," + j + "," + k + "," + l + ")'>" + scrambler[i][j][k][l] + "</option>";
-		}
-		html += "</select>";
-		layout.write("SCRAMBLESELECT4", html);
-	}
-
-	function drawSelect5(i, j, k, l) {
-		layout.write("SCRAMBLERSELECT", scrambler[i][j][k][l] + " <span onclick='scramble.drawSelect()'>Reselect scrambler</span>");
-		switchScrambler(scramblerTypes[i][j][k][l]);
-		neu();
-		draw();
-
-		document.getElementsByClassName('SCRAMBLESELECT')[0].style.display = "none";
-	}
-
 	/*
 	 * scramble:displayExtendet()
 	 */
-	var xscrambles = [{
-		"uname": "YTCuber",
-		"sname": "Random Number scrambler",
-		"description": "Sets the scramble to a random number between 0 and 1, rounded to 3 decimals.",
-		"compatibleVersion": "all",
-		"code": "Math.round(Math.random()*1e3)/1e3;",
-	}, {
-		"uname": "YTCuber",
-		"sname": "1x1x3",
-		"description": "Uses U and D moves. Orient the puzzle, so that the three layers go from bottom to top.",
-		"compatibleVersion": "all",
-		"code": "['U','Ui','D','Di','U Di','U2','D2','Ui D','U2 D2','U2 Di','D2 Ui'][~~(Math.random() * 11)]"
-	}];
-
 	function displayExtendet() {
 		var html = "",
 			i;
@@ -872,6 +634,20 @@ var scramble = (function() {
 		layout.write("SCRAMBLESELECT4", "");
 	}
 
+	var xscrambles = [{
+		"uname": "YTCuber",
+		"sname": "Random Number scrambler",
+		"description": "Sets the scramble to a random number between 0 and 1, rounded to 3 decimals.",
+		"compatibleVersion": "all",
+		"code": "Math.round(Math.random()*1e3)/1e3;",
+	}, {
+		"uname": "YTCuber",
+		"sname": "1x1x3",
+		"description": "Uses U and D moves. Orient the puzzle, so that the three layers go from bottom to top.",
+		"compatibleVersion": "all",
+		"code": "['U','Ui','D','Di','U Di','U2','D2','Ui D','U2 D2','U2 Di','D2 Ui'][~~(Math.random() * 11)]"
+	}];
+
 	return {
 		init: init,
 		sessionSwitchInit: sessionSwitchInit,
@@ -880,17 +656,11 @@ var scramble = (function() {
 		neu: neu,
 		draw: draw,
 		drawSelect: drawSelect,
-		drawSelect2: drawSelect2,
-		drawSelect3: drawSelect3,
-		drawSelect4: drawSelect4,
-		drawSelect5: drawSelect5,
-		draw_step_1: draw_step_1,
-		draw_step_2: draw_step_2,
-		draw_step_3: draw_step_3,
-		draw_step_4: draw_step_4,
-		draw_step_5: draw_step_5,
 		getScramble: get_scramble,
 		get_type: get_type,
-		displayExtendet: displayExtendet
+		displayExtendet: displayExtendet,
+		selectScrambler3: selectScrambler3,
+		selectScrambler2: selectScrambler2,
+		selectScrambler1: selectScrambler1
 	}
 })();

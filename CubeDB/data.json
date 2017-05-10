@@ -507,6 +507,12 @@
     "name":"QJ",
     "cubes":[
       {
+        "name":"Skewb",
+        "type":"skb",
+        "colors":1,
+        "size":50
+      },
+      {
         "name":"Megaminx",
         "type":"mega",
         "colors":0,
@@ -622,6 +628,12 @@
         "type":"333",
         "colors":0,
         "size":70
+      },
+      {
+          "name":"Skewb",
+          "type":"skb",
+          "colors":1,
+          "size":50
       },
       {
         "name":"46mm 3x3x3",

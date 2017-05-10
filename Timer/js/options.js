@@ -121,11 +121,13 @@ var options = (function() {
 		<div class="col-2">
 		<h3>Design</h3>
 		<div class="multibutton">
-			<button onclick='layout.setTheme(0)' class="buttonstart">normal Theme</button>
-			<button onclick='layout.setTheme(1)' class="buttonmiddle">yellow Theme</button>
-			<button onclick='layout.setTheme(2)' class="buttonmiddle">orange Theme</button>
-			<button onclick='layout.setTheme(3)' class="buttonmiddle">green Theme</button>
-			<button onclick='layout.setTheme(4)' class="buttonend">blue Theme</button>
+			<button onclick='layout.setTheme(0)' class="buttonstart">white</button>
+			<button onclick='layout.setTheme(1)' class="buttonmiddle">yellow</button>
+			<button onclick='layout.setTheme(2)' class="buttonmiddle">orange</button>
+			<button onclick='layout.setTheme(3)' class="buttonmiddle">green</button>
+			<button onclick='layout.setTheme(6)' class="buttonmiddle">blue 1</button>
+			<button onclick='layout.setTheme(4)' class="buttonmiddle">blue 2</button>
+			<button onclick='layout.setTheme(7)' class="buttonend">cstimer</button>
 		</div>
 		<br/><br/>
 		Color 1: <input type="color" onchange='layout.themes[layout.themes.length-1][1][1]=(this.value.split("#")[1]);layout.setTheme(5)'/><br/>

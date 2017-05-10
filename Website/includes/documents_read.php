@@ -29,7 +29,7 @@
             '.substr($inhalt,0,150).'...
           </div>
           <div class="col-md-5">
-            <span class="glyphicon glyphicon-pencil"></span>
+            <!--<span class="glyphicon glyphicon-pencil"></span>-->
             <a href="includes/documents_download.php?id='.$id.'"><span class="glyphicon glyphicon-save-file"></span></a>
             <br/><br/>
             Size: '.strlen($inhalt).' bytes<br/>
@@ -38,7 +38,7 @@
         </div>
       </li>';
     }
-
   ?>
   </ul>
+  <a href="index.php?show=documents_add" class="btn btn-success">Add</a><br/><br/>
 </div>

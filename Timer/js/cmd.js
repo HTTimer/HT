@@ -47,7 +47,7 @@ var cmd = (function() {
 				selffix     - try to fix and optimize internal data<br>
 				slowbrowser - tell the system that you have a slow browser<br>
 				updateuwr   - try to get the current UWRs from speedsolving wiki`;
-		if (val == "graphic") {
+		else if (val == "graphic") {
 			output = "Switching back to graphic mode ...";
 			switchToGraphic();
 		} else if (val == "about")

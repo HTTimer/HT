@@ -33,6 +33,7 @@ var layout = (function() {
 	 */
 
 	var themes = [
+		//PREDEFINED
 		[
 			["WHITE", "FFF"],
 			["COMPONENTBACKGROUND", "F5F5F5"],
@@ -69,11 +70,27 @@ var layout = (function() {
 			["COMPONENTBACKGROUND", "F5F5F5"],
 			["MAINCOLOR", "CCC"],
 			["LIGHTFONT", "444444"]
+		],
+		//PREDEFINED
+		[
+			["WHITE", "FFF"],
+			["COMPONENTBACKGROUND", "21bcdf"],
+			["MAINCOLOR", "2961e8"],
+			["LIGHTFONT", "444444"]
+		],
+		[
+			["WHITE", "FFF"],
+			["COMPONENTBACKGROUND", "222277"],
+			["MAINCOLOR", "99CC33"],
+			["LIGHTFONT", "444444"]
 		]
 	];
 
 	function setTheme(id) {
 		style.convert(themes[id], themes[0]);
+		server.json("../Timer-Server/changeoptions.php?change=theme&value=" + id, function(t) {
+			console.log(t.response);
+		})
 	}
 
 	/*

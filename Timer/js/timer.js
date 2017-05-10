@@ -65,7 +65,7 @@ timer = (function() {
 						"overinspect": false
 					},
 					"scramble": "F2 U L F2 D2 B' D' U L R F2 L' U L' F2 R2 F L B' F2",
-					"scrambletype": "333jsss",
+					"scrambletype": "222jsss",
 					"cube": [null, "no cube"],
 					"solveType": "normal",
 					"method": ""
@@ -100,7 +100,7 @@ timer = (function() {
 				"cube": [null, "no cube"],
 				"scramblerType": "222jsss"
 			}, {
-				"phases": 1,
+				"phases": 2,
 				"inspection": 0,
 				"name": "3x3x3",
 				"solveType": "normal",
@@ -224,11 +224,6 @@ timer = (function() {
 			currentSession: 0
 		};
 
-		// Load cube database
-		/*server.json("../CubeDB/read.php", function(t) {
-			cube.init(t.response);
-		});*/
-
 		//Apply stylesheet
 		layout.setTheme(start.timerTheme);
 		//Set some variables
@@ -250,7 +245,7 @@ timer = (function() {
 			}
 		}
 
-		setInterval(core.displayLog, 250);
+		setInterval(core.displayLog, 500);
 
 		//Write text to some places
 		layout.write("BOTTOMMENU", `<div class="bottom-menu" onclick="Mousetrap.trigger('o o');"><span class="keycodes">o o (open)/o c (close)</span> Options</div>
