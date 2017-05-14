@@ -153,7 +153,7 @@ var counter = (function() {
 		var a;
 		if (!core.get("running")) {
 			a = ~~((15 - +new Date() + currentInspection) / -1000);
-			layout.write("TIME", "Inspect<br/>" + inspectColor(a) + a + "</span>" + (a > 14 ? (a > 16 ? " DNF" : " +2") : ""));
+			layout.write("TIME", inspectColor(a) + a + "</span>" + (a > 14 ? (a > 16 ? " DNF" : " +2") : "") + "<span class='inspectfont'>s<br/>Inspect</span>");
 			setTimeout(updateInspect, 142);
 		}
 	}

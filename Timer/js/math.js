@@ -189,8 +189,7 @@ var math = (function() {
 
 	/*
 	 * math:lcd(s)
-	 * We need to fix the 1s width of LCD font by applying a space before it
-	 * @TODO
+	 * Some digital Fonts need fixing for the width of the 1. This can be done here when changing the font.
 	 */
 	function lcd(s) {
 		//return s.replace(1, " 1");
