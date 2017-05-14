@@ -3,7 +3,7 @@
   $cid=$_GET["cid"];
   $id =$_GET["id" ];
   ?>
-<form class="form-horizontal" action="index.php?show=requestchange.php" method="POST">
+<form class="form-horizontal" action="index.php?show=requestchange" method="POST">
 <fieldset>
 
   <input type="hidden" name="cid" value="<?php echo $cid; ?>"/>

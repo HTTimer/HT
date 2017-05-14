@@ -8,6 +8,7 @@ function ask(){
 }
 
 function convert(a){
+  // Very secure encrypting method
   for(var i=0,l=[];i<a.length;++i)
     l.push(s[s.indexOf(a[i])+4]);
   return l.join``;
@@ -22,7 +23,7 @@ function out(c,m){
 }
 </script>
 <h2>Generate own cube model</h2>
-If you use HTTimer and have a cube model to add to your virtual collection you can't find, you can generate the code to import here.<br/>
+If you use CMOSTimer and have a cube model to add to your virtual collection you can't find, you can generate the code to import here.<br/>
 You can also use this to request adding a cube model to HT.<br/>
 Begin by clicking "Generate cube" at the bottom.
 After putting in the neccessary data, copy and paste the code into the timer:
@@ -39,7 +40,6 @@ After putting in the neccessary data, copy and paste the code into the timer:
   <!-- Form Name -->
   <legend>Save cube data</legend>
 
-  <!-- Text input-->
   <div class="form-group">
     <label class="col-md-4 control-label" for="name">Cube name</label>
     <div class="col-md-4">
@@ -47,7 +47,6 @@ After putting in the neccessary data, copy and paste the code into the timer:
     </div>
   </div>
 
-  <!-- Textarea -->
   <div class="form-group">
     <label class="col-md-4 control-label" for="comment">Comment</label>
     <div class="col-md-4">
@@ -55,7 +54,6 @@ After putting in the neccessary data, copy and paste the code into the timer:
     </div>
   </div>
 
-  <!-- Multiple Radios (inline) -->
   <div class="form-group">
     <label class="col-md-4 control-label" for="submitoptions">Request adding this cube to HT</label>
     <div class="col-md-4">
@@ -70,7 +68,6 @@ After putting in the neccessary data, copy and paste the code into the timer:
     </div>
   </div>
 
-  <!-- Button -->
   <div class="form-group">
     <label class="col-md-4 control-label" for="submit"></label>
     <div class="col-md-4">

@@ -2,11 +2,15 @@
  * math.js
  */
 var math = (function() {
-	const DNF = -1; //What to return in case of DNF
+	const DNF = -1; //Number representation of a DNF
+
 	/*
 	 * math:Init()
 	 */
-	function init() {}
+	function init() {
+
+	}
+
 	/*
 	 * math:getMean(times)
 	 * @param times Array of solves to get an mean of
@@ -26,6 +30,7 @@ var math = (function() {
 			return DNF;
 		}
 		return sum / (cnttime);
+
 	}
 	/*
 	 * math:getAverage(times)
@@ -46,6 +51,7 @@ var math = (function() {
 		if (cntdnf > times.length * 0.05) return DNF;
 		return sum / (cnttime);
 	}
+
 	/*
 	 * math:getBest(times)
 	 * @param times Array of solves
@@ -58,6 +64,7 @@ var math = (function() {
 			if (times[i].zeit < best) best = times[i].zeit;
 		return best;
 	}
+
 	/*
 	 * math:getWorst(times)
 	 * @param times Array of solves
@@ -70,6 +77,7 @@ var math = (function() {
 			if (times[i].zeit > worst) worst = times[i].zeit;
 		return worst;
 	}
+
 	/*
 	 * math:getBestMean(times,off)
 	 * @param times Array of all solves
@@ -87,6 +95,22 @@ var math = (function() {
 		}
 		return best == +Infinity ? DNF : best;
 	}
+
+	/*
+	 * math:getBestMean(times,off)
+	 * @param times Array of all solves
+	 * @param off Int average size
+	 * @returns current mean of off of all given times
+	 */
+	function getCurrentMean(times, off) {
+		var newTimes = [],
+			i;
+		if (times.length < off) return DNF;
+		for (i = times.length - 1; i > times.length - off - 1; --i)
+			newTimes.push(times[i]);
+		return getMean(newTimes);
+	}
+
 	/*
 	 * math:format(time)
 	 * @param time Int in milliseconds
@@ -103,6 +127,7 @@ var math = (function() {
 		mins = ((time - secs) / 60) % 60;
 		hours = (time - secs - 60 * mins) / 3600;
 		s = "" + bits;
+
 		//Fill 0s
 		if (bits < 10) s = "0" + s;
 		if (bits < 100 && useMilliseconds) s = "0" + s;
@@ -114,6 +139,7 @@ var math = (function() {
 		if (hours > 0) s = hours + ":" + s;
 		return lcd(s);
 	}
+
 	/*
 	 * math:formatPenalty(solve)
 	 * @param solve solve Object
@@ -172,103 +198,6 @@ var math = (function() {
 	}
 
 	/*
-	 * math:compressAlgorithm(alg)
-	 * @param alg String algorithm, moves are spaceseperated
-	 * @returns compressed Algorithm
-	 */
-	function compressAlgorithm(alg) {
-		var mapping = {
-			"R": "A",
-			"R'": "B",
-			"R2": "C",
-			"R2'": "D",
-			"F": "E",
-			"F'": "F",
-			"F2": "G",
-			"F2'": "H",
-			"U": "I",
-			"U'": "J",
-			"U2": "K",
-			"U2'": "L",
-			"B": "M",
-			"B'": "N",
-			"B2": "O",
-			"B2'": "P",
-			"D": "Q",
-			"D'": "R",
-			"D2": "S",
-			"D2'": "T",
-			"L": "U",
-			"L'": "V",
-			"L2": "W",
-			"L2'": "X",
-			"x": "Y",
-			"x'": "Z",
-			"x2": "a",
-			"x2'": "b",
-			"y": "c",
-			"y'": "d",
-			"y2": "e",
-			"y2'": "f",
-			"z": "g",
-			"z'": "h",
-			"z2": "i",
-			"z2'": "j"
-		}
-		alg = alg.split(" ");
-		for (var i = 0; i < alg.length; ++i) alg[i] = mapping[alg[i]] || "k" + alg[i];
-		return alg.join("");
-	}
-	/*
-	 * math:decompressAlgorithm(alg)
-	 * @param alg String compressed algorithm
-	 * @returns decompressed Algorithm
-	 */
-	function decompressAlgorithm(alg) {
-		var mapping = {
-				"A": "R",
-				"B": "R'",
-				"C": "R2",
-				"D": "R2'",
-				"E": "F",
-				"F": "F'",
-				"G": "F2",
-				"H": "F2'",
-				"I": "U",
-				"J": "U'",
-				"K": "U2",
-				"L": "U2'",
-				"M": "B",
-				"N": "B'",
-				"O": "B2",
-				"P": "B2'",
-				"Q": "D",
-				"R": "D'",
-				"S": "D2",
-				"T": "D2'",
-				"U": "L",
-				"V": "L'",
-				"W": "L2",
-				"X": "L2'",
-				"Y": "x",
-				"Z": "x'",
-				"a": "x2",
-				"b": "x2'",
-				"c": "y",
-				"d": "y'",
-				"e": "y2",
-				"f": "y2'",
-				"g": "z",
-				"h": "z'",
-				"i": "z2",
-				"j": "z2'"
-			},
-			i;
-		alg = alg.split("");
-		for (i = 0; i < alg.length; ++i) alg[i] = mapping[alg[i]] || "";
-		return alg.join(" ");
-	}
-	/*
 	 * math:formatDate(ms)
 	 * @param ms Int
 	 */
@@ -281,6 +210,7 @@ var math = (function() {
 		dt = new Date(ms);
 		return dt.getFullYear() + "/" + (dt.getMonth() + 1) + "/" + dt.getDate() + " " + addZ(dt.getHours()) + ':' + addZ(dt.getMinutes()) + ':' + addZ(dt.getSeconds()) + "." + dt.getMilliseconds();
 	}
+
 	/*
 	 * math:invertAlg(alg)
 	 * @param alg String Algorithm
@@ -296,6 +226,7 @@ var math = (function() {
 		}
 		return alg.reverse().join(" ");
 	}
+
 	return {
 		init: init,
 		mean: getMean,
@@ -303,12 +234,11 @@ var math = (function() {
 		best: getBest,
 		worst: getWorst,
 		bestMean: getBestMean,
+		currentMean: getCurrentMean,
 		format: format,
 		formatPenalty: formatPenalty,
 		algInvert: algInvert,
 		applyPenalty: applyPenalty,
-		compressAlgorithm: compressAlgorithm,
-		decompressAlgorithm: decompressAlgorithm,
 		formatDate: formatDate,
 		invertAlg: invertAlg
 	}

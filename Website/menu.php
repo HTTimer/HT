@@ -16,7 +16,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CMOSTimer <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="index.php?show=Timer">open CMOSTimer</a></li>
-            <li><a href="index.php?show=../../Plugins/createcube">Create cube model</a></li>
+            <!--<li><a href="index.php?show=createcube">Create cube model</a></li>-->
           </ul>
         </li>
         <li><a href="index.php?show=lscubedb">CubeDB</a></li>

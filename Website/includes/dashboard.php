@@ -8,6 +8,7 @@ if(!$login)
   <div class="col-md-7">
     <!-- Statistics -->
     <h3>Statistics</h3>
+    Username: <?php echo $username; ?><br/>
     Role: <?php echo $isAdministrator?"Administrator":"User"; ?><br/>
     ...
   </div>
@@ -44,13 +45,31 @@ if(!$login)
     <!-- Storage -->
     <h3>Storage</h3>
     <?php
-      $fz=filesize("../Users/$username/Algsets")+filesize("../Users/$username/Collection")+filesize("../Users/$username/Data")+filesize("../Users/$username/PBs")+filesize("../Users/$username/Pointlog")+filesize("../Users/$username/Preferences")+filesize("../Users/$username/Tmp");
+      $fz=filesize("../Users/$username/Algsets")
+      +filesize("../Users/$username/Collection")
+      +filesize("../Users/$username/Data")
+      +filesize("../Users/$username/PBs")
+      +filesize("../Users/$username/Pointlog")
+      +filesize("../Users/$username/Preferences")
+      +filesize("../Users/$username/Tmp");
       echo round($fz/1048576*1000)/1000;
     ?>MB/10 MB (<?php echo $fz; ?>/10485760 bytes)
     <div class="progress">
       <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $fz/104857.6; ?>" aria-valuemin="0" aria-valuemax="10485760" style="width: <?php echo $fz/104857.6; ?>%;">
         <?php echo round($fz/1048.576)/100; ?>%
       </div>
+    </div>
+    <button class="btn" onclick="document.getElementById('storage_breakdown').style.display='block';">view Details</button>
+    <div id="storage_breakdown" style="display:none;">
+      <?php
+      echo "AlgSets: ".filesize("../Users/$username/Algsets")." bytes<br/>";
+      echo "Data: ".filesize("../Users/$username/Data")." bytes<br/>";
+      echo "Collection: ".filesize("../Users/$username/Collection")." bytes<br/>";
+      echo "Pointlog: ".filesize("../Users/$username/Pointlog")." bytes<br/>";
+      echo "Preferences: ".filesize("../Users/$username/Preferences")." bytes<br/>";
+      echo "PBs: ".filesize("../Users/$username/PBs")." bytes<br/>";
+      echo "Tmp: ".filesize("../Users/$username/Tmp")." bytes<br/>";
+      ?>
     </div>
   </div>
 </div>

@@ -89,7 +89,7 @@ var layout = (function() {
 	function setTheme(id) {
 		style.convert(themes[id], themes[0]);
 		server.json("../Timer-Server/changeoptions.php?change=theme&value=" + id, function(t) {
-			console.log(t.response);
+			console.log("Loaded theme: " + t.response);
 		})
 	}
 
