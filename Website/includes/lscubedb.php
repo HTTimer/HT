@@ -28,7 +28,7 @@ function build(){
   <h3>CubeDB List</h3>
   <div id="out"></div>
   <br/>
-  <a role="button" href="index.php?show=../../Plugins/createcube" class="btn btn-success btn-big">Request adding a cube model</a>
+  <a role="button" href="index.php?show=createcube" class="btn btn-success btn-big">Request adding a cube model</a>
   <br/>
   &nbsp;
 </div>

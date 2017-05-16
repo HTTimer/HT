@@ -33,7 +33,6 @@ include ("php/timer.php");
 		<script src="js/keyboard.js"></script>
 		<script src="js/options.js"></script>
 		<script src="js/timer.js"></script>
-		<script src="js/cmd.js"></script>
 		<script src="js/progress.js"></script>
 		<script src="js/server.js"></script>
 		<script src="js/cube.js"></script>
@@ -122,18 +121,9 @@ include ("php/timer.php");
 			</div>
 		</div>
 
-		<!--
-		Text-based mode
-		-->
-		<div id="desktop-text">
-			<div id="console">
-				<span id="console-output"></span>
-			</div>
-		</div>
-
 		<noscript>
 			<script>
-				//This should never get executed.
+				// This should never get executed.
 				alert("Please check your browser!");
 			</script>
 			Please enable Javascript.
@@ -143,19 +133,8 @@ include ("php/timer.php");
 		var start={
 			timerTheme:<?php echo $timerTheme; ?>,
 			username:"<?php echo $username; ?>",
-			myCubes:[
-				{
-					"company":"DaYan",
-					"model":"ZhanChi",
-					"color":"black",
-					"identifier":"0040020A"
-				},{
-					"company":"MoYu",
-					"model":"WeiLong GTS 2",
-					"color":"green",
-					"identifier":"00301ABB"
-				}
-			]
+			myCubes:[<?php echo $collectionString; ?>],
+			timeListData:<?php echo $timeListData; ?>
 		}
 		</script>
 	</body>

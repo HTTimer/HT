@@ -9,6 +9,7 @@
     if($tmp[1]==0)
       echo "<li id='el_".$i."' class='list-group-item' onclick='switchLinks(".$i.")'>".$tmp[3]." ".$tmp[4]." (color: ".$tmp[5].")".($tmp[6]=="1"?" defective":"")."</li>";
   }
+  if(count($collection)==1)echo "<i>Add a cube to get started</i><br/>";
   ?>
   </ul>
   <br/>

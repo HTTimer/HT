@@ -2,9 +2,13 @@
 //Check login
 $login=isset($_COOKIE["HTTimer-login"]);
 $username="";
+if(!$login){
+  echo "<script>window.location.href='../Timer-Server/login.php';</script>";
+  die();
+}
 if($login)
   $username=$_COOKIE["HTTimer-login"];
-$isAdministrator=$login=="HTTimer-developer";
+$isAdministrator=$username=="HTTimer-developer";
 
 //If no location, set it to index
 if(!isset($_GET["show"])){
@@ -21,6 +25,8 @@ if($_GET["show"]=="Timer"){
   echo "<script>window.location.href='../Timer/index.php';</script>";
 }else{
   //build website
+  //Configuration
+  $dashboard_printnews=false;
 ?>
 <!doctype html>
 <html>

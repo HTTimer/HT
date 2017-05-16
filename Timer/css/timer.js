@@ -92,7 +92,8 @@ body {
 }
 
 .buttonmiddle {
-
+	padding-left: 8px;
+	padding-right: 8px;
 }
 
 .buttonend {
@@ -831,7 +832,7 @@ a.badge:hover, a.badge:focus {
 	float:left;
 }
 .SCRAMBLESELECT > div > select > option {
-	width: 15vw;
+	width: 16.5vw;
 	font-size: 15pt;
 }
 

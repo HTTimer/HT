@@ -76,7 +76,7 @@ var scramble = (function() {
 	 * Display the first screen of scramble selecting
 	 */
 	function selectScrambler1() {
-		var wca = ["2x2x2", "3x3x3", "4x4x4", "5x5x5", "6x6x6", "7x7x7", "Pyraminx", "Megaminx", "Square-1", "Skewb", "Cuboid", "Dodecahedra", "Other", "Relays"];
+		var wca = ["2x2x2", "3x3x3", "4x4x4", "5x5x5", "6x6x6", "7x7x7", "Pyraminx", "Megaminx", "Square-1", "Skewb", "Cuboid", "Dodecahedra", "Other", "Relays", "Jokes"];
 		var html = "<select size='15'>",
 			i;
 		for (i = 0; i < wca.length; ++i) {
@@ -131,13 +131,14 @@ var scramble = (function() {
 		["WCA", "Random moves", "Edges only", "Short", "BLD", "BLD Random orientation moves", "Supercube"],
 		["WCA", "Random moves", "Edges only", "Short", "BLD", "BLD Random orientation moves", "Center orientation"],
 		["WCA", "Random State", "Pyraminx Duo"],
-		["Megaminx"],
+		["WCA"],
 		["Random moves", "No Shapeshift", "EP only"],
 		["WCA", "Random moves", "Sledge scrambler", "CO only"],
 		["1x2x2", "1x3x3", "2x2x3", "2x2x4", "2x2x5", "2x2x6", "3x3x4", "3x3x5", "4x4x2", "4x4x3", "4x4x5", "4x4x6", "4x4x7", "4x4x8", "5x5x3", "5x5x4", "5x5x6", "5x5x7", "6x6x4", "6x6x5", "6x6x8", "7x7x5", "7x7x9"],
 		["Kilominx", "Megaminx", "Master Kilominx", "Gigaminx", "Elite Kilominx", "Teraminx", "Petaminx", "Examinx"],
 		["Master Pyraminx", "Professor Pyraminx", "Pyramorphix", "Mastermorphix", "Megamorphix", "Helicopter cube (jumbled)", "Helicopter cube", "Curvy copter (jumbled", "Curvy copter", "Octahedron (face turning)", "Octahedron (corner turning)"],
-		["2x2x2-3x3x3", "2x2x2-4x4x4", "2x2x2-5x5x5", "2x2x2-6x6x6", "2x2x2-7x7x7", "2x2x2-8x8x8", "2x2x2-9x9x9", "Pyraminx, Megaminx, Skewb", "2x2x2, 3x3x3, Pyraminx, Skewb", "WCA", "Parity"]
+		["2x2x2-3x3x3", "2x2x2-4x4x4", "2x2x2-5x5x5", "2x2x2-6x6x6", "2x2x2-7x7x7", "2x2x2-8x8x8", "2x2x2-9x9x9", "Pyraminx, Megaminx, Skewb", "2x2x2, 3x3x3, Pyraminx, Skewb", "WCA", "Parity"],
+		["1x1x1 rotations", "1x1x1 &lt;RUF&gt;", "1x1x1 BLD", "Monominx"]
 	];
 	var data2 = [
 		["222jsss", "222", "222RU", "222R2U", "222RUFDBL", "222sh", "BLD", "222BLDROM", "222T"],
@@ -153,7 +154,8 @@ var scramble = (function() {
 		["122", "133", "223", "224", "225", "226", "334", "335", "442", "443", "445", "446", "447", "448", "553", "554", "556", "557", "664", "665", "668", "775", "779"],
 		["Kilo", "Mega", "MKilo", "Giga", "MGiga", "Tera", "Peta", "Exa"],
 		["Pyra", "Pyra", "222", "333", "444", "HeliCumb", "Heli", "CurvyJumb", "Curvy", "FTO", "CTO"],
-		["Relay 222,333", "Relay 222,333,444", "Relay 222,333,444,555", "Relay 222,333,444,555,666", "Relay 222,333,444,555,666,777", "Relay 222,333,444,555,666,777 888", "Relay 222,333,444,555,666,777 888,999", "Relay Pyra,Mega,Skewb", "Relay 222,333,Pyra,Skewb", "Relay 222,333,444,555,666,777,333,333BLD,444BLD,555BLD,Skewb,Mega,Pyra,333 Clock,Square1", "Relay 444,666,Square1"]
+		["Relay 222,333", "Relay 222,333,444", "Relay 222,333,444,555", "Relay 222,333,444,555,666", "Relay 222,333,444,555,666,777", "Relay 222,333,444,555,666,777 888", "Relay 222,333,444,555,666,777 888,999", "Relay Pyra,Mega,Skewb", "Relay 222,333,Pyra,Skewb", "Relay 222,333,444,555,666,777,333,333BLD,444BLD,555BLD,Skewb,Mega,Pyra,333 Clock,Square1", "Relay 444,666,Square1"],
+		["111alt", "111", "111BLD", "Mono"]
 	];
 
 	/*
@@ -161,9 +163,9 @@ var scramble = (function() {
 	 * @returns a new scramble of type type
 	 */
 	function neu() {
-		//Generating new scrambles has changed from V4.2.0: Previously, all scrambles were
-		//generated, the fitting one was chosen and all others were thrown away. Now, only
-		//the neccessary ones are generated, which is much faster and efficient => faster.
+		// Generating new scrambles has changed from V4.2.0: Previously, all scrambles were
+		// generated, the fitting one was chosen and all others were thrown away. Now, only
+		// the neccessary ones are generated, which is much faster and efficient => faster.
 
 		// Scramble with 333jsss (WCA 3x3x3) per default
 		var defaultScrambler = "333jsss";
@@ -173,7 +175,7 @@ var scramble = (function() {
 			pyraSuffix = ["", "'"],
 			noSuffix = [""];
 
-		//Store moves, that are needed multiple times, here
+		// Store moves here for easier referencing
 		var moves = {
 			//Moves in this group are prefixed with C for cubic, P for Pyramid, O for Octahedron, D for Dodecatedron and X for other
 			"C1": ["x", "y", "z"],
@@ -218,7 +220,7 @@ var scramble = (function() {
 		//ScrambleDefinition:[ScrambleFunction,[Arguments]]
 		var typeToDefinitionsMapping = {
 			//WCA Puzzles + 1x1x1
-			"111": [scramble, [moves.C1, cubicSuffix, 5]],
+			"111": [scramble, [moves.C2, cubicSuffix, 5]],
 			"222": [scramble, [moves.C2, cubicSuffix, 11]],
 			"333": [scramble, [moves.C3, cubicSuffix, 22]],
 			"444": [scramble, [moves.C4, cubicSuffix, 50]],
@@ -226,10 +228,14 @@ var scramble = (function() {
 			"666": [scramble, [moves.C6, cubicSuffix, 110]],
 			"777": [scramble, [moves.C7, cubicSuffix, 140]],
 			"Pyra": [scramble, [moves.P2, pyraSuffix, 11]],
-			"Skewb": [scramble, [moves.P2, pyraSuffix, 11]], //Skewb is cubic but turns like a pyra
+			"Skewb": [scramble, [moves.P2, pyraSuffix, 11]], //Skewb is cubic but has 4 axis like a pyra
 			"Square1": [ret, ["Not available"]],
 			"Mega": [scrambleMega, [moves.D3, ["U", "U'"], 10, 5]],
 
+			//Alternavie scramlers
+			"111alt": [scramble, [moves.C1, cubicSuffix, 5]],
+
+			"111BLD": [scrambleBld, [moves.C2, cubicSuffix, 6]],
 			"222BLD": [scrambleBld, [moves.C2, cubicSuffix, 11]],
 			"333BLD": [scrambleBld, [moves.C3, cubicSuffix, 22]],
 			"444BLD": [scrambleBld, [moves.C4, cubicSuffix, 50]],
@@ -247,6 +253,7 @@ var scramble = (function() {
 			"777sh": [scramble, [moves.C7, cubicSuffix, 110]],
 
 			//Minxes
+			"Mono": [scrambleMega, [moves.D2, moves.D0, 5, 3]],
 			"Kilo": [scrambleMega, [moves.D2, moves.D0, 10, 5]],
 			"MKilo": [scrambleMega, [moves.D4, moves.D0, 15, 5]],
 			"Giga": [scrambleMega, [moves.D5, moves.D0, 20, 5]],
@@ -310,9 +317,9 @@ var scramble = (function() {
 				i, type2 = type;
 			for (i = 0; i < type2.split(" ")[1].split(",").length; ++i) {
 				type = type2.split(" ")[1].split(",")[i];
-				//We can only compute one scramble at once with neu() , so call it
-				//There can't be infinite recursion as long as no scrambler starts
-				//with  "Relay " ,  as we only call ourselves if that is the  case
+				// We can only compute one scramble at once with neu() , so call it
+				// There can't be infinite recursion as long as no scrambler starts
+				// with  "Relay " ,  as we only call ourselves if that is the  case
 				relayScramble.push(neu());
 			}
 			type = type2;
@@ -389,10 +396,9 @@ var scramble = (function() {
 	}
 
 	/*
-	 * scramble:N22CuboidMoves(height,suffixes,length)
+	 * scramble:N22CuboidMoves(height,length)
 	 * scramble 2x2xN cuboids
 	 * @param height Int
-	 * @param suffixes Array[""]
 	 * @param length Int
 	 * @return scramble
 	 */
@@ -429,8 +435,8 @@ var scramble = (function() {
 
 	/*
 	 * scramble:clearScrambleImage()
-	 * since not all scramblers have an image generating function, we must clear
-	 * the space of the previous scramble image to only show correct data
+	 * since not all scramblers have an image generating function, we must
+	 * clear the space of the previous scramble image to only show correct data
 	 */
 	function clearScrambleImage() {
 		layout.write("SCRAMBLEIMAGE", "");
@@ -449,7 +455,7 @@ var scramble = (function() {
 	/*
 	 * scramble:rn(n)
 	 * @param n Int range
-	 * @return random number
+	 * @return Int random number in range n
 	 */
 
 	function rn(n) {
@@ -473,7 +479,7 @@ var scramble = (function() {
 		// Check: We need at least one suffix. It may be "".
 		if ((turns.length < 2 && length > 1) || suffixes.length < 1) return;
 
-		// Generate list of all permutations of turns and suffixes
+		// Generate list of all combinations of turns and suffixes
 		for (i = 0; i < turns.length; ++i)
 			for (j = 0; j < suffixes.length; ++j)
 				moves.push("" + turns[i] + suffixes[j]);
@@ -481,10 +487,10 @@ var scramble = (function() {
 		// Add moves until the needed length is reached
 		while (scrambleMoves.length < length) {
 			scrambleMoves.push(rndEl(moves));
-			// Don't do R R
+			// Don't do A[n] A[m]
 			if (scrambleMoves.length > 1 && scrambleMoves[scrambleMoves.length - 1][0] == scrambleMoves[scrambleMoves.length - 2][0])
 				scrambleMoves.pop();
-			// Don't do R L R'
+			// Don't do A[n] B[m] A[o] if A is opposite to B
 			if (scrambleMoves.length > 1 && oppositeTable[scrambleMoves[scrambleMoves.length - 1][0]] == scrambleMoves[scrambleMoves.length - 2][0])
 				scrambleMoves.pop();
 		}

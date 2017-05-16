@@ -496,7 +496,19 @@
         "size":57
       },
       {
-        "name":"WeiLong GTS",
+        "name":"WeiLong GTS V1",
+        "type":"333",
+        "colors":0,
+        "size":57
+      },
+      {
+        "name":"WeiLong GTS V2",
+        "type":"333",
+        "colors":0,
+        "size":57
+      },
+      {
+        "name":"DianMa",
         "type":"333",
         "colors":0,
         "size":57

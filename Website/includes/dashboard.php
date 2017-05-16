@@ -2,8 +2,10 @@
 <?php
 if(!$login)
   die("You must be logged in to view this!");
+
 ?>
 <h1>Welcome to your dashboard, <?php echo $username; ?>!</h1>
+<h5>Warning: this site is a beta version. Nothing is garantueed to work.</h5>
 <div class="row">
   <div class="col-md-7">
     <!-- Statistics -->
@@ -12,6 +14,7 @@ if(!$login)
     Role: <?php echo $isAdministrator?"Administrator":"User"; ?><br/>
     ...
   </div>
+  <?php if($dashboard_printnews){ ?>
   <div class="col-md-5">
     <h3>News</h3>
     <div class="row">
@@ -24,6 +27,7 @@ if(!$login)
       ?>
     </div>
   </div>
+  <?php } ?>
   <div class="col-md-7">
     <!-- Requests -->
     <h3>Requests</h3>
@@ -38,12 +42,13 @@ if(!$login)
   </div>
   <div class="col-md-5">
     <!-- _ -->
-    <h3>PB history</h3>
-    <a href="index.php?show=pbs" class="btn btn-success">View PBs</a>
+    <!--<h3>PB history</h3>
+    <a href="index.php?show=pbs" class="btn btn-success">View PBs</a>-->
+    <a href="index.php?show=Timer" class="btn btn-success">open CMOSTimer</a>
   </div>
   <div class="col-md-12">
     <!-- Storage -->
-    <h3>Storage</h3>
+    <!--<h3>Storage</h3>
     <?php
       $fz=filesize("../Users/$username/Algsets")
       +filesize("../Users/$username/Collection")
@@ -70,7 +75,7 @@ if(!$login)
       echo "PBs: ".filesize("../Users/$username/PBs")." bytes<br/>";
       echo "Tmp: ".filesize("../Users/$username/Tmp")." bytes<br/>";
       ?>
-    </div>
+    </div>-->
   </div>
 </div>
 </div>

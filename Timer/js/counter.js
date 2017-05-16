@@ -71,8 +71,8 @@ var counter = (function() {
 					algSets.practiseUpdateLeft();
 				} else {
 					core.get("config").timeList[core.get("config").currentSession].push({
-						// We won't land here before a solve was done, as currentStage is initialized
-						// as 0 and we increment it by 1 before executing this case
+						// We won't land here before a solve was done, as currentStage is
+						// initialized as 0 and we increment it by 1 before executing this case
 						startTime: startTime + 1,
 						endTime: endTime,
 						currentInspection: (startTime - currentInspection),
@@ -90,7 +90,10 @@ var counter = (function() {
 						method: sessions.current().method
 					});
 
-					// Timer has been stopped, update stuff
+					server.saveTime();
+
+					// Timer has been stopped. Generate and display a new scramble,
+					// refresh the time in the middle and show information about it
 					scramble.neu();
 					scramble.draw();
 					stats.update();
@@ -130,7 +133,7 @@ var counter = (function() {
 	}
 
 	/*
-	 * counter:updateTime
+	 * counter:updateTime()
 	 * Updates the time display
 	 */
 	function updateTime() {
@@ -146,7 +149,7 @@ var counter = (function() {
 	}
 
 	/*
-	 * counter:updateInspect
+	 * counter:updateInspect()
 	 * Updates the time display with the inspection time
 	 */
 	function updateInspect() {

@@ -5,10 +5,14 @@ if($login)
   $username=$_COOKIE["HTTimer-login"];
 else
   die("false//login");
-$change=$_GET["change"];
-if($change!="theme")echo "false";
-echo $_GET["value"];
-$userfile=explode("\n",file_get_contents("../Users/$username/Preferences"));
-$userfile[0]="TimerTheme ".$_GET["value"];
-file_put_contents("../Users/$username/Preferences",implode("\n",$userfile));
+$change=$_POST["change"];
+if($change=="theme"){
+  echo $_POST["value"];
+  $userfile=explode("\n",file_get_contents("../Users/$username/Preferences"));
+  $userfile[0]="TimerTheme ".$_POST["value"];
+  file_put_contents("../Users/$username/Preferences",implode("\n",$userfile));
+}else if($change=="timelist"){
+  echo $_POST["value"];
+  file_put_contents("../Users/$username/Timersave",$_POST["value"]);
+}
 ?>

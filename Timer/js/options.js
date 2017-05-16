@@ -123,8 +123,8 @@ var options = (function() {
 		<div class="multibutton">
 			<button onclick='layout.setTheme(0)' class="buttonstart">white</button>
 			<button onclick='layout.setTheme(1)' class="buttonmiddle">yellow</button>
-			<button onclick='layout.setTheme(2)' class="buttonmiddle">orange</button>
 			<button onclick='layout.setTheme(3)' class="buttonmiddle">green</button>
+			<button onclick='layout.setTheme(2)' class="buttonmiddle">orange</button>
 			<button onclick='layout.setTheme(6)' class="buttonmiddle">blue 1</button>
 			<button onclick='layout.setTheme(4)' class="buttonmiddle">blue 2</button>
 			<button onclick='layout.setTheme(7)' class="buttonend">cstimer</button>
@@ -138,7 +138,7 @@ var options = (function() {
 		<button onclick="core.set('optInspectColor',${core.get('optInspectColor')?'false':'true'});options.draw();">
 			${core.get('optInspectColor')?'Disable':'Enable'}</button>
 		<br/>
-		Inspection time color <8s: <input type="color" onchange='core.set("optInspectColor8",this.value);'/><br/>
+		Inspection time color < 8s: <input type="color" onchange='core.set("optInspectColor8",this.value);'/><br/>
 		Inspection time color <12s: <input type="color" onchange='core.set("optInspectColor12",this.value);'/><br/>
 		Inspection time color <15s: <input type="color" onchange='core.set("optInspectColor15",this.value);'/><br/>
 		Inspection time color >15s: <input type="color" onchange='core.set("optInspectColor17",this.value);'/><br/>

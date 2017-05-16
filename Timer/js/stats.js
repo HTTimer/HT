@@ -1,6 +1,5 @@
 /*
  * stats.js
- * requires html.js
  */
 
 String.prototype.insert = function(index, string) {
@@ -34,8 +33,8 @@ var stats = (function() {
 
 		code += html.tr("Id", transl("Time"), "Mo3", "Ao5");
 
+		// We build a table with each row containing id, time, current mo3 and current ao5
 		for (i = 0; i < times.length; ++i) {
-			//We build a table row containing id, time, current mo3 and current ao5
 			code += html.tr(
 				(i + 1),
 				math.formatPenalty(times[i]),
@@ -46,7 +45,7 @@ var stats = (function() {
 		code = html.table(code);
 		layout.write("TIMELIST", code);
 
-		//Statistics
+		// Statistics
 		code = "";
 		if (sessions.current().solveType != "FMC" && sessions.current().solveType != "BLD" && sessions.current().solveType != "OH BLD")
 			sizes = [1, 5, 12, 50, 100, 1000, 10000];
@@ -136,7 +135,7 @@ var stats = (function() {
 			solve.scrambletype == "666")
 			flags.push("internal misalignment")
 
-		//Display some general data
+		// Display some general data
 		code = transl("Scramble") + ": " + solve.scramble + "<br/>";
 		if (!core.get("optHideTimeInDetails"))
 			code += "Time: " + math.format(solve.zeit) + "s<br/>";
@@ -148,7 +147,7 @@ var stats = (function() {
 
 		j = i;
 
-		//Display Flags
+		// Display Flags
 		//for (i = 0; i < flags.length; ++i)
 		//code += "<input type='checkbox'" + (solve.flags[i] ? " checked" : "") + " onclick='core.get(\"config\").timeList[core.get(\"config\").currentSession][" + j + "].flags." + flags[i] + "=!core.get(\"config\").timeList[core.get(\"config\").currentSession][" + j + "].flags." + flags[i] + ";'/>" + flags[i] + "\&nbsp;";
 
@@ -193,7 +192,7 @@ var stats = (function() {
 	function display() {
 		var solves, i, pbList, cur, outhtml;
 
-		//Get array of PBs
+		// Get array of PBs
 		solves = core.get("config").timeList[core.get("config").currentSession];
 		cur = +Infinity;
 		pbList = [];
@@ -204,7 +203,7 @@ var stats = (function() {
 			}
 		}
 
-		//Generate table
+		// Generate table
 		outhtml = "<h3>PB improvements</h3>";
 		outhtml += html.tr("ID", "Time", "Improvement", "Solves as PB", "Time as PB", "Date")
 		for (i = 0; i < pbList.length; ++i) {

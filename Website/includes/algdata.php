@@ -21,13 +21,7 @@ function addAlg($alg){
   $lgth=count(explode(" ",$alg))+count(explode("M",$alg))+count(explode("E",$alg))+count(explode("S",$alg))-count(explode("x",$alg))-count(explode("y",$alg))-count(explode("z",$alg));
   $elgth=count(explode(" ",$alg))+count(explode("M",$alg))+count(explode("E",$alg))+count(explode("S",$alg))-3;
   $qlgth=$lgth+count(explode("2",$alg))-1;
-  echo "<tr><td>$counter</td><td>$likes</td><td>$dislikes</td><td>$iusethis</td>
-  <td>$alg</td>
-  <td>$lgth</td>
-  <td>$qlgth</td>
-  <td>$elgth</td>
-  <td><a href='index.php?show=algstats&set=$set&case=$case&nr=$counter' class='btn btn-xs btn-flat'>Show statistics and memo help</a></td>
-  </tr>";
+  echo ",[$counter,$likes,$dislikes,$iusethis,\"$alg\",$lgth,$qlgth,$elgth]";
 }
 ?>
 <div class="container">
@@ -41,14 +35,9 @@ function addAlg($alg){
     </div>
     <table class="table table-condensed table-hover table-striped">
       <thead>
-        <tr><th>ID</th><th>Likes</th><th>Dislikes</th><th>People that use this alg</th><th>Algorithm</th><th>HTM</th><th>QTM</th><th>ETM</th><th>Error</th></tr>
+        <tr><th>ID</th><!--<th>Likes</th><th>Dislikes</th><th>People that use this alg</th>--><th>Algorithm</th><th>HTM</th><th>QTM</th><th>ETM</th><th>Error</th></tr>
       </thead>
-      <tbody>
-        <?php
-        for($i=0;$i<count($algorithms)-1;++$i)
-          addAlg($algorithms[$i]);
-        ?>
-      </tbody>
+      <tbody id="tbody"></tbody>
     </table>
     <?php if($login){ ?><button class="btn btn-success" onclick="window.location.href='../AlgDB/zip.php?set=<?php echo $set; ?>&alg=<?php echo $case; ?>';">Download Algorithms</button><?php } ?>
     <button class="btn btn-success" onclick="showAdd();">Add algorithms</button><br/><br/>
@@ -62,10 +51,23 @@ function addAlg($alg){
 </div>
 
 <script>
+// Get data
+var data=[
+<?php
+for($i=0;$i<count($algorithms)-1;++$i)
+  addAlg($algorithms[$i]);
+?>];
+
+// Set document ready actions
 $(document).ready(function(){
+  display();
   $("table").tablesorter({sortList: [[3,0], [0,0]],theme:"blue"});
   $("table").filterTable();
 });
+
+/*
+ * Rotation
+ */
 // https://medium.freecodecamp.com/the-programming-language-pipeline-91d3f449c919
 // http://imgur.com/a/Gwu73#0
 var currentRotation=0;
@@ -75,12 +77,50 @@ function switchRotation(to){
   document.getElementById("rotationbuttons").children[2].classList.remove("active");
   document.getElementById("rotationbuttons").children[3].classList.remove("active");
   document.getElementById("rotationbuttons").children[currentRotation=to].classList.add("active");
+  display();
 }
 function showAdd(){
   document.getElementById("add").style.display="block";
   addInput();
   window.scrollBy(0,100);
 }
+
+/*
+ * Display
+ */
+function display(){
+  var html="",i;
+  for(i=1;i<data.length;++i){
+    html+="<tr><td>"
+    +data[i][0]+"</td><td>"
+    /*+"<a href='index.php?show=algdb_togglelike&set=<?php echo $set; ?>&case=<?php echo $case; ?>&nr="
+    +data[i][0]+"' class='btn btn-xs btn-flat'>"+
+    +data[i][1]+"</a></td><td><a href='index.php?show=algdb_toggledislike&set=<?php echo $set; ?>&case=<?php echo $case; ?>&nr="
+    +data[i][0]+"' class='btn btn-xs btn-flat'>"
+    +data[i][2]+"</a></td><td><a href='index.php?show=algdb_toggleuse&set=<?php echo $set; ?>&case=<?php echo $case; ?>&nr="
+    +data[i][0]+"' class='btn btn-xs btn-flat'>"
+    +data[i][3]+"</a></td><td>"*/
+    +addY(currentRotation,data[i][4])+"</td><td>"
+    +data[i][5]+"</td><td>"
+    +data[i][6]+"</td><td>"
+    +data[i][7]+"</td><td><a href='index.php?show=algstats&set=<?php echo $set; ?>&case=<?php echo $case; ?>&nr="
+    +data[i][0]+"' class='btn btn-xs btn-flat'>Show statistics and memo help</a></td></tr>";
+  }
+  document.getElementById("tbody").innerHTML=html;
+}
+function addY(number,alg){
+  if(alg[0]!="y")
+    return ["","y","y2","y'"][number]+" "+alg;
+  var a=["","y","y2","y'","","y","y2"][number+{"'":3,"2":2," ":1}[alg[1]]]+" ";
+  alg=alg.split(" ");
+  alg.shift();
+  alg=alg.join(" ");
+  return a+alg;
+}
+
+/*
+ * Submit
+ */
 document.getElementById("add").style.display="none";
 document.getElementById("errors").style.display="none";
 function addInput(){

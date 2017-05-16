@@ -13,6 +13,7 @@
                   $id=$_GET["id"];
 
                   function generate($data){
+                    if(count(explode(",",$data))<2)return;
                     global $case;
                     global $algorithm;
 
@@ -55,7 +56,7 @@
                   $data=explode("\n",$data);
                   $algorithm=$data[0];
                   $case=$data[1];
-                  for($i=2;$i<count($data)-1;$i++){
+                  for($i=2;$i<count($data);$i++){
                     echo generate($data[$i]);
                   }
                   ?>

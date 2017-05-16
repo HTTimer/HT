@@ -88,9 +88,9 @@ var layout = (function() {
 
 	function setTheme(id) {
 		style.convert(themes[id], themes[0]);
-		server.json("../Timer-Server/changeoptions.php?change=theme&value=" + id, function(t) {
+		server.json("../Timer-Server/changeoptions.php", function(t) {
 			console.log("Loaded theme: " + t.response);
-		})
+		}, "change=theme&value=" + id);
 	}
 
 	/*

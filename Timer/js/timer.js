@@ -17,7 +17,7 @@ timer = (function() {
 	 * - Initialize components
 	 */
 
-	var moduleList = ["algSets", "cmd", "core", "counter", "cube", "error", "goals", "html", "layout", "scramble", "sessions", "stats", "keyboard", "translate"];
+	var moduleList = ["algSets", "core", "counter", "cube", "error", "goals", "html", "layout", "scramble", "sessions", "stats", "keyboard", "translate"];
 	var version = ["4", "3", "0", "A"]; // This is the development version, the "real" version 1.0.0 starts at 4.3.0A dev. This is because it was renamed from HTTimer to CMOSTimer at Version HT4.3.0A dev.
 	version = [version[0] - 3, version[1] - 3, version[2]].join(".") + " " + version[3]; // build the real version
 
@@ -28,9 +28,6 @@ timer = (function() {
 
 		//Let the server check, whether the user is logged in. Assume, the user is not, in case it fails.
 		core.set("login", false);
-		server.json("../Timer-Server/isloggedin.php", function(t) {
-			core.set("login", !!t.response);
-		});
 
 		//Check if all modules have been loaded
 		for (i = 0; i < moduleList.length; ++i) {
@@ -52,40 +49,7 @@ timer = (function() {
 
 		//TEST MODE ONLY: Always start new Session
 		config = {
-			timeList: [
-				[{
-					"startTime": 1492862010666,
-					"endTime": 1492862011210,
-					"currentInspection": 461,
-					"zeit": 545,
-					"penalty": 0,
-					"flags": {
-						"fake": false,
-						"uwr": false,
-						"overinspect": false
-					},
-					"scramble": "F2 U L F2 D2 B' D' U L R F2 L' U L' F2 R2 F L B' F2",
-					"scrambletype": "222jsss",
-					"cube": [null, "no cube"],
-					"solveType": "normal",
-					"method": ""
-				}],
-				[],
-				[],
-				[],
-				[],
-				[],
-				[],
-				[],
-				[],
-				[],
-				[],
-				[],
-				[],
-				[],
-				[],
-				[]
-			],
+			timeList: start.timeListData,
 			currentScrambler: "333",
 			customScramblerList: [],
 			algSets: [],
@@ -100,7 +64,7 @@ timer = (function() {
 				"cube": [null, "no cube"],
 				"scramblerType": "222jsss"
 			}, {
-				"phases": 2,
+				"phases": 1,
 				"inspection": 0,
 				"name": "3x3x3",
 				"solveType": "normal",
@@ -220,6 +184,14 @@ timer = (function() {
 				"scrambleType": "333",
 				"cube": [null, "no cube"],
 				"scramblerType": "333"
+			}, {
+				"phases": 1,
+				"inspection": 0,
+				"name": "3x3x3 Feet",
+				"solveType": "FT",
+				"method": "",
+				"scrambleType": "333jsss",
+				"cube": [null, "no cube"]
 			}],
 			currentSession: 0
 		};
@@ -250,16 +222,15 @@ timer = (function() {
 		//Write text to some places
 		layout.write("BOTTOMMENU", `<div class="bottom-menu" onclick="Mousetrap.trigger('o o');"><span class="keycodes">o o (open)/o c (close)</span> Options</div>
 			<div class="bottom-menu" onclick="Mousetrap.trigger('g g');"><span class="keycodes">g g (open) g c (close)</span> Goals</div>
-			<div class="bottom-menu" onclick="Mousetrap.trigger('a a');"><span class="keycodes">a a/a c</span> AlgSets</div>
+			<div class="bottom-menu" onclick="//Mousetrap.trigger('a a');"><span class="keycodes">a a/a c</span> TODO</div>
 			<div class="bottom-menu" onclick="Mousetrap.trigger('i i');"><span class="keycodes">i i/i c</span> Import/Export</div>
 			<div class="bottom-menu" onclick="Mousetrap.trigger('l l');"><span class="keycodes">l l/l c</span> Help</div>
 			<div class="bottom-menu" onclick="Mousetrap.trigger('m m');"><span class="keycodes">m m/m c</span> Collection</div>
 			<div class="bottom-menu" onclick="Mousetrap.trigger('p p');"><span class="keycodes">p p/p c</span> Statistics</div>`);
-		layout.write("LOGO", `CMOSTimer <small onclick="cmd.switchToText()">V${version} ${transl("Alpha Graphic")}</small><span id="timingModeRevert"></span>`);
+		layout.write("LOGO", `CMOSTimer <small>V${version} ${transl("Alpha Graphic")}</small><span id="timingModeRevert"></span>`);
 		layout.write("TIME", `<span class="keycodes">space</span>0.000`);
 		layout.write("PORT", `<button onclick="alert(timer.exportCsv());">Export CSV</button>`);
-		//layout.write("HELP", `<iframe src="../Website/index.php?show=../../Documentation/Documents/help/cmostimer&timerembed" width="100%" height="700"></iframe>This space here is not filled yet.`);
-		document.getElementById("console-output").innerHTML = "You are viewing the text-based mode of CMOSTimer. Type help and press enter to get Help. Press tab to focus command input.<br><span style='color:#22DD22'>HT4.3.0A&gt;</span></span><input class='text-input' id='btn_cmd' type='text'/>"
+		layout.write("HELP", "CMOSTimer is a general speedcubing timer. TODO");
 
 		//Initialize components
 		counter.init();
@@ -268,7 +239,6 @@ timer = (function() {
 		scramble.init();
 		keyboard.init();
 		stats.init();
-		cmd.init();
 		options.init();
 		cube.init(start.myCubes);
 
