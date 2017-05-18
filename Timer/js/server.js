@@ -35,7 +35,7 @@ var server = (function() {
 	function saveTime() {
 		server.json("../Timer-Server/changeoptions.php", function(t) {
 			console.log("Saved data: " + t.response);
-		}, "change=timelist&value=" + JSON.stringify(core.get("config").timeList));
+		}, "change=timelist&value=" + JSON.stringify(core.get("config")));
 	}
 
 	return {

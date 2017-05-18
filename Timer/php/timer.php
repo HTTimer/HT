@@ -30,7 +30,7 @@ for($i=0;$i<count($collection);++$i)
 $collectionString=[];
 for($i=0;$i<count($collection)-1;++$i)
   if($collection[$i][1]==0)
-    $collectionString[$i]='{"company":"'.$collection[$i][3].'","model":"'.$collection[$i][4].'","color":"'.$collection[$i][5].'","identifier":"0040020A"}';
+    $collectionString[$i]='{"company":"'.$collection[$i][3].'","model":"'.$collection[$i][4].'","color":"'.$collection[$i][5].'","identifier":"'.$collection[$i][0].'"}';
 $collectionString=implode(",",$collectionString);
 
 // Get TimeListData

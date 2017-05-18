@@ -48,153 +48,7 @@ timer = (function() {
 		//save in HTExport and HTAutoSave
 
 		//TEST MODE ONLY: Always start new Session
-		config = {
-			timeList: start.timeListData,
-			currentScrambler: "333",
-			customScramblerList: [],
-			algSets: [],
-			goals: [],
-			sessionData: [{
-				"phases": 1,
-				"inspection": 0,
-				"name": "2x2x2",
-				"solveType": "normal",
-				"method": "",
-				"scrambleType": "222jsss",
-				"cube": [null, "no cube"],
-				"scramblerType": "222jsss"
-			}, {
-				"phases": 1,
-				"inspection": 0,
-				"name": "3x3x3",
-				"solveType": "normal",
-				"method": "",
-				"scrambleType": "333jsss",
-				"cube": [null, "no cube"]
-			}, {
-				"phases": 1,
-				"inspection": 0,
-				"name": "4x4x4",
-				"solveType": "normal",
-				"method": "",
-				"scrambleType": "444jsss",
-				"cube": [null, "no cube"]
-			}, {
-				"phases": 1,
-				"inspection": 0,
-				"name": "5x5x5",
-				"solveType": "normal",
-				"method": "",
-				"scrambleType": "555jsss",
-				"cube": [null, "no cube"]
-			}, {
-				"phases": 1,
-				"inspection": 0,
-				"name": "6x6x6",
-				"solveType": "normal",
-				"method": "",
-				"scrambleType": "666jsss",
-				"cube": [null, "no cube"]
-			}, {
-				"phases": 1,
-				"inspection": 0,
-				"name": "7x7x7",
-				"solveType": "normal",
-				"method": "",
-				"scrambleType": "777jsss",
-				"cube": [null, "no cube"]
-			}, {
-				"phases": 1,
-				"inspection": 0,
-				"name": "Pyraminx",
-				"solveType": "normal",
-				"method": "",
-				"scrambleType": "Pyra",
-				"cube": [null, "no cube"]
-			}, {
-				"phases": 1,
-				"inspection": 0,
-				"name": "Megaminx",
-				"solveType": "normal",
-				"method": "",
-				"scrambleType": "Mega",
-				"cube": [null, "no cube"]
-			}, {
-				"phases": 1,
-				"inspection": 0,
-				"name": "3x3x3 Onehanded",
-				"solveType": "OH",
-				"method": "",
-				"scrambleType": "333",
-				"cube": [null, "no cube"]
-			}, {
-				"phases": 1,
-				"inspection": 0,
-				"name": "3x3x3 BLD",
-				"solveType": "BLD",
-				"method": "",
-				"scrambleType": "333",
-				"cube": [null, "no cube"]
-			}, {
-				"phases": 1,
-				"inspection": 0,
-				"name": "4x4x4 BLD",
-				"solveType": "BLD",
-				"method": "",
-				"scrambleType": "444",
-				"cube": [null, "no cube"]
-			}, {
-				"phases": 1,
-				"inspection": 0,
-				"name": "5x5x5 BLD",
-				"solveType": "BLD",
-				"method": "",
-				"scrambleType": "555",
-				"cube": [null, "no cube"]
-			}, {
-				"phases": 1,
-				"inspection": 0,
-				"name": "3x3x3 MBLD",
-				"solveType": "BLD",
-				"method": "",
-				"scrambleType": "333",
-				"cube": [null, "no cube"]
-			}, {
-				"phases": 1,
-				"inspection": 0,
-				"name": "Square-1",
-				"solveType": "normal",
-				"method": "",
-				"scrambleType": "Square1",
-				"cube": [null, "no cube"]
-			}, {
-				"phases": 1,
-				"inspection": 0,
-				"name": "Skewb",
-				"solveType": "normal",
-				"method": "",
-				"scrambleType": "Skewb",
-				"cube": [null, "no cube"]
-			}, {
-				"phases": 1,
-				"inspection": 0,
-				"name": "3x3x3 Fewest moves",
-				"solveType": "normal",
-				"method": "",
-				"scrambleType": "333",
-				"cube": [null, "no cube"],
-				"scramblerType": "333"
-			}, {
-				"phases": 1,
-				"inspection": 0,
-				"name": "3x3x3 Feet",
-				"solveType": "FT",
-				"method": "",
-				"scrambleType": "333jsss",
-				"cube": [null, "no cube"]
-			}],
-			currentSession: 0
-		};
+		config = start.timeListData;
 
 		//Apply stylesheet
 		layout.setTheme(start.timerTheme);
@@ -221,7 +75,7 @@ timer = (function() {
 
 		//Write text to some places
 		layout.write("BOTTOMMENU", `<div class="bottom-menu" onclick="Mousetrap.trigger('o o');"><span class="keycodes">o o (open)/o c (close)</span> Options</div>
-			<div class="bottom-menu" onclick="Mousetrap.trigger('g g');"><span class="keycodes">g g (open) g c (close)</span> Goals</div>
+			<div class="bottom-menu" onclick="Mousetrap.trigger('g g');"><span class="keycodes">g g (open) g c (close)</span> TODO</div>
 			<div class="bottom-menu" onclick="//Mousetrap.trigger('a a');"><span class="keycodes">a a/a c</span> TODO</div>
 			<div class="bottom-menu" onclick="Mousetrap.trigger('i i');"><span class="keycodes">i i/i c</span> Import/Export</div>
 			<div class="bottom-menu" onclick="Mousetrap.trigger('l l');"><span class="keycodes">l l/l c</span> Help</div>
@@ -229,7 +83,7 @@ timer = (function() {
 			<div class="bottom-menu" onclick="Mousetrap.trigger('p p');"><span class="keycodes">p p/p c</span> Statistics</div>`);
 		layout.write("LOGO", `CMOSTimer <small>V${version} ${transl("Alpha Graphic")}</small><span id="timingModeRevert"></span>`);
 		layout.write("TIME", `<span class="keycodes">space</span>0.000`);
-		layout.write("PORT", `<button onclick="alert(timer.exportCsv());">Export CSV</button>`);
+		layout.write("PORT", `<button onclick="importCsTimer();">Import from csTimer</button><button onclick="alert(timer.exportCsv());">Export CSV</button>`);
 		layout.write("HELP", "CMOSTimer is a general speedcubing timer. TODO");
 
 		//Initialize components

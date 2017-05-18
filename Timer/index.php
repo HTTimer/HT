@@ -36,6 +36,7 @@ include ("php/timer.php");
 		<script src="js/progress.js"></script>
 		<script src="js/server.js"></script>
 		<script src="js/cube.js"></script>
+		<script src="js/cstimer.js"></script>
 		<script src="css/timer.js"></script>
 
 		<script src="js/scramble/scramble_NNN.js"></script>

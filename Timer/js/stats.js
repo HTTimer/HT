@@ -221,9 +221,118 @@ var stats = (function() {
 		outhtml = "Generating statistics for current session with " +
 			core.get("config").timeList[core.get("config").currentSession].length +
 			" solves.<br/><br/>" +
-			outhtml;
-
+			outhtml + "<h3>Solve graph</h3><div id='holder'></div>";
 		layout.write("STATISTICS", outhtml);
+
+		Raphael(function() {
+			var sessions = [],
+				values = [];
+			for (i = 0; i < core.get("config").timeList.length; ++i) {
+				sessions.push(core.get("config").sessionData[i].name);
+				values.push([]);
+				for (j = 0; j < core.get("config").timeList[i].length; ++j) {
+					values[i].push(core.get("config").timeList[i][j].zeit);
+				}
+			}
+			var r = Raphael("holder", 620, 250),
+				e = [],
+				clr = [],
+				months = sessions,
+				now = 0,
+				month = r.text(310, 27, months[now]).attr({
+					fill: "#000",
+					stroke: "none",
+					"font": '100 18px "Helvetica Neue", Helvetica, "Arial Unicode MS", Arial, sans-serif'
+				}),
+				rightc = r.circle(364, 27, 10).attr({
+					fill: "#fff",
+					stroke: "none"
+				}),
+				right = r.path("M360,22l10,5 -10,5z").attr({
+					fill: "#000"
+				}),
+				leftc = r.circle(256, 27, 10).attr({
+					fill: "#fff",
+					stroke: "none"
+				}),
+				left = r.path("M260,22l-10,5 10,5z").attr({
+					fill: "#000"
+				}),
+				c = r.path("M0,0").attr({
+					fill: "none",
+					"stroke-width": 4,
+					"stroke-linecap": "round"
+				}),
+				bg = r.path("M0,0").attr({
+					stroke: "none",
+					opacity: .3
+				}),
+				dotsy = [];
+
+			function randomPath(length, j) {
+				var path = "",
+					x = 10,
+					y = 0;
+
+				dotsy[j] = dotsy[j] || [];
+				for (var i = 0; i < length; i++) {
+					dotsy[j][i] = core.get("config").timeList[j][i].zeit / math.worst(core.get("config").timeList[j]) * 200;
+					if (i) {
+						x += 20;
+						y = 240 - dotsy[j][i];
+						path += "," + [x, y];
+					} else {
+						path += "M" + [10, (y = 240 - dotsy[j][i])] + "R";
+					}
+				}
+				return path;
+			}
+			for (var i = 0; i < sessions.length; i++) {
+				values[i] = randomPath(core.get("config").timeList[i].length, i);
+				clr[i] = Raphael.getColor(1);
+			}
+			c.attr({
+				path: values[0],
+				stroke: clr[0]
+			});
+			bg.attr({
+				path: values[0] + "L590,250 10,250z",
+				fill: clr[0]
+			});
+			var animation = function() {
+				var time = 500;
+				if (now == 15) {
+					now = 0;
+				}
+				if (now == -1) {
+					now = 11;
+				}
+				var anim = Raphael.animation({
+					path: values[now],
+					stroke: clr[now]
+				}, time, "<>");
+				c.animate(anim);
+				bg.animateWith(c, anim, {
+					path: values[now] + "L590,250 10,250z",
+					fill: clr[now]
+				}, time, "<>");
+				month.attr({
+					text: months[now]
+				});
+			};
+			var next = function() {
+					now++;
+					animation();
+				},
+				prev = function() {
+					now--;
+					animation();
+				};
+			rightc.click(next);
+			right.click(next);
+			leftc.click(prev);
+			left.click(prev);
+		});
 	}
 
 	return {
