@@ -1,5 +1,4 @@
 <?php
-if(!$login)die("Login");
 $c=$_GET["c"];
 $m=$_GET["m"];
 $d=$_GET["d"];

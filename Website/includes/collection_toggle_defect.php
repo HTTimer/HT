@@ -1,7 +1,5 @@
 <div class="container">
 <?php
-if(!$login)die("Login</div>");
-
 $nr=$_GET["nr"];
 
 $collection=explode("\n",file_get_contents("../Users/$username/Collection"));

@@ -1,6 +1,5 @@
 <div class="container">
 <?php
-if(!$login)die("Login</div>");
 
 $nr=$_GET["nr"];
 

@@ -15,12 +15,12 @@ var sessions = (function() {
 	 * sessions:display()
 	 */
 	function display() {
-		var code = "<select style='width:100%;'>",
+		var code = "<select style='width:100%;' onchange='sessions.changedSelect(this)'>",
 			i, sessionTypes, method, current = sessions.current();
 
 		//Session select menu
 		for (i = 0; i < core.get("config").timeList.length; ++i) {
-			code += "<option" + (i == core.get("config").currentSession ? " selected " : " ") + "onclick='sessions.switchS(" + i + ")'>" + (i + 1) + ".: " + core.get("config").sessionData[i].name;
+			code += "<option" + (i == core.get("config").currentSession ? " selected " : " ") + " value=" + i + ">" + (i + 1) + ".: " + core.get("config").sessionData[i].name;
 		}
 
 		code += "<option onclick='sessions.createSwitchDisplay();'>New</select><br/><select style='width:40%;'>";
@@ -163,12 +163,17 @@ var sessions = (function() {
 		layout.write("TIME", "0.000");
 	}
 
+	function changedSelect(e) {
+		sessions.switchS(e.options[e.selectedIndex].value);
+	}
+
 	return {
 		init: init,
 		display: display,
 		current: current,
 		switchS: switchS,
 		create: create,
-		createSwitchDisplay: createSwitchDisplay
+		createSwitchDisplay: createSwitchDisplay,
+		changedSelect: changedSelect
 	}
 })();

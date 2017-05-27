@@ -98,23 +98,41 @@ After putting in the neccessary data, copy and paste the code into the timer:
     </tbody>
   </table>
 </div>
-</div>
-<!--
-**most important information:**
-I developed a cubing timer, collection manager and algorithm system. You can open it [here](http://cmostimer.000webhostapp.com/CMOSTimer) and view the source code at [github](https://www.github.com/HTTimer/HT). You can register your own account, or use the following test login data:
+</div><!--most important information:
+I developed a cubing timer, collection manager and algorithm system. You can open it here (http://cmostimer.000webhostapp.com/CMOSTimer) and view the source code at github (https://github.com/HTTimer/HT/tree/develop). You can register your own account, or use the following test login data:
 
 Username: testuser2
-
 Password: test
 
-**Continue here for more information**
+Continue here for more information (you don't need to read this)
 
 The "Cubing management and optimization system" includes an algorithm database, timer and cube collection.
-The algorithm database is meant to be an alternative to algdb with a better structure and the ability to select the orientation of the case you prefer. It can also generate memorization help for some algorithms.
 
-The timer is on the level of csTimer. It features sessions for all WCA-Events, more than 70 scramble generators, tracks time, method and cube you used and can generate statistics from this data. A lot of options allow you to change time format, inspection, colors and more.
+The algorithm database is meant to be an alternative to algdb with a better structure and the ability to select the orientation of the case you prefer. It can also generate memorization help for some algorithms. It currently has PLL, OLL, F2L, ZBLL COLL and some 4x4 Parity algorithms.
 
-The collection feature needs some work, but is meant to give an overview of your collection, find the cheapest cubes, generate lists of solves per cube and maybe make suggestion of what cubes you may like. A database of some cube types is included as cubeDB (database). It works as it is giving information about company, model name, type and size (planned: cube store availability and prices), but does not have all speedcubes listed yet.
+The timer is nearly at the level of csTimer. It features sessions for all WCA-Events, more than 50 scramble generators, tracks time, method and cube you used and can generate statistics from this data. A lot of options allow you to change time format, inspection, colors and more. You can import from csTimer. The data is saved automatically on the server and is connected with your account.
 
-To continue development on useful things, I would like to get your feedback what I should improve or what new stuff is worth adding. You can write send it here, write me a message on reddit or use the "Report bug" feature on the site.
+The collection feature needs some work, but is meant to give an overview of your collection, find the cheapest cubes, generate lists of solves per cube and maybe make suggestion of what cubes you may like. A database of some cube types is included as cubeDB. It works as it is giving information about company, model name, type and size (planned: cube store availability and prices), but does not have all speedcubes listed yet.
+
+To continue development on useful things, I would like to get your feedback what I should improve or what new stuff is worth adding. You can send it here, write me a message on speedsolving or reddit or open an issue in github.
+
+
+Rubiks cube timing and progress optimization system
+
+My project idea is a system for optimizing your progress in speedsolving Rubik's cubes. Optimizing should include:
+- measure your times and get statistics like best single time or global average
+- recreate your collection of puzzles virtually and find the cheapest way of upgrading the hardware
+- suggest ways of improving based on your average and execution time of your algorithms
+
+For that, a few more things are needed:
+- database of the most common cube models (and the ability for users to create their own)
+- database of algorithms
+- account management system for accounts to store data for each user individually
+
+You don't need to be able to solve a Rubik's cube or have one to be able to contribute to this project. I chose this topic because it has a lot of possible features and is something some people need.
+It is possible to learn a lot of things with this project: managing a project, website building and designing, databases, ...
+
+As the whole thing is going to be a Website/Web application, it is helpful to understand at least the basics of HTML, CSS and JavaScript. The server-side part is PHP maybe. Having at least one person knowing databases (SQL?) and how to connect them to PHP is helpful, as I only know about storing data in text files.
+I already have experience in parts of the idea like the time measurement system, but the whole project is a bit too big for me.
+If you're interested now, please join!
 -->

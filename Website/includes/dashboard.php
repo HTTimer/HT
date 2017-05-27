@@ -1,9 +1,4 @@
 <div class="container">
-<?php
-if(!$login)
-  die("You must be logged in to view this!");
-
-?>
 <h1>Welcome to your dashboard, <?php echo $username; ?>!</h1>
 <h5>Warning: this site is a beta version. Nothing is garantueed to work.</h5>
 <div class="row">
@@ -34,7 +29,7 @@ if(!$login)
     <ul class="list-group">
       <?php
       $reqs=explode(",",file_get_contents("../Users/$username/Algsets"));
-      for($i=0;$i<count($reqs);++$i){
+      for($i=1;$i<count($reqs);++$i){
         echo "<li class='list-group-item'><a href='index.php?show=algrequest&id=".$reqs[$i]."'>AlgRequest #".$reqs[$i]."</a></li>";
       }
       ?>
@@ -48,7 +43,7 @@ if(!$login)
   </div>
   <div class="col-md-12">
     <!-- Storage -->
-    <!--<h3>Storage</h3>
+    <h3>Storage</h3>
     <?php
       $fz=filesize("../Users/$username/Algsets")
       +filesize("../Users/$username/Collection")
@@ -56,6 +51,7 @@ if(!$login)
       +filesize("../Users/$username/PBs")
       +filesize("../Users/$username/Pointlog")
       +filesize("../Users/$username/Preferences")
+      +filesize("../Users/$username/Timersave")
       +filesize("../Users/$username/Tmp");
       echo round($fz/1048576*1000)/1000;
     ?>MB/10 MB (<?php echo $fz; ?>/10485760 bytes)
@@ -74,8 +70,9 @@ if(!$login)
       echo "Preferences: ".filesize("../Users/$username/Preferences")." bytes<br/>";
       echo "PBs: ".filesize("../Users/$username/PBs")." bytes<br/>";
       echo "Tmp: ".filesize("../Users/$username/Tmp")." bytes<br/>";
+      echo "Timersave: ".filesize("../Users/$username/Timersave")." bytes<br/>";
       ?>
-    </div>-->
+    </div>
   </div>
 </div>
 </div>

@@ -142,6 +142,7 @@ var stats = (function() {
 		code += "Inspction time: " + math.format(solve.currentInspection) + "s<br/>";
 		code += "Start date: " + math.formatDate(solve.startTime) + "<br/>";
 		code += "End date: " + math.formatDate(solve.endTime) + "<br/>";
+		code += "Session: " + sessions.current().name + "<br/>";
 		code += "Penalty: " + (solve.penalty < 0 ? "DNF" : solve.penalty > 1 ? "+2" : "none") + "<br/>";
 		code += "<span onclick='layout.write(\"FLAGS\",\"\")'>Hide details</span>";
 
