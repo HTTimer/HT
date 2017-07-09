@@ -1,6 +1,6 @@
 <div class="container">
 <h1>Welcome to your dashboard, <?php echo $username; ?>!</h1>
-<h5>Warning: this site is a beta version. Nothing is garantueed to work.</h5>
+<h5>Warning: this site is a alpha version. Nothing is garantueed to work.</h5>
 <div class="row">
   <div class="col-md-7">
     <!-- Statistics -->
@@ -9,20 +9,25 @@
     Role: <?php echo $isAdministrator?"Administrator":"User"; ?><br/>
     ...
   </div>
-  <?php if($dashboard_printnews){ ?>
   <div class="col-md-5">
     <h3>News</h3>
     <div class="row">
-      <!-- Newsbot -->
+      <ul>
+        <!-- Newsbot -->
+        <?php
+        $file=explode("\n",file_get_contents("data/newsbot.csv"));
+        for($i=0;$i<5;++$i){
+          echo '<li>'.$file[$i]."</li>";
+        }
+        ?>
+      </ul>
       <?php
-      $file=explode(",",file_get_contents("data/newsbot.csv"));
-      for($i=0;$i<count($file);++$i){
-        echo '<div class="col-md-12">'.$file[$i]."</div>";
+      if(count($file)>5){
+        echo "<ul><a href='index.php?show=viewallnews'>[View more]</a></ul><br/>";
       }
       ?>
     </div>
   </div>
-  <?php } ?>
   <div class="col-md-7">
     <!-- Requests -->
     <h3>Requests</h3>

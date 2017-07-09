@@ -1,9 +1,14 @@
 <?php
 // Check for login
-if(!isset($_COOKIE['HTTimer-login']))
-  die("You must be logged in!");
+$login=false;
+if(isset($_COOKIE['HTTimer-login']))
+  $login=true;
 
-$username=$_COOKIE['HTTimer-login'];
+if(!$login){
+  $username="testuser3";
+}else{
+  $username=$_COOKIE['HTTimer-login'];
+}
 
 // Read preference file
 $preference_file="../Users/$username/Preferences";
@@ -11,12 +16,15 @@ $preferences=file_get_contents($preference_file);
 
 // Define preferenes and defaults
 $timerTheme=0;
+$prefs="";
 
 // Get significant key-value pairs
 $preferences=explode("\n",$preferences);
-for($i=0;$i<count($preferences);++$i){
+for($i=0;$i<count($preferences)-1;++$i){
   if(explode(" ",$preferences[$i])[0]=="TimerTheme")
     $timerTheme=explode(" ",$preferences[$i])[1];
+  $prefs.='"'.explode(" ",$preferences[$i])[0].'":"'.explode(" ",$preferences[$i])[1].'"';
+  if($i<count($preferences)-1-1)$prefs.=",";
 }
 
 // Read Collection file

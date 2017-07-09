@@ -14,5 +14,10 @@ if($change=="theme"){
 }else if($change=="timelist"){
   echo $_POST["value"];
   file_put_contents("../Users/$username/Timersave",$_POST["value"]);
+}else if($change="timestatistics"){
+  echo $_POST["value"];
+  $userfile=explode("\n",file_get_contents("../Users/$username/Preferences"));
+  $userfile[1]="TimeStatistics ".$_POST["value"];
+  file_put_contents("../Users/$username/Preferences",implode("\n",$userfile));
 }
 ?>

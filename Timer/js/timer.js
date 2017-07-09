@@ -41,13 +41,6 @@ timer = (function() {
 			//Do something. I suggest downloading Firefox.  ^_^
 		}
 
-		//@TODO: Backup data
-
-		//Try to load data from previous sessions
-		//Old versions saves will not get lost, as they save in HTexport, while we
-		//save in HTExport and HTAutoSave
-
-		//TEST MODE ONLY: Always start new Session
 		config = start.timeListData;
 
 		//Apply stylesheet
@@ -56,6 +49,7 @@ timer = (function() {
 		//Set variables using core.set (and core.get to get them) are NOT const and will be exported.
 		core.set("running", false);
 		core.set("log", "");
+		core.set("optTimeStatistics", start.TimeStatistics);
 		if (typeof core.list.length === "undefined") {
 			core.set("importVersion", config && config.version || version);
 			core.set("version", version);
@@ -74,12 +68,12 @@ timer = (function() {
 		setInterval(core.displayLog, 500);
 
 		//Write text to some places
-		layout.write("BOTTOMMENU", `<div class="bottom-menu" onclick="Mousetrap.trigger('o o');"><span class="keycodes">o o (open)/o c (close)</span> Options</div>
-			<div class="bottom-menu" onclick="Mousetrap.trigger('g g');"><span class="keycodes">g g (open) g c (close)</span> TODO</div>
-			<div class="bottom-menu" onclick="//Mousetrap.trigger('a a');"><span class="keycodes">a a/a c</span> TODO</div>
+		layout.write("BOTTOMMENU", `<div class="bottom-menu" onclick="Mousetrap.trigger('o o');"><span class="keycodes">o o (open)/o c (close)</span> Disabled</div>
+			<div class="bottom-menu" onclick="Mousetrap.trigger('g g');"><span class="keycodes">g g (open) g c (close)</span> Disabled</div>
+			<div class="bottom-menu" onclick="//Mousetrap.trigger('a a');"><span class="keycodes">a a/a c</span> Disabled</div>
 			<div class="bottom-menu" onclick="Mousetrap.trigger('i i');"><span class="keycodes">i i/i c</span> Import/Export</div>
-			<div class="bottom-menu" onclick="Mousetrap.trigger('l l');"><span class="keycodes">l l/l c</span> Help</div>
-			<div class="bottom-menu" onclick="Mousetrap.trigger('m m');"><span class="keycodes">m m/m c</span> Collection</div>
+			<div class="bottom-menu" onclick="Mousetrap.trigger('l l');"><span class="keycodes">l l/l c</span> Disabled</div>
+			<div class="bottom-menu" onclick="Mousetrap.trigger('m m');"><span class="keycodes">m m/m c</span> Disabled</div>
 			<div class="bottom-menu" onclick="Mousetrap.trigger('p p');"><span class="keycodes">p p/p c</span> Statistics</div>`);
 		layout.write("LOGO", `CMOSTimer <small>V${version} ${transl("Alpha Graphic")}</small><span id="timingModeRevert"></span>`);
 		layout.write("TIME", `<span class="keycodes">space</span>0.000`);

@@ -10,4 +10,5 @@ fclose($handle);
 ?>
 <div class="container">
   The cube was added to your <a href="index.php?show=collection_read">collection</a>.
+  <script>window.location.href="index.php?show=collection_read";</script>
 </div>

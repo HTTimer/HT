@@ -83,6 +83,12 @@ var layout = (function() {
 			["COMPONENTBACKGROUND", "222277"],
 			["MAINCOLOR", "99CC33"],
 			["LIGHTFONT", "444444"]
+		],
+		[
+			["WHITE", "FFF"],
+			["COMPONENTBACKGROUND", "DD0000"],
+			["MAINCOLOR", "BB0000"],
+			["LIGHTFONT", "990000"]
 		]
 	];
 

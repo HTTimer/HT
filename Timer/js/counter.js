@@ -29,6 +29,13 @@ var counter = (function() {
 		init();
 	}
 
+	function enterTimeManually() {
+		var time = prompt("Time in ms");
+		currentStage = -1;
+		startTime = currentInspection = +new Date() - time;
+		startStop();
+	}
+
 	/*
 	 * counter:startStop()
 	 * gets called every time space is pressed
@@ -81,7 +88,8 @@ var counter = (function() {
 						flags: {
 							fake: fake,
 							uwr: false,
-							overinspect: (startTime - currentInspection) > 14999
+							overinspect: (startTime - currentInspection) > 14999,
+							manualInput: startTime == currentInspection
 						},
 						scramble: scramble.getScramble(),
 						scrambletype: scramble.get_type(),
@@ -104,7 +112,7 @@ var counter = (function() {
 				// Reset internal timer
 				startTime = 0;
 				endTime = 0;
-				currentInspection = 0;
+				currentInspection = +(0 == 1);
 				currentStage = 0;
 				break;
 			case 1:
@@ -168,6 +176,7 @@ var counter = (function() {
 	return {
 		init: init,
 		sessionSwitchInit: sessionSwitchInit,
-		startStop: startStop
+		startStop: startStop,
+		enterTimeManually: enterTimeManually
 	}
 })();

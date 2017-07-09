@@ -95,6 +95,36 @@ var sessions = (function() {
 
 		code += "</select><br/><br/>";
 		layout.write("SESSIONSELECT", code);
+
+		var code = "",
+			i;
+
+		//Session select menu
+		for (i = 0; i < core.get("config").timeList.length; ++i) {
+			code += "<div class='sessione' onclick='sessions.switchS(" + i + ")'>" + (i + 1) + ".: " + core.get("config").sessionData[i].name + "</div>";
+		}
+
+		code += "<option onclick='sessions.createSwitchDisplay();'>New</select><br/>";
+
+		//Method menu
+		code += "<select style='width:60%;'>";
+
+		if (typeof method == "string")
+			code += method;
+		else {
+			method.sort();
+			method.push("other");
+			code += "<option>select " + transl("Method") + "</option>";
+			for (i = 0; i < method.length; ++i)
+				code += "<option" + (current.method == method[i] ? " selected " : " ") + "onclick='sessions.current().method=\"" + method[i] + "\";'>" + method[i] + "</option>";
+		}
+
+		code += "</select><br/><select style='width:100%;'><option>" + cube.identifierToName(sessions.current().cube) + "</option>";
+		for (i = 0; i < cube.collection.length; ++i)
+			code += "<option onclick='sessions.current().cube=cube.collection[" + i + "].identifier;'>" + cube.collection[i].name + "</option>";
+
+		code += "</select><br/><br/>";
+		layout.write("MOBSESSIONSELECT", code);
 	}
 
 	/*

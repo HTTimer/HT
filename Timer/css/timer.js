@@ -247,6 +247,12 @@ body {
 /*
  * Style of things inside the components
  */
+ #desktop-graphic {
+	 display:block;
+ }
+ #mobile-graphic {
+	 display:none;
+ }
 
  .inspectfont {
 	 font-size:80pt;
@@ -368,14 +374,6 @@ body {
 	width: 99%;
 	height: 30px;
 	border: 1px solid black;
-}
-
-#desktop-graphic {
-	display: none;
-}
-
-#desktop-text {
-	display: none;
 }
 
 #dropdown-wca {
@@ -807,16 +805,86 @@ a.badge:hover, a.badge:focus {
 		right: 190px;
 	}
 
-	.component-middle {
-		font-size: 90px;
-	}
-
 	.bottom-menu {
 		width: 14%;
 	}
 
+}
+
+@media (max-width:800px) and (min-width:700px){
+	.component-left {
+		left: 0;
+		bottom: 50%;
+		width: 250px;
+		top: 50px;
+	}
+
+	.component-right {
+		left: 0;
+		top: 50%;
+		bottom: 0;
+		width: 250px;
+		overflow-y: scroll;
+		overflow-x: hidden;
+	}
+
+	.component-top {
+		top: 50px;
+		right: 0;
+		left: 251px;
+	}
+
+	.component-bottom {
+		bottom: 0;
+		left: 251px;
+		right: 0;
+		height: 25px;
+	}
+
+	.component-middle {
+		top: 30%;
+		left: 260px;
+		border: none;
+		background-color: #FFFFFF;
+		font-size: 15px;
+	}
+}
+
+@media (max-width:700px){
+	#desktop-graphic {
+		display:none;
+	}
+	#mobile-graphic {
+		display:block;
+	}
+	.component-left, .component-right {
+		display:none;
+		left:0;
+		right:0;
+		top:40px;
+		bottom:20px;
+		width:100%;
+		overflow-y: scroll;
+		overflow-x: hidden;
+	}
 	.component-top, .component-bottom {
-		font-size: 15px !important;
+		left:0;
+		right:0;
+	}
+	.component-middle {
+		left:5%;
+		top:50%;
+		font-size:12px;
+	}
+	.component-logo{
+		font-size:15px !important;
+		height: 40px;
+	}
+	.component-top{
+		top:40px;
+	}
+	.mobileControl,.MOBSESSIONSELECT,.MOBTIME{
+		display:block;
 	}
 }
 
@@ -844,6 +912,17 @@ a.badge:hover, a.badge:focus {
 	font-size: 15pt;
 }
 
+.sessione {
+	width:49%;
+	position:relative;
+	float:left;
+}
+
+.mobileControl > span {
+	border-right: 1px solid black;
+	width:33%;
+}
+
 #begin {
 	margin-left: 10px;
 	margin-right: 10px;
@@ -858,7 +937,7 @@ a.badge:hover, a.badge:focus {
 	function convert(varMapping, defaultVarMapping) {
 		var i, styleM = styleO;
 		for (i = 0; i < varMapping.length; ++i) {
-			if (varMapping[i][1].length != 3 && varMapping[i][1].length != 6)
+			if (varMapping[i][1].length != 3 && varMapping[i][1].length != 6) // Colors in format 000 or 000000 without leading #
 				varMapping[i][1] = defaultVarMapping[i][1];
 			styleM = styleM.replace(new RegExp(varMapping[i][0], 'g'), varMapping[i][1]);
 		}

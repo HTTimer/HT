@@ -26,7 +26,7 @@ var stats = (function() {
 	 * stats:update();
 	 */
 	function update() {
-		var times, i, code, sizes;
+		var times, i, code, sizes, best, current;
 
 		times = core.get("config").timeList[core.get("config").currentSession];
 		code = "";
@@ -47,16 +47,29 @@ var stats = (function() {
 
 		// Statistics
 		code = "";
-		if (sessions.current().solveType != "FMC" && sessions.current().solveType != "BLD" && sessions.current().solveType != "OH BLD")
-			sizes = [1, 5, 12, 50, 100, 1000, 10000];
-		else
-			sizes = [1, 3, 25, 100];
-		if (sessions.current().solveType == "FT")
-			sizes.pop();
+
+		sizes = core.get("optTimeStatistics").split(";")[{
+			"2H": 0,
+			"normal": 0,
+			"OH": 1,
+			"OH BLD": 2,
+			"BLD": 3,
+			"FMC": 4,
+			"FT": 5
+		}[sessions.current().solveType]].split(",");
+		for (var i = 0; i < sizes.length; ++i) {
+			sizes[i] = sizes[i].replace("mo", "");
+			sizes[i] = sizes[i].replace("ao", "");
+			sizes[i] = sizes[i].replace("single", 1);
+		}
 
 		code += html.tr(html.el("b", transl("Statistics")), html.el("b", transl("Best")), html.el("b", transl("Current")));
 		for (i = 0; i < sizes.length; ++i) {
-			code += html.tr("Mo" + sizes[i], math.format(math.bestMean(core.get("config").timeList[core.get("config").currentSession], sizes[i])), math.format(math.currentMean(core.get("config").timeList[core.get("config").currentSession], sizes[i])));
+			best = math.format(math.bestMean(core.get("config").timeList[core.get("config").currentSession], sizes[i])),
+				current = math.format(math.currentMean(core.get("config").timeList[core.get("config").currentSession], sizes[i]));
+			if (best == current && best != "DNF")
+				best += " <b>PB</b>";
+			code += html.tr((sizes[i] < 2 ? "single" : "Ao" + sizes[i]), best, current);
 		}
 		code = html.table(code);
 

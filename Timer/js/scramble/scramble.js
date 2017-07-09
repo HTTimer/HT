@@ -124,7 +124,7 @@ var scramble = (function() {
 	}
 
 	var data = [
-		["WCA", "Random moves", "&lt;R,U&gt;", "&lt;R2,U&gt;", "&lt;RUFDBL&gt;", "Short", "BLD", "BLD Random orientation moves", "Transparent"],
+		["WCA", "Random moves", "&lt;R,U&gt;", "&lt;R2,U&gt;", "&lt;R,U,F,D,B,L&gt;", "Short", "BLD", "BLD Random orientation moves", "Transparent"],
 		["WCA", "Random moves", "&lt;R,U&gt;", "&lt;R,U,F&gt;", "&lt;R,U,L&gt;", "Short", "BLD", "BLD Random orientation moves", "Transparent", "Center orientation", "Half center orientation"],
 		["WCA", "Random moves", "&lt;R,r,U,u&gt;", "Edges only", "Short", "BLD", "BLD Random orientation moves", "Transparent", "Supercube"],
 		["WCA", "Random moves", "&lt;R,r,U,u&gt;", "Edges only", "Short", "BLD", "BLD Random orientation moves", "Center orientation"],
@@ -136,9 +136,9 @@ var scramble = (function() {
 		["WCA", "Random moves", "Sledge scrambler", "CO only"],
 		["1x2x2", "1x3x3", "2x2x3", "2x2x4", "2x2x5", "2x2x6", "3x3x4", "3x3x5", "4x4x2", "4x4x3", "4x4x5", "4x4x6", "4x4x7", "4x4x8", "5x5x3", "5x5x4", "5x5x6", "5x5x7", "6x6x4", "6x6x5", "6x6x8", "7x7x5", "7x7x9"],
 		["Kilominx", "Megaminx", "Master Kilominx", "Gigaminx", "Elite Kilominx", "Teraminx", "Petaminx", "Examinx"],
-		["Master Pyraminx", "Professor Pyraminx", "Pyramorphix", "Mastermorphix", "Megamorphix", "Helicopter cube (jumbled)", "Helicopter cube", "Curvy copter (jumbled", "Curvy copter", "Octahedron (face turning)", "Octahedron (corner turning)"],
+		["Master Pyraminx", "Professor Pyraminx", "Pyramorphix", "Mastermorphix", "Megamorphix", "Helicopter cube (jumbled)", "Helicopter cube", "Curvy copter (jumbled)", "Curvy copter", "Octahedron (face turning)", "Octahedron (corner turning)"],
 		["2x2x2-3x3x3", "2x2x2-4x4x4", "2x2x2-5x5x5", "2x2x2-6x6x6", "2x2x2-7x7x7", "2x2x2-8x8x8", "2x2x2-9x9x9", "Pyraminx, Megaminx, Skewb", "2x2x2, 3x3x3, Pyraminx, Skewb", "WCA", "Parity"],
-		["1x1x1 rotations", "1x1x1 &lt;RUF&gt;", "1x1x1 BLD", "Monominx"]
+		["1x1x1 &lt;x,y,z&gt;", "1x1x1 &lt;R,U,F&gt;", "1x1x1 BLD", "Monominx"]
 	];
 	var data2 = [
 		["222jsss", "222", "222RU", "222R2U", "222RUFDBL", "222sh", "BLD", "222BLDROM", "222T"],
@@ -425,9 +425,10 @@ var scramble = (function() {
 	 * @return ScrambleDefinition
 	 */
 	function scrambleImagescrambler(s) {
+		var newDiv;
 		scramblers[s].scramble();
 		scramblers[s].imagestring(0);
-		var newDiv = document.createElement("div");
+		newDiv = document.createElement("div");
 		scramblers[s].drawScramble(newDiv, scramblers[s].posit, 250, 200);
 		layout.write("SCRAMBLEIMAGE", newDiv.innerHTML);
 		return [ret, [scramblers[s].scramblestring(0)]];
@@ -475,7 +476,7 @@ var scramble = (function() {
 			scrambleMoves = [];
 		if (!oppositeTable) oppositeTable = {};
 
-		// Check: We can't generate a scramble with only one move available and move than one move needed
+		// Check: We can't generate a scramble with only one move available and more than one move needed
 		// Check: We need at least one suffix. It may be "".
 		if ((turns.length < 2 && length > 1) || suffixes.length < 1) return;
 
@@ -514,7 +515,7 @@ var scramble = (function() {
 	 * @param rotations Array[String]
 	 * @param movesPerRow Int
 	 * @param rows Int
-	 * @param Scramble for Dodecahedron with given Moves and size
+	 * @param Scramble for Dodecahedron with given moves and size
 	 */
 	function scrambleMega(turns, rotations, movesPerRow, rows) {
 		var i, j, alg = "",

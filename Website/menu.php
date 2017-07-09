@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-default navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -16,19 +16,21 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CMOSTimer <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="index.php?show=Timer">open CMOSTimer</a></li>
+            <li><a href="index.php?show=cmosoptions">configure CMOSTimer</a></li>
             <!--<li><a href="index.php?show=createcube">Create cube model</a></li>-->
           </ul>
         </li>
-        <li><a href="index.php?show=lscubedb">CubeDB</a></li>
-        <li><a href="index.php?show=lsalgdb ">AlgDB</a></li>
-        <!--<li class="dropdown">
+        <li><a href="index.php?show=lscubedb">CMOSCubeDB</a></li>
+        <li><a href="index.php?show=lsalgdb ">CMOSAlgDB</a></li>
+        <li><a href="index.php?show=../../AlgTrainer/lssets">CMOSAlgPractise</a></li>
+        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cubing resources <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="index.php?show=documents_read">Documents</a></li>
             <li><a href="index.php?show=../../Patterns/index">Patterns</a></li>
             <li><a href="index.php?show=links">Website links</a></li>
           </ul>
-        </li>-->
+        </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Other <span class="caret"></span></a>
           <ul class="dropdown-menu">

@@ -60,7 +60,7 @@ include ("php/timer.php");
 		<!--
 		Graphic mode for Desktop PCs and tablets
 		-->
-		<div id="desktop-graphic" style="display:block;">
+		<div id="desktop-graphic">
 			<!--
 			Initialize containers for components.
 			These will be filled later using javascript.
@@ -75,7 +75,7 @@ include ("php/timer.php");
 				<div class="LOG hidden"></div>
 			</div>
 			<div class="component component-middle">
-				<div class="TIME"></div>
+			<div class="TIME" ondblclick="counter.enterTimeManually()"></div>
 				<div class="FLAGS"></div>
 			</div>
 			<div class="component component-logo LOGO"></div>
@@ -111,7 +111,7 @@ include ("php/timer.php");
 				<img src="img/stackmat.png" width="180" id="stackmat-left" onclick="javascript:if(timer.running){stop();}else{start()};"/>
 				<img src="img/stackmat.png" width="180" id="stackmat-right" onclick="javascript:if(timer.running){stop();}else{start()};"/>
 				<div id="stackmat-displays">
-					<div id="stackmat-display" class="TIME">0.000</div>
+					<div id="stackmat-display" class="TIME" ondblclick="counter.enterTimeManually()">0.000</div>
 					<div id="stackmat-reset" onclick="document.getElementById('stackmat-display').innerHTML='0.000';">&nbsp;</div>
 					<div id="stackmat-on" onclick="document.getElementById('stackmat-display').innerHTML='';">&nbsp;</div>
 					<div id="stackmat-leds">
@@ -119,6 +119,55 @@ include ("php/timer.php");
 						<div id="stackmat-redled">&nbsp;</div>
 					</div>
 				</div>
+			</div>
+		</div>
+
+		<!--
+		Graphic mobile version
+		-->
+		<div id="mobile-graphic">
+			<div class="component component-author">YTCuber</div>
+			<div class="component component-left TIMELIST"></div>
+			<div class="component component-top SCRAMBLE"></div>
+			<div class="component component-right">
+				<div class="MOBSESSIONSELECT"></div>
+				<div class="STATS"></div>
+				<div class="SCRAMBLEIMAGE"></div>
+				<div class="LOG hidden"></div>
+			</div>
+			<div class="component component-middle">
+				<div class="TIME" ontouchend="Mousetrap.trigger('space');" aria-role="pizza" tabindex="-1"></div>
+				<div class="FLAGS"></div>
+			</div>
+			<div class="component component-logo LOGO"></div>
+			<div class="mobileControl component component-bottom">
+				<span onclick="document.getElementsByClassName('component-left')[1].style.display='block';document.getElementsByClassName('component-middle')[1].style.display='none';document.getElementsByClassName('component-top')[1].style.display='none';document.getElementsByClassName('component-right')[1].style.display='none';">View time list</span>
+				<span onclick="document.getElementsByClassName('component-left')[1].style.display='none';document.getElementsByClassName('component-middle')[1].style.display='block';document.getElementsByClassName('component-top')[1].style.display='block';document.getElementsByClassName('component-right')[1].style.display='none';">View Timer</span>
+				<span onclick="document.getElementsByClassName('component-left')[1].style.display='none';document.getElementsByClassName('component-middle')[1].style.display='none';document.getElementsByClassName('component-top')[1].style.display='none';document.getElementsByClassName('component-right')[1].style.display='block';">View Session list</span>
+			</div>
+			<!--
+			Now define the containers for features, which will be above the regular timer
+			-->
+			<div class="options ALGSETS"></div>
+			<div class="options GOALS"></div>
+			<div class="options PORT"></div>
+			<div class="options MUSIC"></div>
+			<div class="options HELP"></div>
+			<div class="options PRACTISE"></div>
+			<div class="options OPTIONS"></div>
+			<div class="options LAYOUT"></div>
+			<div class="options COLLECTION"></div>
+			<div class="options STATISTICS"></div>
+			<div class="options SCRAMBLESELECT">
+				<div class="SCRAMBLESELECT1"></div>
+				<div class="SCRAMBLESELECT2"></div>
+				<div class="SCRAMBLESELECT3"></div>
+				<div class="SCRAMBLESELECT4"></div>
+			</div>
+			<div class="options CUBESELECT"> <!-- NEEEEEEEEE!!!!!!!!!!! DOCH!!!!!!!!! OOOOOH!!!!!!! -->
+				<div class="CUBESELECT1"></div>
+				<div class="CUBESELECT2"></div>
+				<div class="CUBESELECT3"></div>
 			</div>
 		</div>
 
@@ -135,7 +184,8 @@ include ("php/timer.php");
 			timerTheme:<?php echo $timerTheme; ?>,
 			username:"<?php echo $username; ?>",
 			myCubes:[<?php echo $collectionString; ?>],
-			timeListData:<?php echo $timeListData; ?>
+			timeListData:<?php echo $timeListData; ?>,
+			<?php echo $prefs; ?>
 		}
 		</script>
 	</body>

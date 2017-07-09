@@ -14,9 +14,11 @@
   </ul>
   <br/>
   <a class="btn btn-success" href="index.php?show=collection_add">Add cube</a>
+  <?php if(count($collection)>1){ ?>
   <a class="btn btn-success" id="link_a" href="">Remove selected</a>
   <a class="btn btn-success" id="link_b" href="">Mark selected as defect</a>
   <a class="btn btn-success" id="link_c" href="">Toggle defection state on selected</a>
+  <?php } ?>
   <br/><br/>
 </div>
 <script>

@@ -27,7 +27,7 @@
     document.getElementById("out").innerHTML=html;
   }
   function buildS(i,j){
-    var html="Select color: <select>",k,colors=["black","white","stickerless","yellow","red","orange","green","blue","brown","primary","grey","transparent","transparent red","transparent green","transparent blue","transparent stickerless"];
+    var html="Select color: <select>",k,colors=["select","black","white","stickerless","yellow","red","orange","green","blue","brown","primary","grey","transparent","transparent red","transparent green","transparent blue","transparent stickerless"];
     for(k=0;k<colors.length;++k)
       html+="<option onclick='buildFinalize("+i+","+j+",\""+colors[k]+"\")'>"+colors[k]+"</option>";
     html+="</select>";

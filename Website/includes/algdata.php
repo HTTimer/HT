@@ -28,10 +28,10 @@ function addAlg($alg){
   <h1><?php echo "$set/$case"; ?></h1>
   <div>
     Rotation: <div class="btn-group" role="group" id="rotationbuttons">
-      <button type="button" class="btn btn-default active" onclick="switchRotation(0);">none</button>
-      <button type="button" class="btn btn-default" onclick="switchRotation(1);">y</button>
-      <button type="button" class="btn btn-default" onclick="switchRotation(2);">y2</button>
-      <button type="button" class="btn btn-default" onclick="switchRotation(3);">y'</button>
+      <button type="button" class="btn btn-default btn-sm active" onclick="switchRotation(0);">none</button>
+      <button type="button" class="btn btn-default btn-sm" onclick="switchRotation(1);">y</button>
+      <button type="button" class="btn btn-default btn-sm" onclick="switchRotation(2);">y2</button>
+      <button type="button" class="btn btn-default btn-sm" onclick="switchRotation(3);">y'</button>
     </div>
     <table class="table table-condensed table-hover table-striped">
       <thead>
