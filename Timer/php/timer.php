@@ -11,37 +11,63 @@ if(!$login){
 }
 
 // Read preference file
-$preference_file="../Users/$username/Preferences";
-$preferences=file_get_contents($preference_file);
+//$preference_file="../Users/$username/Preferences";
+//$preferences=file_get_contents($preference_file);
 
 // Define preferenes and defaults
-$timerTheme=0;
 $prefs="";
 
 // Get significant key-value pairs
-$preferences=explode("\n",$preferences);
-for($i=0;$i<count($preferences)-1;++$i){
-  if(explode(" ",$preferences[$i])[0]=="TimerTheme")
-    $timerTheme=explode(" ",$preferences[$i])[1];
-  $prefs.='"'.explode(" ",$preferences[$i])[0].'":"'.explode(" ",$preferences[$i])[1].'"';
-  if($i<count($preferences)-1-1)$prefs.=",";
+$sql="SELECT ky,value FROM Configuration WHERE uid=$uid;";
+$result=mysqli_query($db,$sql);
+while($row=mysqli_fetch_assoc($result)){
+  $prefs.='"'.$row["ky"].'":"'.$row["value"].'",';
 }
+$prefs.="'a':0";
 
 // Read Collection file
-$collection_file="../Users/$username/Collection";
-$collection=file_get_contents($collection_file);
-$collection=explode("\n",$collection);
-for($i=0;$i<count($collection);++$i)
-  $collection[$i]=explode(",",$collection[$i]);
+/*$sql="SELECT c.id, d.name, e.name as company, f.name as color
+FROM Collection c
+INNER JOIN CubeDB d on c.cid = d.id
+INNER JOIN CubeDBCompany e on d.cid = e.id
+INNER JOIN CubeDBColors f on c.color = f.id
+WHERE uid=$uid;";
+$collectionString=[];
+$result=mysqli_query($db,$sql);
+while($row=mysqli_fetch_assoc($result)){
+  array_push($collectionString,'{"company":"'.$row["company"].'","model":"'.$row["name"].'","color":"'.$row["color"].'","identifier":'.$row["id"].'}');
+}
 
 // Build Collection JSON
-$collectionString=[];
-for($i=0;$i<count($collection)-1;++$i)
-  if($collection[$i][1]==0)
-    $collectionString[$i]='{"company":"'.$collection[$i][3].'","model":"'.$collection[$i][4].'","color":"'.$collection[$i][5].'","identifier":"'.$collection[$i][0].'"}';
-$collectionString=implode(",",$collectionString);
+$collectionString=implode(",",$collectionString);*/
+$collectionString="";
+
+function scramblertotype($id){
+  $sql="SELECT * FROM Scrambler WHERE id=$id;";
+  global $db;
+  $result=mysqli_query($db,$sql);
+  $cnt=0;
+  while($row=mysqli_fetch_assoc($result)){
+    return substr($row["action"],1);
+  }
+}
+
+// Get Session data
+$sessions=[];
+$sql="SELECT name,scrambler FROM TimeSessions WHERE uid=$uid;";
+$result=mysqli_query($db,$sql);
+$cnt=0;
+while($row=mysqli_fetch_assoc($result)){
+  $cnt++;
+  array_push($sessions,'{"phases":1,"inspection":0,"solveType":"normal","method":"","scrambleType":"'.scramblertotype($row["scrambler"]).'","cube":[null,"no cube"],"scramblerType":"444jsss","name":"'.$row["name"].'"}');
+}
+$sessions=implode(",",$sessions);
 
 // Get TimeListData
-$timeListData_file="../Users/$username/Timersave";
-$timeListData=file_get_contents($timeListData_file);
+$timeListData=[];
+for($i=1;$i<$cnt+1;++$i){
+  $timeListData_file="Users/CMOSTimer-developer/".$i.".session";
+  array_push($timeListData,file_get_contents($timeListData_file));
+}
+$timeListData2=implode(",",$timeListData);
 ?>

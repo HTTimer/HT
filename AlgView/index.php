@@ -1,18 +1,18 @@
 <html data-ng-app="algxApp" data-ng-controller="algxController">
-  <link href="../AlgView/alg.cubing.net.css" rel="stylesheet" type="text/css" />
-  <link href="../AlgView/viewer.css" rel="stylesheet" type="text/css" />
-  <link href="../AlgView/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-  <script src="../AlgView/twisty.js/lib/jquery-1.11.0.min.js"></script>
-  <script src="../AlgView/twisty.js/lib/Three.js"></script>
-  <script src="../AlgView/twisty.js/twisty.js"></script>
-  <script src="../AlgView/twisty.js/alg/alg_jison.js"></script>
-  <script src="../AlgView/twisty.js/alg/alg.js"></script>
-  <script src="../AlgView/twisty.js/puzzles/cube.js"></script>
-  <script src="../AlgView/lib/angular.js"></script>
-  <script src="../AlgView/lib/angular-debounce.js"></script>
-  <script src="../AlgView/lib/clipboard.js"></script>
-  <script src="../AlgView/lib/elastic.js"></script>
-  <script src="../AlgView/alg.cubing.net.js"></script>
+  <link href="includes/AlgView/alg.cubing.net.css" rel="stylesheet" type="text/css" />
+  <link href="includes/AlgView/viewer.css" rel="stylesheet" type="text/css" />
+  <link href="includes/AlgView/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+  <script src="includes/AlgView/twisty.js/lib/jquery-1.11.0.min.js"></script>
+  <script src="includes/AlgView/twisty.js/lib/Three.js"></script>
+  <script src="includes/AlgView/twisty.js/twisty.js"></script>
+  <script src="includes/AlgView/twisty.js/alg/alg_jison.js"></script>
+  <script src="includes/AlgView/twisty.js/alg/alg.js"></script>
+  <script src="includes/AlgView/twisty.js/puzzles/cube.js"></script>
+  <script src="includes/AlgView/lib/angular.js"></script>
+  <script src="includes/AlgView/lib/angular-debounce.js"></script>
+  <script src="includes/AlgView/lib/clipboard.js"></script>
+  <script src="includes/AlgView/lib/elastic.js"></script>
+  <script src="includes/AlgView/alg.cubing.net.js"></script>
   <link href="lib/bootstrap.min.css" rel="stylesheet" />
   <link href="lib/custom.css" rel="stylesheet" />
   <script src="lib/bootstrap.min.js"></script>

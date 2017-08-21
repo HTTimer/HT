@@ -7,6 +7,7 @@ var goals = (function() {
 	 * goals:Init()
 	 */
 	function init() {
+		return;// Goals module is disabled
 		if (typeof core.get("goals") === "undefined")
 			core.set("goals", [
 				[]

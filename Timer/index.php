@@ -11,42 +11,42 @@ include ("php/timer.php");
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<meta http-equiv="expires" content="86400" />
 		<meta name="author" content="YTCuber" />
-		<meta name="description" content="HTTimer is a professional speedcubing timer" />
+		<meta name="description" content="CMOSTimer is a professional speedcubing timer" />
 		<meta name="format-detection" content="telephone=no" />
 		<meta name="keywords" lang="en" content="online,best,cubing,timer,httimer,ht,rubik,rubiks,cube,timing,software,YTCuber" />
 		<meta name="keywords" lang="de" content="online,best,cubing,timer,httimer,ht,rubik,rubiks,cube,timing,software,YTCuber,zeit,mess,messen" />
 		<meta name="robots" content="index,follow" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
 
-		<script src="js/error.js"></script>
-		<script src="js/core.js"></script>
-		<script src="js/math.js"></script>
-		<script src="js/html.js"></script>
-		<script src="js/layout.js"></script>
-		<script src="js/translate.js"></script>
-		<script src="js/sessions.js"></script>
-		<script src="js/scramble/scramble.js"></script>
-		<script src="js/counter.js"></script>
-		<script src="js/stats.js"></script>
-		<script src="js/algSets.js"></script>
-		<script src="js/goals.js"></script>
-		<script src="js/keyboard.js"></script>
-		<script src="js/options.js"></script>
-		<script src="js/timer.js"></script>
-		<script src="js/progress.js"></script>
-		<script src="js/server.js"></script>
-		<script src="js/cube.js"></script>
-		<script src="js/cstimer.js"></script>
-		<script src="css/timer.js"></script>
+		<script src="Timer/js/error.js"></script>
+		<script src="Timer/js/core.js"></script>
+		<script src="Timer/js/math.js"></script>
+		<script src="Timer/js/html.js"></script>
+		<script src="Timer/js/layout.js"></script>
+		<script src="Timer/js/translate.js"></script>
+		<script src="Timer/js/sessions.js"></script>
+		<script src="Timer/js/scramble/scramble.js"></script>
+		<script src="Timer/js/counter.js"></script>
+		<script src="Timer/js/stats.js"></script>
+		<script src="Timer/js/algSets.js"></script>
+		<script src="Timer/js/goals.js"></script>
+		<script src="Timer/js/keyboard.js"></script>
+		<script src="Timer/js/options.js"></script>
+		<script src="Timer/js/timer.js"></script>
+		<script src="Timer/js/progress.js"></script>
+		<script src="Timer/js/server.js"></script>
+		<script src="Timer/js/cube.js"></script>
+		<script src="Timer/js/cstimer.js"></script>
+		<script src="Timer/css/timer.js"></script>
 
-		<script src="js/scramble/scramble_NNN.js"></script>
+		<script src="Timer/js/scramble/scramble_NNN.js"></script>
 		<!--
-		<script src="js/jsss/scramble_sq1.js"></script>
-		<script src="js/jsss/scramble_minx.js"></script>
-		<script src="js/jsss/scramble_clock.js"></script>
-		<script src="js/jsss/scramble_pyram.js"></script>
+		<script src="../Timer/js/jsss/scramble_sq1.js"></script>
+		<script src="../Timer/js/jsss/scramble_minx.js"></script>
+		<script src="../Timer/js/jsss/scramble_clock.js"></script>
+		<script src="../Timer/js/jsss/scramble_pyram.js"></script>
 		-->
-		<script src="js/raphael.min.js"></script>
+		<script src="Timer/js/raphael.min.js"></script>
 
 		<!--
 		Don't include timer.css as we included css/timer.js to allow client-side css editing.
@@ -57,6 +57,11 @@ include ("php/timer.php");
 		<style></style>
 	</head>
 	<body onload="timer.init();">
+		<!--
+		Initialisization message
+		-->
+		<h1>Initializing, please wait ...</h1>
+		
 		<!--
 		Graphic mode for Desktop PCs and tablets
 		-->
@@ -108,8 +113,8 @@ include ("php/timer.php");
 			Components addable to the timer, normally hidden, with absolute positioning, but not full size
 			-->
 			<div class="STACKMAT hidden" id="stackmat-base">
-				<img src="img/stackmat.png" width="180" id="stackmat-left" onclick="javascript:if(timer.running){stop();}else{start()};"/>
-				<img src="img/stackmat.png" width="180" id="stackmat-right" onclick="javascript:if(timer.running){stop();}else{start()};"/>
+				<img src="Timer/img/stackmat.png" width="180" id="stackmat-left" onclick="javascript:if(timer.running){stop();}else{start()};"/>
+				<img src="Timer/img/stackmat.png" width="180" id="stackmat-right" onclick="javascript:if(timer.running){stop();}else{start()};"/>
 				<div id="stackmat-displays">
 					<div id="stackmat-display" class="TIME" ondblclick="counter.enterTimeManually()">0.000</div>
 					<div id="stackmat-reset" onclick="document.getElementById('stackmat-display').innerHTML='0.000';">&nbsp;</div>
@@ -164,7 +169,7 @@ include ("php/timer.php");
 				<div class="SCRAMBLESELECT3"></div>
 				<div class="SCRAMBLESELECT4"></div>
 			</div>
-			<div class="options CUBESELECT"> <!-- NEEEEEEEEE!!!!!!!!!!! DOCH!!!!!!!!! OOOOOH!!!!!!! -->
+			<div class="options CUBESELECT">
 				<div class="CUBESELECT1"></div>
 				<div class="CUBESELECT2"></div>
 				<div class="CUBESELECT3"></div>
@@ -181,10 +186,11 @@ include ("php/timer.php");
 		<script>
 		// Set values read from PHP
 		var start={
-			timerTheme:<?php echo $timerTheme; ?>,
 			username:"<?php echo $username; ?>",
 			myCubes:[<?php echo $collectionString; ?>],
-			timeListData:<?php echo $timeListData; ?>,
+			timeList:[<?php echo $timeListData2; ?>],
+			sessions:[<?php echo $sessions; ?>],
+			currentSession:0,
 			<?php echo $prefs; ?>
 		}
 		</script>

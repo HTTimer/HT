@@ -50,7 +50,7 @@ var scramble = (function() {
 				<span style='float:left;'>
 					<table cellspacing="0" cellpadding="0">
 						<tr>
-							<td class='SCRAMBLERSELECT'><span class='item' onclick="scramble.drawSelect();">${transl("Select scrambler")}</span></td>
+							<td class='SCRAMBLERSELECT'><!--<span class='item' onclick="scramble.drawSelect();">${transl("Select scrambler")}</span>--></td>
 						</tr>
 					</table>
 				</span>
@@ -304,7 +304,8 @@ var scramble = (function() {
 			"775": [scramble, [cuboidMoves(7, 5), noSuffix, 175]],
 			"779": [scramble, [cuboidMoves(7, 9), noSuffix, 175]]
 		};
-
+		//hack\
+		//type=[,"222jsss","333jsss"][type]||"222jsss";
 		// Get needed definition
 		var definition = typeToDefinitionsMapping[type] || defaultScrambler;
 

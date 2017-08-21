@@ -67,7 +67,10 @@ var stats = (function() {
 		for (i = 0; i < sizes.length; ++i) {
 			best = math.format(math.bestMean(core.get("config").timeList[core.get("config").currentSession], sizes[i])),
 				current = math.format(math.currentMean(core.get("config").timeList[core.get("config").currentSession], sizes[i]));
-			if (best == current && best != "DNF")
+			var b = best == current;
+			if (b && best != "DNF" && (core.get("optDisplayPb") > 1))
+				best = "<b>" + best + "</b>";
+			if (b && current != "DNF" && ((core.get("optDisplayPb") - 1) % 2 == 0))
 				best += " <b>PB</b>";
 			code += html.tr((sizes[i] < 2 ? "single" : "Ao" + sizes[i]), best, current);
 		}

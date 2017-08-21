@@ -186,7 +186,6 @@ var sessions = (function() {
 		//Some things need to do some init actions
 		scramble.sessionSwitchInit();
 		counter.sessionSwitchInit();
-		goals.sessionSwitchInit();
 		stats.sessionSwitchInit();
 		stats.update();
 		sessions.display();

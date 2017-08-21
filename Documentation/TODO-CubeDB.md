@@ -1,3 +1,0 @@
-#CubeDB-TODO
-
- - defective cubes

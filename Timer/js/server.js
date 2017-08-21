@@ -33,9 +33,9 @@ var server = (function() {
 	}
 
 	function saveTime() {
-		server.json("../Timer-Server/changeoptions.php", function(t) {
+		server.json("Timer-Server/changeoptions.php", function(t) {
 			console.log("Saved data: " + t.response);
-		}, "change=timelist&value=" + JSON.stringify(core.get("config")));
+		}, "change=timelist&session="+core.get("config").currentSession+"&value=" + JSON.stringify(core.get("config").timeList[core.get("config").currentSession]));
 	}
 
 	return {

@@ -286,7 +286,7 @@ var keyboard = (function() {
 	 */
 	function init() {
 		Mousetrap.bind("space", counter.startStop);
-		Mousetrap.bind("o o", function() {
+		Mousetrap.bind("c m o s t i m e r", function() {
 			document.getElementsByClassName('OPTIONS')[0].style.display = "block";
 			options.display();
 			options.draw();
@@ -311,7 +311,7 @@ var keyboard = (function() {
 			closeMessage("l");
 		});
 		Mousetrap.bind("m m", function() {
-			document.getElementsByClassName('COLLECTION')[0].style.display = "block";
+			//document.getElementsByClassName('COLLECTION')[0].style.display = "block";
 			cube.display_collection();
 			closeMessage("m");
 		});
@@ -322,27 +322,39 @@ var keyboard = (function() {
 		});
 		Mousetrap.bind("o c", function() {
 			document.getElementsByClassName('OPTIONS')[0].style.display = "none";
+			document.getElementsByClassName("BOTTOMMENU")[0].innerHTML = "";
 		});
 		Mousetrap.bind("g c", function() {
 			document.getElementsByClassName('GOALS')[0].style.display = "none";
+			document.getElementsByClassName("BOTTOMMENU")[0].innerHTML = "";
 		});
 		Mousetrap.bind("a c", function() {
 			document.getElementsByClassName('ALGSETS')[0].style.display = "none";
+			document.getElementsByClassName("BOTTOMMENU")[0].innerHTML = "";
 		});
 		Mousetrap.bind("i c", function() {
 			document.getElementsByClassName('PORT')[0].style.display = "none";
+			document.getElementsByClassName("BOTTOMMENU")[0].innerHTML = "";
 		});
 		Mousetrap.bind("l c", function() {
 			document.getElementsByClassName('HELP')[0].style.display = "none";
+			document.getElementsByClassName("BOTTOMMENU")[0].innerHTML = "";
 		});
 		Mousetrap.bind("m c", function() {
 			document.getElementsByClassName('COLLECTION')[0].style.display = "none";
+			document.getElementsByClassName("BOTTOMMENU")[0].innerHTML = "";
 		});
 		Mousetrap.bind("p c", function() {
 			document.getElementsByClassName('STATISTICS')[0].style.display = "none";
+			document.getElementsByClassName("BOTTOMMENU")[0].innerHTML = "";
 		});
-		Mousetrap.bind("ctrl", keyboard.displayKeys, "keydown");
-		Mousetrap.bind("ctrl", keyboard.undisplayKeys, "keyup");
+		Mousetrap.bind("a c", function() {
+			document.getElementsByClassName('STATISTICS')[0].style.display = "none";
+			document.getElementsByClassName("BOTTOMMENU")[0].innerHTML = "";
+			close();
+		});
+		//Mousetrap.bind("ctrl", keyboard.displayKeys, "keydown");
+		//Mousetrap.bind("ctrl", keyboard.undisplayKeys, "keyup");
 	}
 
 	/*
@@ -357,7 +369,7 @@ var keyboard = (function() {
 	 * displays the message how to close the overlaying windows
 	 */
 	function closeMessage(key) {
-		document.getElementsByClassName("BOTTOMMENU")[0].innerHTML = "<button onclick='keyboard.close();'>close (" + key + " c)</button>";
+		document.getElementsByClassName("BOTTOMMENU")[0].innerHTML = "CMOSTimer options and debug tool open";
 	}
 
 	function close() {
@@ -368,13 +380,14 @@ var keyboard = (function() {
 		Mousetrap.trigger("l c");
 		Mousetrap.trigger("m c");
 		Mousetrap.trigger("p c");
-		document.getElementsByClassName("BOTTOMMENU")[0].innerHTML = `<div class="bottom-menu" onclick="Mousetrap.trigger('o o');"><span class="keycodes">o o (open)/o c (close)</span> Options</div>
+		document.getElementsByClassName("BOTTOMMENU")[0].innerHTML = "";
+		/*document.getElementsByClassName("BOTTOMMENU")[0].innerHTML = `<div class="bottom-menu" onclick="Mousetrap.trigger('o o');"><span class="keycodes">o o (open)/o c (close)</span> Options</div>
 			<div class="bottom-menu" onclick="Mousetrap.trigger('g g');"><span class="keycodes">g g (open) g c (close)</span> Goals</div>
 			<div class="bottom-menu" onclick="Mousetrap.trigger('a a');"><span class="keycodes">a a/a c</span> AlgSets</div>
 			<div class="bottom-menu" onclick="Mousetrap.trigger('i i');"><span class="keycodes">i i/i c</span> Import/Export</div>
 			<div class="bottom-menu" onclick="Mousetrap.trigger('l l');"><span class="keycodes">l l/l c</span> Help</div>
 			<div class="bottom-menu" onclick="Mousetrap.trigger('m m');"><span class="keycodes">m m/m c</span> Collection</div>
-			<div class="bottom-menu" onclick="Mousetrap.trigger('p p');"><span class="keycodes">p p/p c</span> Statistics</div>`;
+			<div class="bottom-menu" onclick="Mousetrap.trigger('p p');"><span class="keycodes">p p/p c</span> Statistics</div>`;*/
 	}
 
 	/*

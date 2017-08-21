@@ -89,12 +89,90 @@ var layout = (function() {
 			["COMPONENTBACKGROUND", "DD0000"],
 			["MAINCOLOR", "BB0000"],
 			["LIGHTFONT", "990000"]
+		],
+		[
+			["WHITE", "FFF"],
+			["COMPONENTBACKGROUND", "800080"],
+			["MAINCOLOR", "722272"],
+			["LIGHTFONT", "633363"]
+		],
+		[
+			["WHITE", "000"],
+			["COMPONENTBACKGROUND", "FF1493"],
+			["MAINCOLOR", "EE0382"],
+			["LIGHTFONT", "DD0271"]
+		],
+		//PREDEFINED
+		[
+			["WHITE", "FFF"],
+			["COMPONENTBACKGROUND", "DDDD00"],
+			["MAINCOLOR", "FFFF00"],
+			["LIGHTFONT", "555555"]
+		],
+		[
+			["WHITE", "FFF"],
+			["COMPONENTBACKGROUND", "EEBB11"],
+			["MAINCOLOR", "FFA500"],
+			["LIGHTFONT", "444443"]
+		],
+		[
+			["WHITE", "FFF"],
+			["COMPONENTBACKGROUND", "44DD33"],
+			["MAINCOLOR", "AAEE00"],
+			["LIGHTFONT", "232323"]
+		],
+		[
+			["WHITE", "EEE"],
+			["COMPONENTBACKGROUND", "1111EE"],
+			["MAINCOLOR", "3333BB"],
+			["LIGHTFONT", "444443"]
+		],
+		//CUSTOM
+		[
+
+		],
+		//PREDEFINED
+		[
+			["WHITE", "FFF"],
+			["COMPONENTBACKGROUND", "2961e8"],
+			["MAINCOLOR", "21bcdf"],
+			["LIGHTFONT", "444444"]
+		],
+		[
+			["WHITE", "FFF"],
+			["COMPONENTBACKGROUND", "99CC33"],
+			["MAINCOLOR", "222277"],
+			["LIGHTFONT", "444444"]
+		],
+		[
+			["WHITE", "FFF"],
+			["COMPONENTBACKGROUND", "BB0000"],
+			["MAINCOLOR", "DD0000"],
+			["LIGHTFONT", "990000"]
+		],
+		[
+			["WHITE", "FFF"],
+			["COMPONENTBACKGROUND", "722272"],
+			["MAINCOLOR", "800080"],
+			["LIGHTFONT", "633363"]
+		],
+		[
+			["WHITE", "000"],
+			["COMPONENTBACKGROUND", "EE0382"],
+			["MAINCOLOR", "FF1493"],
+			["LIGHTFONT", "DD0271"]
+		],
+		[
+			["WHITE", "FFF"],
+			["COMPONENTBACKGROUND", "CCC"],
+			["MAINCOLOR", "F5F5F5"],
+			["LIGHTFONT", "444444"]
 		]
 	];
 
 	function setTheme(id) {
 		style.convert(themes[id], themes[0]);
-		server.json("../Timer-Server/changeoptions.php", function(t) {
+		server.json("Timer-Server/changeoptions.php", function(t) {
 			console.log("Loaded theme: " + t.response);
 		}, "change=theme&value=" + id);
 	}
