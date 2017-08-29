@@ -3,9 +3,10 @@
   <ul>
     <!-- Newsbot -->
     <?php
-    $file=explode("\n",file_get_contents("data/newsbot.csv"));
-    for($i=0;$i<count($file)-1;++$i){
-      echo '<li>'.$file[$i]."</li>";
+    $sql="SELECT type,content FROM News;";
+    $result=mysqli_query($db,$sql);
+    while($row=mysqli_fetch_assoc($result)){
+      echo '<li>'.$row["content"].[" added to CubeDB",""," added to AlgDB"][$row["type"]]."</li>";
     }
     ?>
   </ul>

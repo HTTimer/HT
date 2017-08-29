@@ -22,7 +22,7 @@ var math = (function() {
 		cntdnf = 0;
 		cnttime = 0;
 		for (i = 0; i < times.length; ++i) {
-			if (times[i].zeit > 0) sum += times[i].zeit;
+			if (times[i].penalty > -1) sum += times[i].zeit + times[i].penalty;
 			else cntdnf++;
 			cnttime++;
 		}
@@ -36,20 +36,39 @@ var math = (function() {
 	 * math:getAverage(times)
 	 * @param times Array of solves to get an average of
 	 * @returns average of times, or -1 in case of DNF
-	 * @Todo remove best and worst 5%
 	 */
 	function getAverage(times) {
 		var cntdnf, cnttime, sum, i;
 		cntdnf = 0;
 		cnttime = 0;
 		sum = 0;
+		if (times.length < 101)
+			return getAverage19 (times);
 		for (i = 0; i < times.length; ++i) {
-			if (times[i].zeit > 0) sum += times[i].zeit,
+			if (times[i].penalty > -1) sum += times[i].zeit + times[i].penalty,
 				cnttime++;
 			else cntdnf++;
 		}
-		if (cntdnf > times.length * 0.05) return DNF;
+		if (cntdnf > (1 + times.length * 0.05)) return DNF;
 		return sum / (cnttime);
+	}
+
+	function getAverage19(times) {
+		var cntdnf, cnttime, sum, i, max, min;
+		cntdnf = 0;
+		cnttime = 0;
+		sum = 0;
+		max = 0;
+		min = +Infinity;
+		for (i = 0; i < times.length; ++i) {
+			if (times[i].penalty > -1) sum += times[i].zeit + times[i].penalty,
+				cnttime++;
+			else cntdnf++;
+			if(times[i].zeit + times[i].penalty < min) min = times[i].zeit + times[i].penalty;
+			if(times[i].zeit + times[i].penalty > max) max = times[i].zeit + times[i].penalty;
+		}
+		if (cntdnf > (1+ times.length * 0.05)) return DNF;
+		return (sum - min - (cntdnf==0?max:0)) / (cnttime + (cntdnf==0?-2:-1));
 	}
 
 	/*
@@ -58,11 +77,11 @@ var math = (function() {
 	 * @returns the best time
 	 */
 	function getBest(times) {
-		var best = DNF,
+		var best = Infinity,
 			i;
 		for (i = 0; i < times.length; ++i)
-			if (times[i].zeit < best) best = times[i].zeit;
-		return best;
+			if (times[i].zeit < best && times[i].penalty > -1) best = times[i].zeit + times[i].penalty;
+		return best==Infinity?DNF:best;
 	}
 
 	/*
@@ -73,8 +92,10 @@ var math = (function() {
 	function getWorst(times) {
 		var worst = DNF,
 			i;
-		for (i = 0; i < times.length; ++i)
-			if (times[i].zeit > worst) worst = times[i].zeit;
+		for (i = 0; i < times.length; ++i){
+			if (times[i].zeit > worst) worst = times[i].zeit + times[i].penalty;
+			if (times[i].penalty < 0) return DNF;
+		}
 		return worst;
 	}
 
@@ -84,14 +105,27 @@ var math = (function() {
 	 * @param off Int average size
 	 * @returns best mean of off of all given times
 	 */
-	function getBestMean(times, off) {
+	function getBestMean(times, off, meanaverage) {
+		var best = +Infinity,
+			i, j, averageTimeList;
+		if (times.length < off) return DNF;
+		if (meanaverage == "a") return getBestAverage(times,off);
+		for (i = off; i < times.length; ++i) {
+			averageTimeList = [];
+			for (j = 0; j < off; ++j) averageTimeList.push(times[i - j]);
+			if (getMean(averageTimeList) < best && getMean(averageTimeList) > 0) best = getMean(averageTimeList);
+		}
+		return best == +Infinity ? DNF : best;
+	}
+
+	function getBestAverage(times, off) {
 		var best = +Infinity,
 			i, j, averageTimeList;
 		if (times.length < off) return DNF;
 		for (i = off; i < times.length; ++i) {
 			averageTimeList = [];
 			for (j = 0; j < off; ++j) averageTimeList.push(times[i - j]);
-			if (getAverage(averageTimeList) < best) best = getAverage(averageTimeList);
+			if (getAverage(averageTimeList) < best && getAverage(averageTimeList) > 0) best = getAverage(averageTimeList);
 		}
 		return best == +Infinity ? DNF : best;
 	}
@@ -102,13 +136,23 @@ var math = (function() {
 	 * @param off Int average size
 	 * @returns current mean of off of all given times
 	 */
-	function getCurrentMean(times, off) {
+	function getCurrentMean(times, off, meanaverage) {
+		var newTimes = [],
+			i;
+		if (times.length < off) return DNF;
+		if (meanaverage == "a") return getCurrentAverage(times,off);
+		for (i = times.length - 1; i > times.length - off - 1; --i)
+			newTimes.push(times[i]);
+		return getMean(newTimes);
+	}
+
+	function getCurrentAverage(times, off) {
 		var newTimes = [],
 			i;
 		if (times.length < off) return DNF;
 		for (i = times.length - 1; i > times.length - off - 1; --i)
 			newTimes.push(times[i]);
-		return getMean(newTimes);
+		return getAverage(newTimes);
 	}
 
 	/*

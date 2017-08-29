@@ -4,12 +4,13 @@ $pass=$_POST['pword'];
 
 $sql="SELECT * FROM Users WHERE uname='$uname' and pw='$pass';";
 $result=mysqli_query($db,$sql);
+$id=mysqli_fetch_assoc($result);
 $login=mysqli_num_rows($result)>0;
 
 if($login){
+	setcookie("HTTimer-login",$id["id"],0,"/");
 	echo "Logged in successfully. Redirecting ...";
 	echo "<script>window.location.href='index.php'</script></script>";
-	setcookie("HTTimer-login",$uname,0,"/");
 }else{
 	echo "Wrong username or password";
 	$cookiesSet = array_keys($_COOKIE);

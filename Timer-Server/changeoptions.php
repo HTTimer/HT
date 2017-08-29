@@ -19,7 +19,7 @@ if($change=="theme"){
   $sql="UPDATE Configuration SET value='$_POST[value]' WHERE uid=1 AND ky='TimerTheme';";
   $result=mysqli_query($db,$sql);
 }else if($change=="timelist"){
-  echo $_POST["value"];
+  echo $_POST["session"];
   file_put_contents("../Users/CMOSTimer-developer/".($_POST["session"]+1).".session",$_POST["value"]);
   //file_put_contents("totalsolves",file_get_contents("totalsolves")+1);
   //file_put_contents("../Users/$username/Totalsolves",file_get_contents("../Users/$username/Totalsolves")+1);

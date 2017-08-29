@@ -5,8 +5,9 @@
 <div class="modal-dialog">
 	<div class="loginmodal-container">
 		<h1>Register your new CMOSTimer Account</h1><br>
-		<form action="doregister.php" method="POST">
+		<form action="index.php?show=Timer-Server/doregister" method="POST">
 			<input type="text" name="uname" placeholder="Username"/>
+			<input type="text" name="email" placeholder="Email"/>
 			<input type="text" name="wca" placeholder="WCA-Id (if existing)"/>
 			<input type="password" name="pword" placeholder="Password"/>
 			<input type="password" name="pword2" placeholder="Repeat Password"/>

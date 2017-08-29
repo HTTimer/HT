@@ -11,7 +11,7 @@
   while($row=mysqli_fetch_assoc($result)){
     echo "<a nohref='nohref' class='list-group-item'>
       <h4 class='list-group-item-heading'>from $row[uname]: $row[header]</h4>
-      <p class='list-group-item-text'>$row[content]</p>
+      <p class='list-group-item-text'>".nl2br($row["content"])."</p>
     </a>";
   }
   ?>
@@ -28,7 +28,7 @@
   while($row=mysqli_fetch_assoc($result)){
     echo "<a nohref='nohref' class='list-group-item'>
       <h4 class='list-group-item-heading'>to $row[uname]: $row[header]</h4>
-      <p class='list-group-item-text'>$row[content]</p>
+      <p class='list-group-item-text'>".nl2br($row["content"])."</p>
     </a>";
   }
   ?>

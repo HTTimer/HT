@@ -5,14 +5,14 @@
 			<!-- PRICE ITEM -->
 			<div class="panel price panel-grey">
 				<div class="panel-heading  text-center">
-				<h3>FREE PLAN</h3>
+				<h3>FREE</h3>
 				</div>
 				<div class="panel-body text-center">
 					<p class="lead" style="font-size:40px"><strong>$0</strong></p>
 				</div>
 				<ul class="list-group list-group-flush text-center">
 					<li class="list-group-item"><i class="icon-ok text-danger"></i> Access to CMOSTimer, CubeDB, AlgDB<br/>&nbsp;</li>
-					<li class="list-group-item"><i class="icon-ok text-danger"></i> 10 Mb Storage <small>[3]</small></li>
+					<li class="list-group-item"><i class="icon-ok text-danger"></i> 25 Mb Storage <small>[3]</small></li>
 					<li class="list-group-item">                                    &nbsp;</li>
 				</ul>
 				<div class="panel-footer">
@@ -21,36 +21,18 @@
 			</div>
 			<!-- /PRICE ITEM -->
 		</div>
-    <!-- <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-      <div class="panel price panel-red">
-        <div class="panel-heading arrow_box text-center">
-        <h3>DEV PLAN</h3>
-        </div>
-        <div class="panel-body text-center">
-          <p class="lead" style="font-size:40px"><strong>$0 / month</strong></p>
-        </div>
-        <ul class="list-group list-group-flush text-center">
-          <li class="list-group-item"><i class="icon-ok text-success"></i> Access to CMOSTimer, CubeDB, AlgDB</li>
-          <li class="list-group-item"><i class="icon-ok text-success"></i> 10 saved custom cubes</li>
-          <li class="list-group-item"><i class="icon-ok text-success"></i> Access to source code</li>
-        </ul>
-        <div class="panel-footer">
-          <a class="btn btn-lg btn-block btn-danger" href="#">GET NOW!</a>
-        </div>
-      </div>
-    </div> -->
 		<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
 			<!-- PRICE ITEM -->
 			<div class="panel price panel-green">
 				<div class="panel-heading arrow_box text-center">
-				<h3>NORMAL PLAN</h3>
+				<h3>NORMAL</h3>
 				</div>
 				<div class="panel-body text-center">
-					<p class="lead" style="font-size:40px"><strong>$25 / year</strong></p>
+					<p class="lead" style="font-size:40px"><strong>$42 once</strong></p>
 				</div>
 				<ul class="list-group list-group-flush text-center">
 					<li class="list-group-item"><i class="icon-ok text-info"></i> Access to CMOSTimer, CubeDB, AlgDB, AlgPractise</li>
-					<li class="list-group-item"><i class="icon-ok text-info"></i> 250 Mb Storage <small>[3]</small></li>
+					<li class="list-group-item"><i class="icon-ok text-info"></i> 500 Mb Storage <small>[3]</small></li>
 					<li class="list-group-item"><i class="icon-ok text-info"></i> Username shows as Pro-User <small>[2]</small></li>
 				</ul>
 				<div class="panel-footer">
@@ -63,10 +45,10 @@
 			<!-- PRICE ITEM -->
 			<div class="panel price panel-blue">
 				<div class="panel-heading arrow_box text-center">
-				<h3>PRO PLAN</h3>
+				<h3>PRO</h3>
 				</div>
 				<div class="panel-body text-center">
-					<p class="lead" style="font-size:40px"><strong>$3 / month</strong></p>
+					<p class="lead" style="font-size:40px"><strong>$5 / month</strong></p>
 				</div>
 				<ul class="list-group list-group-flush text-center">
 					<li class="list-group-item"><i class="icon-ok text-success"></i> Access to CMOSTimer, CubeDB, AlgDB, AlgPractise</li>

@@ -1,0 +1,25 @@
+F Feature
+B Bug
+
+
+V1.0.0 public:
+- B Goal finished in DataBase
+- B Compress JS from CMOSTimer
+- B AlgRequest history
+- B CubeRequest show on dashboard and show history
+
+
+V1.1.0 public:
+- F Redi cube scrambler
+- F custom scrambler
+- F 1000 reasons for ... lists
+- F Show number of results in AlgSearch
+- F AlgSearch: filter by Set and order columns asc/desc (like CubeDB)
+- F Method list
+- B/F Save cube and method with session set in CMOSTimer
+
+
+V1.2.0 public:
+- F AlgDB Statistic: Average algorithm length (HTM,ETM,STM,QTM)
+- F CubingRace
+- F Competitions

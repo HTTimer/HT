@@ -1,13 +1,12 @@
 <div class="container">
 <h1>Welcome to your dashboard, <?php echo $username; ?>!</h1>
-<h5>Warning: this site is a alpha version. Nothing is garantueed to work.</h5>
 <div class="row">
   <div class="col-md-7">
     <!-- Statistics -->
     <h3>Statistics</h3>
     Username: <?php echo $username; ?><br/>
     Role: <?php echo $isAdministrator?"Administrator":"User"; ?><br/>
-    ...
+    Version of CMOS: <?php echo $version; ?><br/>
   </div>
   <div class="col-md-5">
     <h3>News</h3>
@@ -15,35 +14,28 @@
       <ul>
         <!-- Newsbot -->
         <?php
-        $file=explode("\n",file_get_contents("data/newsbot.csv"));
-        for($i=0;$i<5;++$i){
-          echo '<li>'.$file[$i]."</li>";
+        $sql="SELECT type,content FROM News ORDER BY id DESC LIMIT 5;";
+        $result=mysqli_query($db,$sql);
+        while($row=mysqli_fetch_assoc($result)){
+          echo '<li>'.$row["content"].[" added to CubeDB",""," added to AlgDB"][$row["type"]]."</li>";
         }
         ?>
       </ul>
-      <?php
-      if(count($file)>5){
-        echo "<ul><a href='index.php?show=viewallnews'>[View more]</a></ul><br/>";
-      }
-      ?>
+      <ul><a href='index.php?show=viewallnews'>[View all]</a></ul><br/>
     </div>
   </div>
   <div class="col-md-7">
     <!-- Requests -->
-    <!--<h3>Requests</h3>
+    <h3>Requests</h3>
     <ul class="list-group">
       <?php
-      $reqs=explode(",",file_get_contents("../Users/$username/Algsets"));
-      for($i=1;$i<count($reqs);++$i){
-        echo "<li class='list-group-item'><a href='index.php?show=algrequest&id=".$reqs[$i]."'>AlgRequest #".$reqs[$i]."</a></li>";
-      }
       $sql="SELECT c.id,c.name,a.name AS company FROM CubeDBRequests c INNER JOIN CubeDBCompany a ON a.id=c.cid WHERE uid=$uid;";
       $result=mysqli_query($db,$sql);
       while($row=mysqli_fetch_assoc($result)){
         echo "<li class='list-group-item'><a href='index.php?show=algrequest&id=$row[id]'>CubeRequest #$row[id]: $row[company] $row[name]</a></li>";
       }
       ?>
-    </ul>-->
+    </ul>
   </div>
   <div class="col-md-5">
     <!-- _ -->

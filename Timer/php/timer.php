@@ -1,15 +1,4 @@
 <?php
-// Check for login
-$login=false;
-if(isset($_COOKIE['HTTimer-login']))
-  $login=true;
-
-if(!$login){
-  $username="testuser3";
-}else{
-  $username=$_COOKIE['HTTimer-login'];
-}
-
 // Read preference file
 //$preference_file="../Users/$username/Preferences";
 //$preferences=file_get_contents($preference_file);
@@ -26,7 +15,7 @@ while($row=mysqli_fetch_assoc($result)){
 $prefs.="'a':0";
 
 // Read Collection file
-/*$sql="SELECT c.id, d.name, e.name as company, f.name as color
+$sql="SELECT c.id, d.name, e.name as company, f.name as color
 FROM Collection c
 INNER JOIN CubeDB d on c.cid = d.id
 INNER JOIN CubeDBCompany e on d.cid = e.id
@@ -39,8 +28,7 @@ while($row=mysqli_fetch_assoc($result)){
 }
 
 // Build Collection JSON
-$collectionString=implode(",",$collectionString);*/
-$collectionString="";
+$collectionString=implode(",",$collectionString);
 
 function scramblertotype($id){
   $sql="SELECT * FROM Scrambler WHERE id=$id;";
@@ -66,7 +54,7 @@ $sessions=implode(",",$sessions);
 // Get TimeListData
 $timeListData=[];
 for($i=1;$i<$cnt+1;++$i){
-  $timeListData_file="Users/CMOSTimer-developer/".$i.".session";
+  $timeListData_file="Users/$username/".$i.".session";
   array_push($timeListData,file_get_contents($timeListData_file));
 }
 $timeListData2=implode(",",$timeListData);

@@ -21,7 +21,7 @@
           </ul>
         </li>
         <li><a href="index.php?show=CubeDB/lscubedb">CMOSCubeDB</a></li>
-        <li><a href="index.php?show=AlgDB/lsalgdb ">CMOSAlgDB</a></li>
+        <li><a href="index.php?show=AlgDB/lssets ">CMOSAlgDB</a></li>
         <!--<li><a href="index.php?show=AlgTrainer/lssets">CMOSAlgPractise</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cubing resources <span class="caret"></span></a>
@@ -33,6 +33,10 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Other <span class="caret"></span></a>
           <ul class="dropdown-menu">
+            <li><a href="index.php?show=Goals/readgoal">Goals</a></li>
+            <li><a href="index.php?show=AlgDB/algsearch">AlgSearch</a></li>
+            <li><a href="index.php?show=PBs/subx">sub-x</a></li>
+            <li><a href="index.php?show=PBs/list">PBs</a></li>
             <li><a href="index.php?show=userlist">Userlist</a></li>
             <li><a href="index.php?show=Collection/collection_read">Collection</a></li>
             <li><a href="index.php?show=Messages/view">Messages</a></li>

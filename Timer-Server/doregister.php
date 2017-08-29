@@ -4,6 +4,7 @@ $name = $_POST['uname'];
 $wca = $_POST['wca'];
 $pword = $_POST['pword'];
 $pword2 = $_POST['pword2'];
+$email = $_POST['email'];
 $errName="";
 $errName2="";
 $errName3="";
@@ -26,20 +27,43 @@ if (is_dir("../Users/$name")){
 	$errName5='This username already exists!';
 }
 
+function q(){
+	global $sql;
+	global $db;
+	mysqli_query($db,$sql);
+	echo mysqli_error($db)."<br/>";
+}
 
 if (!$errName && !$errName2 && !$errName3 && !$errName4 && !$errName5) {
-	echo '<div class="alert alert-success">Thank You! <a href="../index.php">Complete registration.</a></div>';
-	file_put_contents("accounts.pptm",",".json_encode([$name,$pword,$wca,$pword==$pword2]),FILE_APPEND|LOCK_EX);
-	mkdir("../Users/$name");
-	touch("../Users/$name/Algsets");
-	touch("../Users/$name/Collection");
-	touch("../Users/$name/Data");
-	touch("../Users/$name/PBs");
-	touch("../Users/$name/Pointlog");
-	touch("../Users/$name/Preferences");
-	touch("../Users/$name/Timersave");
-	file_put_contents("../Users/$name/Timersave",'{"timeList":[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]],"currentScrambler":"333","customScramblerList":[],"algSets":[],"goals":[],"sessionData":[{"phases":1,"inspection":0,"name":"2x2x2","solveType":"normal","method":"","scrambleType":"222jsss","cube":[null,"no cube"],"scramblerType":"333jsss"},{"phases":1,"inspection":0,"name":"3x3x3","solveType":"normal","method":"","scrambleType":"333jsss","cube":[null,"no cube"]},{"phases":1,"inspection":0,"name":"4x4x4","solveType":"normal","method":"","scrambleType":"444jsss","cube":[null,"no cube"]},{"phases":1,"inspection":0,"name":"5x5x5","solveType":"normal","method":"","scrambleType":"555jsss","cube":[null,"no cube"]},{"phases":1,"inspection":0,"name":"6x6x6","solveType":"normal","method":"","scrambleType":"666jsss","cube":[null,"no cube"]},{"phases":1,"inspection":0,"name":"7x7x7","solveType":"normal","method":"","scrambleType":"777jsss","cube":[null,"no cube"]},{"phases":1,"inspection":0,"name":"Pyraminx","solveType":"normal","method":"","scrambleType":"Pyra","cube":[null,"no cube"]},{"phases":1,"inspection":0,"name":"Megaminx","solveType":"normal","method":"","scrambleType":"Mega","cube":[null,"no cube"]},{"phases":1,"inspection":0,"name":"3x3x3 Onehanded","solveType":"OH","method":"","scrambleType":"333","cube":[null,"no cube"]},{"phases":1,"inspection":0,"name":"3x3x3 BLD","solveType":"BLD","method":"","scrambleType":"333","cube":[null,"no cube"]},{"phases":1,"inspection":0,"name":"4x4x4 BLD","solveType":"BLD","method":"","scrambleType":"444","cube":[null,"no cube"]},{"phases":1,"inspection":0,"name":"5x5x5 BLD","solveType":"BLD","method":"","scrambleType":"555","cube":[null,"no cube"]},{"phases":1,"inspection":0,"name":"3x3x3 MBLD","solveType":"BLD","method":"","scrambleType":"333","cube":[null,"no cube"]},{"phases":1,"inspection":0,"name":"Square-1","solveType":"normal","method":"","scrambleType":"Square1","cube":[null,"no cube"]},{"phases":1,"inspection":0,"name":"Skewb","solveType":"normal","method":"","scrambleType":"Skewb","cube":[null,"no cube"]},{"phases":1,"inspection":0,"name":"3x3x3 Fewest moves","solveType":"normal","method":"","scrambleType":"333","cube":[null,"no cube"],"scramblerType":"333"},{"phases":1,"inspection":0,"name":"3x3x3 Feet","solveType":"FT","method":"","scrambleType":"333jsss","cube":[null,"no cube"]}],"currentSession":0}');
-	touch("../Users/$name/Tmp");
+	echo '<div class="container"><div class="alert alert-success">Thank You! <a href="../index.php">Complete registration.</a></div></div>';
+	mkdir("Users/$name");
+	for($i=1;$i<12;++$i){
+		touch("Users/$name/$i.session");
+		file_put_contents("Users/$name/$i.session","[]");
+	}
+
+
+	$sql='INSERT INTO Users (uname,pw,email,wca) VALUES ("'.$name.'","'.$pword.'","'.$email.'","'.$wca.'");';q();
+
+	$uid=mysqli_fetch_assoc(mysqli_query($db,"SELECT id FROM Users WHERE uname='".$name."';"))["id"];
+	$sql='INSERT INTO TimeSessions (uid, name, writable, type, active, scrambler) VALUES ('.$uid.',"2x2x2",0,0,1,1);';q();
+	$sql='INSERT INTO TimeSessions (uid, name, writable, type, active, scrambler) VALUES ('.$uid.',"3x3x3",0,0,1,2);';q();
+	$sql='INSERT INTO TimeSessions (uid, name, writable, type, active, scrambler) VALUES ('.$uid.',"4x4x4",0,0,1,21);';q();
+	$sql='INSERT INTO TimeSessions (uid, name, writable, type, active, scrambler) VALUES ('.$uid.',"5x5x5",0,0,1,30);';q();
+	$sql='INSERT INTO TimeSessions (uid, name, writable, type, active, scrambler) VALUES ('.$uid.',"6x6x6",0,0,1,38);';q();
+	$sql='INSERT INTO TimeSessions (uid, name, writable, type, active, scrambler) VALUES ('.$uid.',"7x7x7",0,0,1,45);';q();
+	$sql='INSERT INTO TimeSessions (uid, name, writable, type, active, scrambler) VALUES ('.$uid.',"Pyraminx",0,0,1,1);';q();
+	$sql='INSERT INTO TimeSessions (uid, name, writable, type, active, scrambler) VALUES ('.$uid.',"Megaminx",0,0,1,52);';q();
+	$sql='INSERT INTO TimeSessions (uid, name, writable, type, active, scrambler) VALUES ('.$uid.',"Skewb",0,0,1,53);';q();
+	$sql='INSERT INTO TimeSessions (uid, name, writable, type, active, scrambler) VALUES ('.$uid.',"Square-1",0,0,1,1);';q();
+	$sql='INSERT INTO TimeSessions (uid, name, writable, type, active, scrambler) VALUES ('.$uid.',"3x3x3 Onehanded",0,0,1,2);';q();
+	$sql='INSERT INTO TimeSessions (uid, name, writable, type, active, scrambler) VALUES ('.$uid.',"3x3x3 Blindfolded",0,0,1,2);';q();
+
+	$sql="INSERT INTO Configuration (ky,value,uid) VALUES ('TimerTheme','0',$uid);";q();
+	$sql="INSERT INTO Configuration (ky,value,uid) VALUES ('TimeStatsPb','0',$uid);";q();
+	$sql="INSERT INTO Configuration (ky,value,uid) VALUES ('TimeStatistics','single,mo3,ao5,ao12,ao50,ao100,ao1000,ao10000;single,mo3,ao5,ao12,ao50,ao100,ao500;single,mo3,ao5,mo5,mo10,ao12,mo50;single,mo3,ao5,mo5,mo10,mo12;single,mo3,ao5,mo5,ao12,mo12,ao50;single,mo3,ao5,mo5,mo10,ao12',$uid);";q();
+	$sql="INSERT INTO Messages (uid1,uid2,header,content) VALUES (2,$uid,'Welcome','hi');";q();
+
 }else{
 	echo "<div class='alert alert-danger'>Sorry there was an error registering. Please try again. Error(s): $errName $errName2 $errName3 $errName4.</div>";
 }

@@ -4,28 +4,8 @@
 $set=$_GET["set"];
 $case=$_GET["case"];
 $nr=$_GET["nr"];
-
-$sql = "SELECT name FROM AlgDbSets WHERE id=$set;";
-$result=mysqli_query($db,$sql);
-$row = mysqli_fetch_assoc($result);
-$setname=$row["name"];
-
-$sql = "SELECT name FROM AlgDbCases WHERE id=$case;";
-$result=mysqli_query($db,$sql);
-$row = mysqli_fetch_assoc($result);
-$algname=$row["name"];
-
-$sql = "SELECT alg FROM AlgDbAlg WHERE cid=$case;";
-$counter=0;
-$result=mysqli_query($db,$sql);
-while($row = mysqli_fetch_assoc($result)){
-  ++$counter;
-  if($counter==$nr){
-    $alg=$row["alg"];
-  }
-}
-
-echo "$setname/$algname/$nr</h1>";
+$alg=explode("\n",file_get_contents("AlgDB/data/$set/$case/algorithms"))[$nr-1];
+echo "$set/$case/$nr</h1>";
 ?>
 <div class="list-group">
   <a nohref="nohref" class="list-group-item">

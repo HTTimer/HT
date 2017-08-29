@@ -6,7 +6,7 @@
   echo mysqli_num_rows($result);
   echo " users registered!<br/><ul class='list-group'>";
   while($row=mysqli_fetch_assoc($result)){
-    echo "<li class='list-group-item'><a href='index.php?show=profile&u=$row[uname]'>$row[uname]</a></li>";
+    echo "<li class='list-group-item'><a href='index.php?show=Profile/profile&u=$row[id]'>$row[uname]</a></li>";
   }
   ?></ul>
 </div>

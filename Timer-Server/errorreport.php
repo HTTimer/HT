@@ -1,6 +1,6 @@
 <div class="container">
 <h1>Please report errors here.</h1>
-<form class="form-horizontal" role="form" method="post" action="../Timer-Server/doerrorreport.php">
+<form class="form-horizontal" role="form" method="post" action="index.php?show=Timer-Server/doerrorreport">
 	<div class="form-group">
 		<label for="name" class="col-md-2 control-label">Name</label>
 		<div class="col-md-7">
@@ -20,13 +20,14 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="human" class="col-md-2 control-label">2 + 3 = ?</label>
+		<label for="human" class="col-md-2 control-label"><?php echo $a=rand(1,15); ?> + <?php echo $b=rand(3,12); ?> = ?</label>
 		<div class="col-md-7">
 			<input type="text" class="form-control" id="human" name="human" placeholder="Your Answer"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="col-md-7 col-md-offset-2">
+			<input type="hidden" name="sol" value="<?php echo $a+$b; ?>"/>
 			<input id="submit" name="submit" type="submit" value="Send" class="btn btn-success"/>
 		</div>
 	</div>

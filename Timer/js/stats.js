@@ -26,7 +26,7 @@ var stats = (function() {
 	 * stats:update();
 	 */
 	function update() {
-		var times, i, code, sizes, best, current;
+		var times, i, code, sizes, sizes2, best, current;
 
 		times = core.get("config").timeList[core.get("config").currentSession];
 		code = "";
@@ -48,7 +48,7 @@ var stats = (function() {
 		// Statistics
 		code = "";
 
-		sizes = core.get("optTimeStatistics").split(";")[{
+		sizes = sizes2 = core.get("optTimeStatistics").split(";")[{
 			"2H": 0,
 			"normal": 0,
 			"OH": 1,
@@ -57,26 +57,25 @@ var stats = (function() {
 			"FMC": 4,
 			"FT": 5
 		}[sessions.current().solveType]].split(",");
-		for (var i = 0; i < sizes.length; ++i) {
-			sizes[i] = sizes[i].replace("mo", "");
-			sizes[i] = sizes[i].replace("ao", "");
-			sizes[i] = sizes[i].replace("single", 1);
-		}
 
 		code += html.tr(html.el("b", transl("Statistics")), html.el("b", transl("Best")), html.el("b", transl("Current")));
 		for (i = 0; i < sizes.length; ++i) {
-			best = math.format(math.bestMean(core.get("config").timeList[core.get("config").currentSession], sizes[i])),
-				current = math.format(math.currentMean(core.get("config").timeList[core.get("config").currentSession], sizes[i]));
+			best = math.format(math.bestMean(core.get("config").timeList[core.get("config").currentSession], sizes[i].replace("mo","").replace("ao","").replace("single",1),sizes[i][0])),
+				current = math.format(math.currentMean(core.get("config").timeList[core.get("config").currentSession], sizes[i].replace("mo","").replace("ao","").replace("single",1),sizes[i][0]));
 			var b = best == current;
 			if (b && best != "DNF" && (core.get("optDisplayPb") > 1))
 				best = "<b>" + best + "</b>";
 			if (b && current != "DNF" && ((core.get("optDisplayPb") - 1) % 2 == 0))
 				best += " <b>PB</b>";
-			code += html.tr((sizes[i] < 2 ? "single" : "Ao" + sizes[i]), best, current);
+			code += html.tr((sizes[i].replace("mo","").replace("ao","").replace("single",1) < 2 ? "single" : sizes[i]), best, current);
 		}
 		code = html.table(code);
 
 		layout.write("STATS", code);
+		if(times.length>100&&times.length<1001)
+			layout.write("BOTTOMMENU", "Time rolled out: ao100: "+math.format(times[times.length-101].zeit));
+		if(times.length>1000)
+			layout.write("BOTTOMMENU", "Time rolled out: ao100: "+math.format(times[times.length-101].zeit)+", ao1000: "+math.format(times[times.length-1001].zeit));
 	}
 
 	/*

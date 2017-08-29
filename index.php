@@ -1,10 +1,19 @@
 <?php
+//Database connection
+$db=mysqli_connect("localhost","CMOSSystem","test") or die ("Database connection failed!");
+mysqli_set_charset($db,"utf8");
+mysqli_select_db($db,"CMOS");
+
 //Check login
+$uid=0;
 $login=isset($_COOKIE["HTTimer-login"]);
 $username="";
+$uid=$login?$_COOKIE["HTTimer-login"]:0;
+
+$sql="SELECT uname FROM Users WHERE id=$uid;";
 
 if($login)
-  $username=$_COOKIE["HTTimer-login"];
+  $username=mysqli_fetch_assoc(mysqli_query($db,$sql))["uname"];
 $isAdministrator=$username=="CMOSTimer-developer";
 
 //If no location, set it to index
@@ -22,7 +31,7 @@ $no=["Timerconfig/cmosoptions","Timerconfig/sessions","Timerconfig/sessions_add_
 "dashboard","Documents/documents_add","pbs","profileedit","requestchange","CubeDB/cuberequest",
 "Collection/collection_read","Collection/collection_add","Collection/collection_add_","Collection/collection_toggle_defect",
 "Collection/collection_delete","Collection/collection_update_defect","AlgTrainer/lssets","CubingRace/join","CubingRace/view",
-"AlgTrainer/addset","AlgTrainer/addset2","AlgTrainer/addset3","AlgTrainer/changeset","AlgTrainer/practise"];
+"AlgTrainer/addset","AlgTrainer/addset2","AlgTrainer/addset3","AlgTrainer/changeset","AlgTrainer/practise","Timer/index"];
 if(!$login&&(in_array($_GET["show"],$no)||strstr($_GET["show"],"Admin")))
   $_GET["show"]="Access/accessdenied";
 
@@ -31,17 +40,11 @@ if(!$isAdministrator&&(in_array($_GET["show"],$no)||strstr($_GET["show"],"Admin"
   $_GET["show"]="Access/accessdeniedadmin";
 
 $no=[];
-
-//Database connection
-$db=mysqli_connect("localhost","CMOSSystem","test");
-mysqli_set_charset($db,"utf8");
-mysqli_select_db($db,"CMOS");
+$version="1.0.0";
 
 if (mysqli_connect_errno()){
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
-
-$uid=1;
 
 //Do not build menu if the user wants to see the timer
 if($_GET["show"]=="Timer"){
@@ -55,7 +58,7 @@ if($_GET["show"]=="Timer"){
 <!doctype html>
 <html>
   <head>
-    <title>CMOS - Cubing Management and Optimizing System - Version 0.0.1 Alpha</title>
+    <title>CMOS - Cubing Management and Optimizing System - V<?php echo $version; ?></title>
     <script src="lib/jquery.min.js"></script> <!-- JQuery 3.1.1 -->
     <link href="lib/bootstrap.min.css" rel="stylesheet" />
     <link href="lib/custom.css" rel="stylesheet" />
@@ -68,7 +71,8 @@ if($_GET["show"]=="Timer"){
   </head>
   <body>
     <?php
-    include_once("menu.php");
+    if(!strstr("Login/loginTimer-Server/registerTimer-Server/doregister",$_GET["show"]))
+      include_once("menu.php");
     include_once($_GET["show"].".php");
     ?>
   </body>
