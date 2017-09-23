@@ -30,27 +30,28 @@ var math = (function() {
 			return DNF;
 		}
 		return sum / (cnttime);
-
 	}
+
 	/*
 	 * math:getAverage(times)
 	 * @param times Array of solves to get an average of
 	 * @returns average of times, or -1 in case of DNF
 	 */
 	function getAverage(times) {
-		var cntdnf, cnttime, sum, i;
-		cntdnf = 0;
-		cnttime = 0;
+		var sum, i, cntdnf;
 		sum = 0;
-		if (times.length < 101)
+		cntdnf = 0;
+
+		if (times.length < 999)
 			return getAverage19 (times);
 		for (i = 0; i < times.length; ++i) {
-			if (times[i].penalty > -1) sum += times[i].zeit + times[i].penalty,
-				cnttime++;
-			else cntdnf++;
+			sum += times[i].zeit + times[i].penalty;
+			if(!(times[i].penalty > -1))
+				++cntdnf;
 		}
+
 		if (cntdnf > (1 + times.length * 0.05)) return DNF;
-		return sum / (cnttime);
+		return sum / times.length;
 	}
 
 	function getAverage19(times) {

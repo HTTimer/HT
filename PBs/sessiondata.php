@@ -45,30 +45,9 @@
   <tr><td>ao1000</td><td>$b1000</td></tr>
   <tr><td>mo$sessioncnt</td><td>$ba</td></tr>
   </tbody></table>";
-  $sessstats="<h3>Session statistics</h3><div class='list-group'>
-    <a nohref='nohref' class='list-group-item'>
-      <h4 class='list-group-item-heading'>Name</h4>
-      <p class='list-group-item-text'>$sessionname</p>
-    </a>
-    <a nohref='nohref' class='list-group-item'>
-      <h4 class='list-group-item-heading'>Number of solves</h4>
-      <p class='list-group-item-text'>$sessioncnt</p>
-    </a>
-    <a nohref='nohref' class='list-group-item'>
-      <h4 class='list-group-item-heading'>Storage used</h4>
-      <p class='list-group-item-text'>$storage bytes</p>
-    </a>
-    <a nohref='nohref' class='list-group-item'>
-      <h4 class='list-group-item-heading'>Type</h4>
-      <p class='list-group-item-text'>$type</p>
-    </a>
-    <a nohref='nohref' class='list-group-item'>
-      <h4 class='list-group-item-heading'>Scrambler</h4>
-      <p class='list-group-item-text'>$scramblername</p>
-    </a>
-  </div>";
-  $timegraph="<h3>Time graph</h3>Graph";
-  $subxgraph="<h3>Sub-x graph</h3>Graph";
+
+  $timegraph="<h3>Time graph</h3>Graph display error";
+  $subxgraph="<h3>Sub-x graph</h3>Graph display error";
 
   $export='<h3>Human-readable export</h3><textarea class="form-control" rows="10">'.
   "-----------------------\n".
@@ -81,10 +60,41 @@
   ."Best ao100: ".$b100."\n"
   ."Best ao500: ".$b500."\n"
   ."Best ao1000: ".$b1000."\n\n\n";
+  $totaltime=0;
   for($i=0;$i<count($json);++$i){
     $export.="\n".($i+1).".: ".format($json[$i]["zeit"])." ".$json[$i]["scramble"];
+    $totaltime+=$json[$i]["zeit"];
   }
   $export.="\n----------END----------</textarea>";
+
+  $totaltime=format($totaltime);
+
+  $sessstats="<h3>Session statistics</h3><div class='list-group'>
+    <a nohref='nohref' class='list-group-item'>
+      <h4 class='list-group-item-heading'>Name</h4>
+      <p class='list-group-item-text'>$sessionname</p>
+    </a>
+    <a nohref='nohref' class='list-group-item'>
+      <h4 class='list-group-item-heading'>Number of solves</h4>
+      <p class='list-group-item-text'>$sessioncnt</p>
+    </a>
+    <a nohref='nohref' class='list-group-item'>
+      <h4 class='list-group-item-heading'>Total time spent solving</h4>
+      <p class='list-group-item-text'>$totaltime</p>
+    </a>
+    <a nohref='nohref' class='list-group-item'>
+      <h4 class='list-group-item-heading'>Storage used</h4>
+      <p class='list-group-item-text'>$storage bytes</p>
+    </a>
+    <!--<a nohref='nohref' class='list-group-item'>
+      <h4 class='list-group-item-heading'>Type</h4>
+      <p class='list-group-item-text'>$type</p>
+    </a>-->
+    <a nohref='nohref' class='list-group-item'>
+      <h4 class='list-group-item-heading'>Scrambler</h4>
+      <p class='list-group-item-text'>$scramblername</p>
+    </a>
+  </div>";
   ?>
   <div class="row">
     <div class="col-md-6"><?php echo $timegraph; ?></div>

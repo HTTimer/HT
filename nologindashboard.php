@@ -4,6 +4,8 @@
   <div class="col-md-7">
     You are viewing the front page of CMOS (Cubing Management and Optimization System), the <a href="index.php?show=Text/compare">best</a> cubing software in the world.
     You can use most features, but you need to create an account and log in for those saving or changing data.
+    If you want to try CMOS out before registering, you can log in as "testuser" with password "test23".<br/>
+    CMOS is a collection of useful cubing software. It includes a timer, cube database, algorithm database, goal management, collection management and statistics.
   </div>
   <div class="col-md-5">
     <h3>News</h3>
@@ -20,13 +22,6 @@
       </ul>
       <ul><a href='index.php?show=viewallnews'>[View all]</a></ul><br/>
     </div>
-  </div>
-  <div class="col-md-7">
-
-  </div>
-  <div class="col-md-5">
-
-    <a href="index.php?show=Timer" class="btn btn-success">open CMOSTimer</a>
   </div>
 </div>
 </div>

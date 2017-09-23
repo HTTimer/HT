@@ -40,6 +40,7 @@
             <li><a href="index.php?show=userlist">Userlist</a></li>
             <li><a href="index.php?show=Collection/collection_read">Collection</a></li>
             <li><a href="index.php?show=Messages/view">Messages</a></li>
+            <li><a href="index.php?show=PBs/sessiondata">Session statistics</a></li>
           </ul>
         </li>
       </ul>
@@ -64,6 +65,7 @@
         <li><a href="index.php?show=Timer-Server/errorreport">Report bug</a></li>
         <?php if(!$login){ ?>
           <li><a href="index.php?show=Login/login">Login</a></li>
+          <li><a href="index.php?show=Login/register">Register</a></li>
         <?php } ?>
       </ul>
     </div>

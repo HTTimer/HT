@@ -1,6 +1,7 @@
 <div class="container"><?php
 $name=$_POST["name"];
-$sql="INSERT INTO TimeSessions (uid,name,active,writable,type,scrambler) VALUES ($uid,'$name',1,1,1,1);";
+$solvetype=$_POST["solvetype"];
+$sql="INSERT INTO TimeSessions (uid,name,active,writable,type,scrambler,solveType) VALUES ($uid,'$name',1,1,1,1,'$solvetype');";
 $result=mysqli_query($db,$sql);
 echo mysqli_error($db);
 
@@ -13,3 +14,4 @@ file_put_contents("Users/$username/".$row["COUNT"].".session","[]");
 echo mysqli_error($db);
 ?>
 </div>
+<script>window.location.href="index.php?show=Timerconfig/sessions";</script>

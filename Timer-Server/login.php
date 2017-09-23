@@ -10,7 +10,7 @@
 			<input type="submit" name="submit" class="login loginmodal-submit" value="Login"/>
 		</form>
 		<div class="login-help">
-			<a href="register.php">Don't have an account? Register</a>
+			<a href="index.php?show=Login/register.php">Don't have an account? Register</a>
 		</div>
 	</div>
 </div>

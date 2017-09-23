@@ -3,7 +3,7 @@
   <ul>
   <?php
   $sql = "SELECT * FROM AlgDbSets ORDER BY name ASC;";
-  $result=mysqli_query($db,$sql);
+  $result = mysqli_query($db,$sql);
   while($row = mysqli_fetch_assoc($result)){
     echo "<li class='list-group-item'>
       <b>
@@ -22,8 +22,8 @@
 </div>
 <style>
 .addset {
-height: 100px;
-border: 1px solid black;
-padding: 3px;
+  height: 100px;
+  border: 1px solid black;
+  padding: 3px;
 }
 </style>

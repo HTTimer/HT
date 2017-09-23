@@ -42,12 +42,12 @@ function scramblertotype($id){
 
 // Get Session data
 $sessions=[];
-$sql="SELECT name,scrambler FROM TimeSessions WHERE uid=$uid;";
+$sql="SELECT t.name,t.scrambler,t.solveType,m.name AS method FROM TimeSessions t INNER JOIN Methods m ON m.id=t.method WHERE t.uid=$uid;";
 $result=mysqli_query($db,$sql);
 $cnt=0;
 while($row=mysqli_fetch_assoc($result)){
   $cnt++;
-  array_push($sessions,'{"phases":1,"inspection":0,"solveType":"normal","method":"","scrambleType":"'.scramblertotype($row["scrambler"]).'","cube":[null,"no cube"],"scramblerType":"444jsss","name":"'.$row["name"].'"}');
+  array_push($sessions,'{"phases":1,"inspection":0,"solveType":"'.$row["solveType"].'","method":"'.$row["method"].'","scrambleType":"'.scramblertotype($row["scrambler"]).'","cube":[null,"no cube"],"scramblerType":"'.scramblertotype($row["scrambler"]).'","name":"'.$row["name"].'"}');
 }
 $sessions=implode(",",$sessions);
 

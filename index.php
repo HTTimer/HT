@@ -28,14 +28,14 @@ if(!isset($_GET["show"])){
 }
 
 $no=["Timerconfig/cmosoptions","Timerconfig/sessions","Timerconfig/sessions_add_","Timerconfig/sessions_update_","userlist","AlgDB/algdbstats",
-"dashboard","Documents/documents_add","pbs","profileedit","requestchange","CubeDB/cuberequest",
+"dashboard","Documents/documents_add","pbs","profileedit","requestchange","CubeDB/cuberequest","PBs/subx","AlgDb/addalg_",
 "Collection/collection_read","Collection/collection_add","Collection/collection_add_","Collection/collection_toggle_defect",
 "Collection/collection_delete","Collection/collection_update_defect","AlgTrainer/lssets","CubingRace/join","CubingRace/view",
 "AlgTrainer/addset","AlgTrainer/addset2","AlgTrainer/addset3","AlgTrainer/changeset","AlgTrainer/practise","Timer/index"];
 if(!$login&&(in_array($_GET["show"],$no)||strstr($_GET["show"],"Admin")))
   $_GET["show"]="Access/accessdenied";
 
-$no=["../../Patterns/index","createcube","../../AlgTrainer/lssets"];
+$no=[];
 if(!$isAdministrator&&(in_array($_GET["show"],$no)||strstr($_GET["show"],"Admin")))
   $_GET["show"]="Access/accessdeniedadmin";
 
@@ -71,7 +71,7 @@ if($_GET["show"]=="Timer"){
   </head>
   <body>
     <?php
-    if(!strstr("Login/loginTimer-Server/registerTimer-Server/doregister",$_GET["show"]))
+    if(!strstr("Login/loginLogin/login_Timer-Server/register_Timer-Server/registerTimer-Server/doregister",$_GET["show"]))
       include_once("menu.php");
     include_once($_GET["show"].".php");
     ?>

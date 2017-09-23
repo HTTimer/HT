@@ -14,12 +14,12 @@
   <span class="cubing-icon event-sq1"   onclick="search('Square-1');"></span>
   <span onclick="search('')">–</span><br/>
   <span onclick="search('mo1/single');">Single</span>
-  <span onclick="search('mo3');">mo3</span>
-  <span onclick="search('mo5');">mo5</span>
-  <span onclick="search('mo12');">mo12</span>
-  <span onclick="search('mo50');">mo50</span>
-  <span onclick="search('mo100');">mo100</span>
-  <span onclick="search('mo1000');">mo1000</span>
+  <span onclick="search('ao3');">ao3</span>
+  <span onclick="search('ao5');">ao5</span>
+  <span onclick="search('ao12');">ao12</span>
+  <span onclick="search('ao50');">ao50</span>
+  <span onclick="search('ao100');">ao100</span>
+  <span onclick="search('ao1000');">ao1000</span>
   <span onclick="search('');">–</span>
   <table class="table table-condensed table-striped table-hover">
     <thead><tr><th>Session</th><th>format</th><th>Result</th><th>Result details</th><th>Date</th><th>Inspection</th><th>Details</th></tr></thead>
@@ -27,7 +27,6 @@
 <?php
 
 include ("math.php");
-
 
 $counter=0;
 $sql="SELECT id,name FROM TimeSessions WHERE uid=$uid;";
@@ -55,16 +54,16 @@ function pb($sessionname,$format,$i,$json){
     "View details"."</td></tr>";
   }else{
     echo "<tr><td>".$sessionname."</td><td>".
-    "mo".$format."</td><td>".
+    "ao".$format."</td><td>".
     format(getAverage($json,$i-$format,$format))."</td><td>";
     $timeList="";
     $fc="";
-    if($format>60){$format=60;$fc="<b>...</b>";};
+    if($format>25){$fc="<b>... (".($format-25)." more solves)</b>";$format=25;};
     $counter=0;
     for($j=$i-$format;$j<$i;++$j){
       ++$counter;
       $timeList.=format($json[$j]["zeit"]).", ";
-      if($counter%12==0)$timeList.="<br/>";
+      //if($counter%12==0)$timeList.="<br/>";
     }
     echo $timeList.$fc."</td><td>".date("Y-m-d H:i:s",floor($jsoni["endTime"]/1000)).
     "</td><td></td><td>View details</td></tr>";
@@ -94,7 +93,7 @@ function displayGoals($id,$counter,$sessionname){
   $best1000=0xFFFFFFFF;
 
   for($i=0;$i<count($json);++$i){
-    if($times[$i]<$best){
+    if($times[$i]+$json[$i]["penalty"]<$best){
       $best=$times[$i];
       pb($sessionname,1,$i,$json);
     }

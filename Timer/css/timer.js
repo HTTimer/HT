@@ -8,7 +8,7 @@ style = (function() {
 
 @font-face {
 	font-family: 'lcd2';
-	src: url('css/lcd.ttf') format('truetype');
+	src: url('Timer/css/lcd.ttf') format('truetype');
 }
 
 body {

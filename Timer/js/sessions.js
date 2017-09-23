@@ -36,7 +36,7 @@ var sessions = (function() {
 		//Method menu
 		code += "<select style='width:60%;'>";
 
-		switch (scramble.get_type()) {
+		/*switch (scramble.get_type()) {
 			case "222":
 			case "222sh":
 			case "222jsss":
@@ -79,8 +79,9 @@ var sessions = (function() {
 				method = "not available for current scrambler";
 		}
 
+
 		if (typeof method == "string")
-			code += method;
+			code += "<option>"+method+"</option>";
 		else {
 			method.sort();
 			method.push("other");
@@ -88,7 +89,8 @@ var sessions = (function() {
 			for (i = 0; i < method.length; ++i)
 				code += "<option" + (current.method == method[i] ? " selected " : " ") + "onclick='sessions.current().method=\"" + method[i] + "\";'>" + method[i] + "</option>";
 		}
-
+		*/
+		code += "<option>"+current.method+"</option>";
 		code += "</select><br/><select style='width:100%;'><option>" + cube.identifierToName(sessions.current().cube) + "</option>";
 		for (i = 0; i < cube.collection.length; ++i)
 			code += "<option onclick='sessions.current().cube=cube.collection[" + i + "].identifier;'>" + cube.collection[i].name + "</option>";
@@ -109,7 +111,7 @@ var sessions = (function() {
 		//Method menu
 		code += "<select style='width:60%;'>";
 
-		if (typeof method == "string")
+		/*if (typeof method == "string")
 			code += method;
 		else {
 			method.sort();
@@ -117,8 +119,8 @@ var sessions = (function() {
 			code += "<option>select " + transl("Method") + "</option>";
 			for (i = 0; i < method.length; ++i)
 				code += "<option" + (current.method == method[i] ? " selected " : " ") + "onclick='sessions.current().method=\"" + method[i] + "\";'>" + method[i] + "</option>";
-		}
-
+		}*/
+		code += "<option>"+current.method+"</option>";
 		code += "</select><br/><select style='width:100%;'><option>" + cube.identifierToName(sessions.current().cube) + "</option>";
 		for (i = 0; i < cube.collection.length; ++i)
 			code += "<option onclick='sessions.current().cube=cube.collection[" + i + "].identifier;'>" + cube.collection[i].name + "</option>";

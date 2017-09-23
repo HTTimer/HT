@@ -9,6 +9,20 @@
     </div>
 
     <div class="form-group">
+      <label class="col-md-4 control-label" for="s">Solve type</label>
+      <div class="col-md-4">
+        <select id="s" name="solvetype" class="form-control input-md">
+          <option>2H</option>
+          <option>OH</option>
+          <option>BLD</option>
+          <option>OH BLD</option>
+          <option>FT</option>
+          <option>FMC</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
       <label class="col-md-4 control-label" for="opt">Options</label>
       <div class="col-md-4">
       <div class="checkbox">

@@ -13,28 +13,33 @@ function getMean($times,$start=0,$size=NULL){
   return $sum/($size-$start);
 }
 
-function getAverage($json,$start=0,$size=NULL){
+function getAverage($json,$start,$size){
   $sum=0;
-  if($size==NULL)$size=count($json)-1;
-  else $size+=$start;
 
   $cntdnf=0;
   $cnttime=0;
   $min=0xFFFFFFFF;
   $max=0;
 
-  for($i=$start+1;$i<$size+1;++$i){
-    if($json[$i]["penalty"] > -1){
-      $sum+=$json[$i]["zeit"]+$json[$i]["penalty"];
+  for($i=$start;$i<$start+$size;++$i){
+    // precalc some values to save execution time
+    // this saved 2 seconds of goals with 2k solves
+    $solve=$json[$i];
+    $spenalty=$solve['penalty'];
+    $stotal=$solve['zeit']+$spenalty;
+
+    if($spenalty > -1){
+      $sum+=$stotal;
       ++$cnttime;
+      if($stotal < $min) $min=$stotal;
+      if($stotal > $max) $max=$stotal;
     }else ++$cntdnf;
-    if($json[$i]["zeit"]+$json[$i]["penalty"] < $min) $min=$json[$i]["zeit"]+$json[$i]["penalty"];
-    if($json[$i]["zeit"]+$json[$i]["penalty"] > $max) $min=$json[$i]["zeit"]+$json[$i]["penalty"];
   }
 
-  if($cntdnf > (1+$size*0.05)) return -1;
-  if($size-$start==1)return $min;
-  return ($sum - $min - ($cntdnf==0?$max:0)) / ($cnttime -1 + ($cntdnf==0*-1));
+  //if($cntdnf > (1+$i/20)) return -1;
+  if($size==1)return $min;
+  if($cnttime - 1 + ($cntdnf==0*-1)==0) return "DNF";
+  return ($sum - $min - ($cntdnf==0?$max:0)) / ($cnttime - 1 - ($cntdnf==0));
 }
 
 function getBestMean($times,$x){

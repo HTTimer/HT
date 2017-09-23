@@ -45,13 +45,7 @@ function addAlg($alg){
       <tbody id="tbody"></tbody>
     </table>
     <?php if($login){ ?><button class="btn btn-success" onclick="window.location.href='index.php?show=AlgDB/downloadalg&set=<?php echo $set; ?>&alg=<?php echo $case; ?>';">Download Algorithms</button><?php } ?>
-    <button class="btn btn-success" onclick="showAdd();">Add algorithms</button><br/><br/>
-    <div id="add">
-      <div id="inputs"></div><br/>
-      <div id="errors" class="alert alert-danger"></div>
-      <button onclick="addInput();" class="btn btn-success">Add another algorithm</button>
-      <button onclick="submit();" class="btn btn-success">Submit</button><br/><br/>
-    </div>
+    <a href="index.php?show=AlgDB/addalg&set=<?php echo $set; ?>&alg=<?php echo $case; ?>" role="button" class="btn btn-success">Add algorithms</a><br/><br/>
   </div>
 </div>
 
@@ -124,38 +118,5 @@ function addY(number,alg){
   alg.shift();
   alg=alg.join(" ");
   return a+alg;
-}
-
-/*
- * Submit
- */
-document.getElementById("add").style.display="none";
-document.getElementById("errors").style.display="none";
-function addInput(){
-  $("#inputs").append($("<input class='input'/><br/>"));
-  window.scrollBy(0,50);
-}
-function submit(){
-  var els=document.getElementsByClassName("input"),i,algs=[],isError=false,fehlertext="";
-  document.getElementById("errors").style.display="none";
-
-  for(i=0;i<els.length;++i){
-    algs.push(els[i].value);
-    if(algs[i].split(" ").length<3&&algs[i]!=""){
-      fehlertext+="Algorithm "+(i+1)+" is too short, must be at least three moves!<br/>";
-    }else if(algs[i].split(" ").length>30){
-      fehlertext+="Algorithm "+(i+1)+" is too long, may be at most 30 moves!<br/>";
-    }
-    if(algs[i].length>300){
-      fehlertext+="Algorithm "+(i+1)+" is too long, may be at most 300 characters!<br/>";
-    }
-  }
-  if(fehlertext!=""){
-    document.getElementById("errors").style.display="block";
-    document.getElementById("errors").innerHTML=fehlertext;
-    window.scrollBy(0,500);
-    return!1;
-  }
-  window.location.href="AlgDB/submitaddrequest.php?set=<?php echo $set; ?>&case=<?php echo $case; ?>&data="+JSON.stringify(algs);
 }
 </script>
